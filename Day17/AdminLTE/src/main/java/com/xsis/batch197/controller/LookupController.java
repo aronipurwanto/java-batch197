@@ -2,11 +2,15 @@ package com.xsis.batch197.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,7 +25,7 @@ public class LookupController {
 	@Autowired
 	private LookupRepo repo;
 
-	//#1. index => list data
+	// #1. index => list data
 	@GetMapping(value = "/index")
 	public ModelAndView index() {
 		// buat object view
@@ -32,8 +36,8 @@ public class LookupController {
 		view.addObject("list", listLookup);
 		return view;
 	}
-	
-	//#2. Membuat Form Add lookup
+
+	// #2. Membuat Form Add lookup
 	@GetMapping(value = "/add")
 	public ModelAndView create() {
 		// buat object view
@@ -42,5 +46,23 @@ public class LookupController {
 		// object lookup adalah new object dari LookupModel
 		view.addObject("lookup", new LookupModel());
 		return view;
+	}
+
+	// #3. Menangkap data dari form
+	@PostMapping(value = "/save")
+	public ModelAndView save(@Valid LookupModel lookup, BindingResult result) {
+		// buat object view
+		ModelAndView view = new ModelAndView();
+		if(result.hasErrors()) {
+			logger.info("save lookup error");
+			view.setViewName("lookup/create");
+			view.addObject("lookup", lookup);
+			return view;
+		}
+		// jika tidak ada error
+		repo.save(lookup);
+		view.setViewName("lookup/index");
+		// redirect to index
+		return new ModelAndView("redirect:/lookup/index");
 	}
 }
