@@ -14,15 +14,15 @@ import com.xsis.batch197.model.LookupModel;
 import com.xsis.batch197.repository.LookupRepo;
 
 @Controller
-@RequestMapping(value="/lookup")
+@RequestMapping(value = "/lookup")
 public class LookupController {
 	private static final Logger logger = LoggerFactory.getLogger(LookupController.class);
-	
+
 	@Autowired
 	private LookupRepo repo;
-	
+
 	//#1. index => list data
-	@GetMapping(value="/index")
+	@GetMapping(value = "/index")
 	public ModelAndView index() {
 		// buat object view
 		ModelAndView view = new ModelAndView("lookup/index");
@@ -30,6 +30,17 @@ public class LookupController {
 		List<LookupModel> listLookup = repo.findAll();
 		// lemparkan data ke view, list object baru, datanya listLookup
 		view.addObject("list", listLookup);
+		return view;
+	}
+	
+	//#2. Membuat Form Add lookup
+	@GetMapping(value = "/add")
+	public ModelAndView create() {
+		// buat object view
+		ModelAndView view = new ModelAndView("lookup/create");
+		// membuat object lookup yg akan dikirim ke view
+		// object lookup adalah new object dari LookupModel
+		view.addObject("lookup", new LookupModel());
 		return view;
 	}
 }
