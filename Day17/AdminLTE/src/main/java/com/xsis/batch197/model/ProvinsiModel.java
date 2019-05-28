@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="tbl_provinsi")
@@ -17,9 +20,15 @@ public class ProvinsiModel {
 	@Column(name="id")
 	private Long id;
 	
+	@NotNull
+	@NotBlank
+	@NotEmpty
 	@Column(name="kd_provinsi", nullable=false, length=10)
 	private String kdProvinsi;
 	
+	@NotNull
+	@NotBlank
+	@NotEmpty
 	@Column(name="nm_provinsi", nullable=false, length=120)
 	private String nmProvinsi;
 

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -61,19 +62,15 @@ public class ProvinsiController {
 	// #3. Menangkap data dari form
 	@PostMapping(value = "/save")
 	public ModelAndView save(@Valid @ModelAttribute("provinsi") ProvinsiModel provinsi, BindingResult result) {
-		// buat object view
-		ModelAndView view = new ModelAndView();
 		if (result.hasErrors()) {
 			logger.info("save provinsi error");
-			view.setViewName("provinsi/create");
-			view.addObject("provinsi", provinsi);
-			return view;
+		}else {
+			repo.save(provinsi);
 		}
-		// jika tidak ada error
-		repo.save(provinsi);
-		view.setViewName("provinsi/index");
-		// redirect to index
-		return new ModelAndView("redirect:/provinsi/index");
+		
+		ModelAndView view = new ModelAndView("provinsi/create");
+		view.addObject("provinsi", provinsi);
+		return view;
 	}
 
 	// #2. Membuat Form Add provinsi
@@ -92,19 +89,15 @@ public class ProvinsiController {
 	// #3. Menangkap data dari form
 	@PostMapping(value = "/update")
 	public ModelAndView update(@Valid @ModelAttribute("provinsi") ProvinsiModel provinsi, BindingResult result) {
-		// buat object view
-		ModelAndView view = new ModelAndView();
 		if (result.hasErrors()) {
 			logger.info("save provinsi error");
-			view.setViewName("provinsi/update");
-			view.addObject("provinsi", provinsi);
-			return view;
+		}else {
+			repo.save(provinsi);
 		}
-		// jika tidak ada error
-		repo.save(provinsi);
-		view.setViewName("provinsi/index");
-		// redirect to index
-		return new ModelAndView("redirect:/provinsi/index");
+		
+		ModelAndView view = new ModelAndView("provinsi/update");
+		view.addObject("provinsi", provinsi);
+		return view;
 	}
 
 	// #4. Membuat Form Add provinsi
@@ -136,12 +129,12 @@ public class ProvinsiController {
 	// #3. Menangkap data dari form
 	@PostMapping(value = "/remove")
 	public ModelAndView remove(@ModelAttribute("provinsi") ProvinsiModel provinsi) {
-		// buat object view
-		ModelAndView view = new ModelAndView();
-		// jika tidak ada error
+		// remove data dari database via repo
 		repo.delete(provinsi);
-		view.setViewName("provinsi/index");
+		// membuat object view
+		ModelAndView view = new ModelAndView("provinsi/delete");
+		view.addObject("provinsi", provinsi);
 		// redirect to index
-		return new ModelAndView("redirect:/provinsi/index");
+		return view;
 	}
 }
