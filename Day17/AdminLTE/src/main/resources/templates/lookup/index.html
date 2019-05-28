@@ -26,11 +26,11 @@
 				<div class="row">
 					<div class="col-md-12">
 						<!-- content mulai -->
-						<div class="box box-info">
+						<div class="box box-info box-solid">
 							<div class="box-header with-border">
 								<h3 class="box-title">List Lookup</h3>
 								<div class="box-tools">
-									<a th:href="@{~/lookup/add}" class="btn btn-success">
+									<a th:href="@{~/lookup/add}" class="btn btn-info">
 										<i class="fa fa-plus"></i> Add 
 									</a>
 								</div>
@@ -54,18 +54,18 @@
 											<td th:text="${item.nmLookup}"></td>
 											<td th:text="${item.type}"></td>
 											<td th:text="${item.posisi}"></td>
-											<td>
-												<button class="btn btn-xs btn-detail btn-success" th:value="${item.id}">
+											<td class="col-md-1">
+												<a th:href="@{~/lookup/detail/{id}(id=${item.id})}" class="btn btn-xs btn-detail btn-success" th:value="${item.id}">
 													<i class="fa fa-eye"></i>
-												</button>
+												</a>
 												
-												<button class="btn btn-xs btn-edit btn-warning" th:value="${item.id}">
+												<a th:href="@{~/lookup/edit/{id}(id=${item.id})}" class="btn btn-xs btn-edit btn-warning" th:value="${item.id}">
 													<i class="fa fa-edit"></i>
-												</button>
+												</a>
 												
-												<button class="btn btn-xs btn-delete btn-danger" th:value="${item.id}">
+												<a th:href="@{~/lookup/delete/{id}(id=${item.id})}" class="btn btn-xs btn-delete btn-danger" th:value="${item.id}">
 													<i class="fa fa-trash"></i>
-												</button>
+												</a>
 											</td>
 										</tr>
 									</tbody>
