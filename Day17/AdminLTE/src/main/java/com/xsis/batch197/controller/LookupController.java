@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,7 +51,7 @@ public class LookupController {
 
 	// #3. Menangkap data dari form
 	@PostMapping(value = "/save")
-	public ModelAndView save(@Valid LookupModel lookup, BindingResult result) {
+	public ModelAndView save(@Valid @ModelAttribute("lookup") LookupModel lookup, BindingResult result) {
 		// buat object view
 		ModelAndView view = new ModelAndView();
 		if(result.hasErrors()) {

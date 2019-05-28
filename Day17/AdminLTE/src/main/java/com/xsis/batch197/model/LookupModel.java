@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -20,14 +22,20 @@ public class LookupModel {
 	
 	@Column(name="kd_lookup", length=20, nullable=false)
 	@NotNull
+	@NotEmpty
+	@NotBlank
 	private String kdLookup;
 	
 	@Column(name="nm_lookup", length=120, nullable=false)
 	@NotNull
+	@NotEmpty
+	@NotBlank
 	private String nmLookup;
 	
 	@Column(name="type", length=20, nullable=false)
 	@NotNull
+	@NotEmpty
+	@NotBlank
 	private String type;
 	
 	@Column(name="posisi", nullable=false)

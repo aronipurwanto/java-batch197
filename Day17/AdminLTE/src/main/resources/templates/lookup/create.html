@@ -31,36 +31,36 @@
 							<div class="box-header with-border">
 								<h3 class="box-title">New Lookup</h3>
 							</div>
-							<div class="box-body form-horizontal">
-								<div class="form-group" th:classappend="${#fields.hasErrors('kdLookup')} ? has-error:'' ">
+							<div class="box-body form-horizontal">							
+								<div th:class="${#fields.hasErrors('kdLookup')} ? 'form-group has-error':'form-group'">
 									<label class="control-label col-md-2">Kode</label>
 									<div class="col-md-8">
 										<input type="text" th:field="*{kdLookup}" class="form-control" />
-										<label th:if="${#fields.hasErrors('kdLookup')}" th:class="'text-danger'">Kode Tidak Boleh Kosong</label>
+										<span th:if="${#fields.hasErrors('nmLookup')}" class="help-block" th:errors="*{kdLookup}">Kode Tidak Boleh Kosong</span>
 									</div>
 								</div>
 								
-								<div class="form-group" th:classappend="${#fields.hasErrors('nmLookup')} ? has-error:'' ">
+								<div th:class="${#fields.hasErrors('nmLookup')} ? 'form-group has-error':'form-group'">
 									<label class="control-label col-md-2">Nama</label>
 									<div class="col-md-8">
 										<input type="text" th:field="*{nmLookup}" class="form-control"/>
-										<span th:if="${#fields.hasErrors('nmLookup')}" class="help-block">Nama Tidak Boleh Kosong</span>
+										<span th:if="${#fields.hasErrors('nmLookup')}" class="help-block" th:errors="*{nmLookup}">Nama Tidak Boleh Kosong</span>
 									</div>
 								</div>
 								
-								<div class="form-group" th:classappend="${#fields.hasErrors('type')} ? has-error:'' ">
+								<div th:class="${#fields.hasErrors('type')} ? 'form-group has-error':'form-group'">
 									<label class="control-label col-md-2">Type</label>
 									<div class="col-md-8">
 										<input type="text" th:field="*{type}" class="form-control"/>
-										<span th:if="${#fields.hasErrors('type')}" class="help-block">Type Tidak Boleh Kosong</span>
+										<span th:if="${#fields.hasErrors('type')}" class="help-block" th:errors="*{type}">Type Tidak Boleh Kosong</span>
 									</div>
 								</div>
 								
-								<div class="form-group" th:classappend="${#fields.hasErrors('posisi')} ? has-error:'' ">
+								<div th:class="${#fields.hasErrors('posisi')} ? 'form-group has-error':'form-group'">
 									<label class="control-label col-md-2">Posisi</label>
 									<div class="col-md-8">
 										<input type="text" th:field="*{posisi}" class="form-control" />
-										<span th:if="${#fields.hasErrors('posisi')}" class="help-block">Posisi Tidak Boleh Kosong</span>
+										<span th:if="${#fields.hasErrors('posisi')}" class="help-block" th:errors="*{posisi}">Posisi Tidak Boleh Kosong</span>
 									</div>
 								</div>
 								
