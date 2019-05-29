@@ -1,28 +1,33 @@
 <!-- content mulai -->
-<form th:action="@{~/provinsi/update}" th:object="${provinsi}" method="post" id="form-provinsi">
+<form th:action="@{~/kota/update}" th:object="${kota}" method="post" id="form-kota">
 <div class="box box-success box-solid">
 	<div class="box-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
         </button>
-		<h4 class="box-title">Detail Provinsi</h4>
+		<h4 class="box-title">Detail kota</h4>
 	</div>
 	<div class="box-body form-horizontal">							
 		<table class="table">
 			<tbody>
 				<tr>
 					<th class="col-md-2">Id</th>
-					<td th:text="${provinsi.id}"></td>
+					<td th:text="${kota.id}"></td>
 				</tr>
 				
 				<tr>
 					<th class="col-md-2">Kode</th>
-					<td th:text="${provinsi.kdProvinsi}"></td>
+					<td th:text="${kota.kdKota}"></td>
 				</tr>
 				
 				<tr>
 					<th class="col-md-2">Nama</th>
-					<td th:text="${provinsi.nmProvinsi}"></td>
+					<td th:text="${kota.nmKota}"></td>
+				</tr>
+				
+				<tr>
+					<th class="col-md-2">Propinsi</th>
+					<td th:text="${kota.provinsi.nmProvinsi}"></td>
 				</tr>
 			</tbody>
 		</table>

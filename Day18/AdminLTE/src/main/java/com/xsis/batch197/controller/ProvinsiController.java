@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,6 +26,18 @@ public class ProvinsiController {
 
 	@Autowired
 	private ProvinsiRepo repo;
+
+	// method untuk generate kode provinsi automatis
+	private String getKode() {
+		String result = "";
+		if (repo.getMaxKode() !=null) {
+			result = repo.getMaxKode().split("-")[1];
+			result = "PR-" + String.format("%03d", (Integer.parseInt(result) + 1));
+		} else {
+			result = "PR-001";
+		}
+		return result;
+	}
 
 	// #1. index => list data
 	@GetMapping(value = "/index")
@@ -55,7 +66,10 @@ public class ProvinsiController {
 		ModelAndView view = new ModelAndView("provinsi/create");
 		// membuat object provinsi yg akan dikirim ke view
 		// object provinsi adalah new object dari ProvinsiModel
-		view.addObject("provinsi", new ProvinsiModel());
+		ProvinsiModel provinsi = new ProvinsiModel();
+		// isi kdProvinsi dengan method getKode()
+		provinsi.setKdProvinsi(getKode());
+		view.addObject("provinsi", provinsi);
 		return view;
 	}
 
@@ -64,10 +78,10 @@ public class ProvinsiController {
 	public ModelAndView save(@Valid @ModelAttribute("provinsi") ProvinsiModel provinsi, BindingResult result) {
 		if (result.hasErrors()) {
 			logger.info("save provinsi error");
-		}else {
+		} else {
 			repo.save(provinsi);
 		}
-		
+
 		ModelAndView view = new ModelAndView("provinsi/create");
 		view.addObject("provinsi", provinsi);
 		return view;
@@ -91,10 +105,10 @@ public class ProvinsiController {
 	public ModelAndView update(@Valid @ModelAttribute("provinsi") ProvinsiModel provinsi, BindingResult result) {
 		if (result.hasErrors()) {
 			logger.info("save provinsi error");
-		}else {
+		} else {
 			repo.save(provinsi);
 		}
-		
+
 		ModelAndView view = new ModelAndView("provinsi/update");
 		view.addObject("provinsi", provinsi);
 		return view;

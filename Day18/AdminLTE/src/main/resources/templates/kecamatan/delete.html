@@ -1,11 +1,11 @@
 <!-- content mulai -->
-<form th:action="@{~/provinsi/remove}" th:object="${provinsi}" method="post" id="form-provinsi">
+<form th:action="@{~/kecamatan/remove}" th:object="${kecamatan}" method="post" id="form-kecamatan">
 <div class="box box-danger box-solid">
 	<div class="box-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
         </button>
-		<h4 class="box-title">Delete Provinsi</h4>
+		<h4 class="box-title">Delete kecamatan</h4>
 	</div>
 	<div class="box-body form-horizontal">		
 		<!-- id -->
@@ -14,17 +14,22 @@
 			<tbody>
 				<tr>
 					<th class="col-md-2">Id</th>
-					<td th:text="${provinsi.id}"></td>
+					<td th:text="${kecamatan.id}"></td>
 				</tr>
 				
 				<tr>
 					<th class="col-md-2">Kode</th>
-					<td th:text="${provinsi.kdProvinsi}"></td>
+					<td th:text="${kecamatan.kdKecamatan}"></td>
 				</tr>
 				
 				<tr>
 					<th class="col-md-2">Nama</th>
-					<td th:text="${provinsi.nmProvinsi}"></td>
+					<td th:text="${kecamatan.nmKecamatan}"></td>
+				</tr>
+				
+				<tr>
+					<th class="col-md-2">Kota</th>
+					<td th:text="${kecamatan.kota.nmKota}"></td>
 				</tr>
 			</tbody>
 		</table>

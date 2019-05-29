@@ -74,17 +74,21 @@
 		<!-- footer -->
 		<div th:replace="fragments/footer :: footer"></div>
 	</div>
-	<!-- script javascript -->
-	<div th:replace="fragments/footer :: scripts"></div>
 	
 	<!-- modal mulai -->
 	<div class="modal fade" id="modal-input">
 		<div class="modal-dialog">
+		
 		</div>
 	</div>
 	<!-- modal selesai -->
+	
+	<!-- script javascript -->
+	<div th:replace="fragments/footer :: scripts"></div>
+	
+	<!-- script untuk CRUD page provinsi  -->
 	<script>
-		// function javascript
+		//#1. Read function javascript
 		function loadData(){
 			// function JQuery
 			$.ajax({
@@ -96,17 +100,18 @@
 				}
 			});
 		}
-		// funciton JQuery, pertama kali halaman di load
+		
+		//#2. funciton JQuery, pertama kali halaman di load
 		$(function(){
 			loadData();
 		});
 		
-		// event btn-add => cari button dengan id btn-add
-		// event ketika di click
+		//#3. event btn-add => cari button dengan id btn-add
+		// event ketika di click, untuk menampilkan form baru
 		$("#btn-add").click(function(){
 			// request halaman dengan ajax
 			$.ajax({
-				url:'/provinsi/add',
+				url:'/provinsi/add', // lihat di ProvinsiController, cari GetMapping(value="/add")
 				type:'get',
 				dataType:'html',
 				success : function(result){
@@ -117,18 +122,20 @@
 			});
 		});
 		
-		// event di modal input, kemudian cari element denga id form-propinsi
+		//#4 event di modal input, kemudian cari element dengan id form-provinsi
 		// event ny adalah ketika form di submit
-		$("#modal-input").on("submit","#form-propinsi", function(){
-			// inisialisasi data
+		$("#modal-input").on("submit","#form-provinsi", function(){
+			// inisialisasi variable dataForm, diambil dari serialize method
 			var dataForm = $(this).serialize()
-			// inisialisasi url
+			// inisialisasi variable urlForm diambil dari atribute action dari form
+			// sehingga untuk CREATE, UPDATE, DELETE menggunakan data ini
+			// dan tidak perlu membuat event submit berkali-kali
 			var urlForm = $(this).attr('action');
 			// submit data dengan AJAX
 			$.ajax({
-				url:urlForm,
+				url:urlForm, // url di isi dengan variable urlForm
 				type:'post',
-				data:dataForm,
+				data:dataForm, // data di isi dengan variable dataForm
 				dataType:'html',
 				done:function(){
 					$("#modal-input").find(".modal-dialog").html("");
@@ -147,16 +154,16 @@
 					}
 				},
 			});
-			// mencegah submit automatis
+			// mencegah submit automatis, sehingga form akan diam tidak melakukan action
 			return false;
 		});
 		
-		// menampilkan detail data
+		//#5. menampilkan detail data
 		$("#list-data").on("click",".btn-detail", function(){
 			var id = $(this).val();
 			// request halaman dengan ajax
 			$.ajax({
-				url:'/provinsi/detail/'+ id,
+				url:'/provinsi/detail/'+ id, // lihat di ProvinsiController, cari GetMapping(value="/detail/{id}")
 				type:'get',
 				dataType:'html',
 				success : function(result){
@@ -167,12 +174,13 @@
 			});
 		});
 		
-		// menampilkan edit data
+		//#6. menampilkan form edit data, hanya menampilan form dengan datanya
+		// saat submit form, akan diproses dengan nomor #5
 		$("#list-data").on("click",".btn-edit", function(){
 			var id = $(this).val();
 			// request halaman dengan ajax
 			$.ajax({
-				url:'/provinsi/edit/'+ id,
+				url:'/provinsi/edit/'+ id, // lihat di ProvinsiController, cari GetMapping(value="/edit/{id}")
 				type:'get',
 				dataType:'html',
 				success : function(result){
@@ -183,12 +191,13 @@
 			});
 		});
 		
-		// menampilkan delete data
+		//#7. menampilkan form delete data, hanya menampilan form dengan datanya
+		// saat submit form, akan diproses dengan nomor #5
 		$("#list-data").on("click",".btn-delete", function(){
 			var id = $(this).val();
 			// request halaman dengan ajax
 			$.ajax({
-				url:'/provinsi/delete/'+ id,
+				url:'/provinsi/delete/'+ id, // lihat di ProvinsiController, cari GetMapping(value="/delete/{id}")
 				type:'get',
 				dataType:'html',
 				success : function(result){

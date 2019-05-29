@@ -1,12 +1,22 @@
 package com.xsis.batch197.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="tbl_kecamatan")
@@ -17,14 +27,28 @@ public class KecamatanModel {
 	@Column(name="id")
 	private Long id;
 	
+	@NotNull
+	@NotEmpty
+	@NotBlank
 	@Column(name="kd_kecamatan", nullable=false, length=10)
 	private String kdKecamatan;
 	
+	@NotNull
+	@NotEmpty
+	@NotBlank
 	@Column(name="nm_kecamatan", nullable=false, length=120)
 	private String nmKecamatan;
 	
+	@NotNull
 	@Column(name="kota_id", nullable=false)
 	private Long kotaId;
+	
+	@ManyToOne
+	@JoinColumn(name="kota_id", foreignKey=@ForeignKey(name="fk_kec_kota"), updatable=false, insertable=false)
+	private KotaModel kota;
+	
+	@OneToMany(mappedBy="kecamatan")
+	private List<KelurahanModel> listKelurahan = new ArrayList<KelurahanModel>();
 
 	public Long getId() {
 		return id;
@@ -56,5 +80,21 @@ public class KecamatanModel {
 
 	public void setKotaId(Long kotaId) {
 		this.kotaId = kotaId;
+	}
+
+	public KotaModel getKota() {
+		return kota;
+	}
+
+	public void setKota(KotaModel kota) {
+		this.kota = kota;
+	}
+
+	public List<KelurahanModel> getListKelurahan() {
+		return listKelurahan;
+	}
+
+	public void setListKelurahan(List<KelurahanModel> listKelurahan) {
+		this.listKelurahan = listKelurahan;
 	}
 }

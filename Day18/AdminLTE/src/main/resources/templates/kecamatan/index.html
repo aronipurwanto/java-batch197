@@ -3,6 +3,21 @@
 <head th:replace="fragments/header :: header_app">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+ <style>
+   .example-modal .modal {
+     position: relative;
+     top: auto;
+     bottom: auto;
+     right: auto;
+     left: auto;
+     display: block;
+     z-index: 1;
+   }
+
+   .example-modal .modal {
+     background: transparent !important;
+   }
+ </style>
 	<div class="wrapper">
 		<!-- header -->
 		<header th:replace="fragments/header :: header"></header>
@@ -14,11 +29,11 @@
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>
-					Lookup <small>Index</small>
+					kecamatan <small>Index</small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li class="active">Lookup</li>
+					<li class="active">Propinsi</li>
 				</ol>
 			</section>
 			<!-- Main content -->
@@ -28,11 +43,11 @@
 						<!-- content mulai -->
 						<div class="box box-info box-solid">
 							<div class="box-header with-border">
-								<h3 class="box-title">List Lookup</h3>
+								<h3 class="box-title">List kecamatan</h3>
 								<div class="box-tools">
-									<a th:href="@{~/lookup/add}" class="btn btn-info">
+									<button class="btn btn-info" id="btn-add">
 										<i class="fa fa-plus"></i> Add 
-									</a>
+									</button>
 								</div>
 							</div>
 							<div class="box-body">
@@ -41,9 +56,8 @@
 										<tr>
 											<th>Id</th>
 											<th>Kode</th>
-											<th>Nama</th>
-											<th>Type</th>
-											<th>Posisi</th>
+											<th>Kecamatan</th>
+											<th>Kota</th>
 											<th>#</th>
 										</tr>
 									</thead>
@@ -72,13 +86,14 @@
 	
 	<!-- script javascript -->
 	<div th:replace="fragments/footer :: scripts"></div>
-	<!-- script untuk CRUD page Lookup  -->
+	
+	<!-- script untuk CRUD page kecamatan  -->
 	<script>
 		//#1. Read function javascript
 		function loadData(){
 			// function JQuery
 			$.ajax({
-				url:'/lookup/list',
+				url:'/kecamatan/list',
 				type:'get',
 				dataType:'html',
 				success : function(result){
@@ -97,7 +112,7 @@
 		$("#btn-add").click(function(){
 			// request halaman dengan ajax
 			$.ajax({
-				url:'/lookup/add', // lihat di LookupController, cari GetMapping(value="/add")
+				url:'/kecamatan/add', // lihat di kecamatanController, cari GetMapping(value="/add")
 				type:'get',
 				dataType:'html',
 				success : function(result){
@@ -108,9 +123,9 @@
 			});
 		});
 		
-		//#4 event di modal input, kemudian cari element denga id form-propinsi
+		//#4 event di modal input, kemudian cari element dengan id form-kecamatan
 		// event ny adalah ketika form di submit
-		$("#modal-input").on("submit","#form-propinsi", function(){
+		$("#modal-input").on("submit","#form-kecamatan", function(){
 			// inisialisasi variable dataForm, diambil dari serialize method
 			var dataForm = $(this).serialize()
 			// inisialisasi variable urlForm diambil dari atribute action dari form
@@ -149,7 +164,7 @@
 			var id = $(this).val();
 			// request halaman dengan ajax
 			$.ajax({
-				url:'/lookup/detail/'+ id, // lihat di LookupController, cari GetMapping(value="/detail/{id}")
+				url:'/kecamatan/detail/'+ id, // lihat di kecamatanController, cari GetMapping(value="/detail/{id}")
 				type:'get',
 				dataType:'html',
 				success : function(result){
@@ -166,7 +181,7 @@
 			var id = $(this).val();
 			// request halaman dengan ajax
 			$.ajax({
-				url:'/lookup/edit/'+ id, // lihat di LookupController, cari GetMapping(value="/edit/{id}")
+				url:'/kecamatan/edit/'+ id, // lihat di kecamatanController, cari GetMapping(value="/edit/{id}")
 				type:'get',
 				dataType:'html',
 				success : function(result){
@@ -183,7 +198,7 @@
 			var id = $(this).val();
 			// request halaman dengan ajax
 			$.ajax({
-				url:'/lookup/delete/'+ id, // lihat di LookupController, cari GetMapping(value="/delete/{id}")
+				url:'/kecamatan/delete/'+ id, // lihat di kecamatanController, cari GetMapping(value="/delete/{id}")
 				type:'get',
 				dataType:'html',
 				success : function(result){

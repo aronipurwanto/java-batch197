@@ -1,28 +1,33 @@
 <!-- content mulai -->
-<form th:action="@{~/provinsi/update}" th:object="${provinsi}" method="post" id="form-provinsi">
+<form th:action="@{~/kelurahan/update}" th:object="${kelurahan}" method="post" id="form-kelurahan">
 <div class="box box-success box-solid">
 	<div class="box-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
            <span aria-hidden="true">&times;</span>
         </button>
-		<h4 class="box-title">Detail Provinsi</h4>
+		<h4 class="box-title">Detail kelurahan</h4>
 	</div>
 	<div class="box-body form-horizontal">							
 		<table class="table">
 			<tbody>
 				<tr>
 					<th class="col-md-2">Id</th>
-					<td th:text="${provinsi.id}"></td>
+					<td th:text="${kelurahan.id}"></td>
 				</tr>
 				
 				<tr>
 					<th class="col-md-2">Kode</th>
-					<td th:text="${provinsi.kdProvinsi}"></td>
+					<td th:text="${kelurahan.kdKelurahan}"></td>
 				</tr>
 				
 				<tr>
-					<th class="col-md-2">Nama</th>
-					<td th:text="${provinsi.nmProvinsi}"></td>
+					<th class="col-md-2">Kelurahan</th>
+					<td th:text="${kelurahan.nmKelurahan}"></td>
+				</tr>
+				
+				<tr>
+					<th class="col-md-2">Kecamatan</th>
+					<td th:text="${kelurahan.kecamatan.nmKecamatan}"></td>
 				</tr>
 			</tbody>
 		</table>

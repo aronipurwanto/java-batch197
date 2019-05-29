@@ -32,10 +32,18 @@ public class LookupController {
 	public ModelAndView index() {
 		// buat object view
 		ModelAndView view = new ModelAndView("lookup/index");
+		return view;
+	}
+
+	// #1. index => list data
+	@GetMapping(value = "/list")
+	public ModelAndView list() {
+		// buat object view
+		ModelAndView view = new ModelAndView("lookup/list");
 		// load data lookup via repo, disimpan kedalam list
-		List<LookupModel> listLookup = repo.findAll();
-		// lemparkan data ke view, list object baru, datanya listLookup
-		view.addObject("list", listLookup);
+		List<LookupModel> list = repo.findAll();
+		// lemparkan data ke view, list object baru, datanya listlookup
+		view.addObject("list", list);
 		return view;
 	}
 
@@ -53,19 +61,15 @@ public class LookupController {
 	// #3. Menangkap data dari form
 	@PostMapping(value = "/save")
 	public ModelAndView save(@Valid @ModelAttribute("lookup") LookupModel lookup, BindingResult result) {
-		// buat object view
-		ModelAndView view = new ModelAndView();
 		if (result.hasErrors()) {
 			logger.info("save lookup error");
-			view.setViewName("lookup/create");
-			view.addObject("lookup", lookup);
-			return view;
+		}else {
+			repo.save(lookup);
 		}
-		// jika tidak ada error
-		repo.save(lookup);
-		view.setViewName("lookup/index");
-		// redirect to index
-		return new ModelAndView("redirect:/lookup/index");
+		
+		ModelAndView view = new ModelAndView("lookup/create");
+		view.addObject("lookup", lookup);
+		return view;
 	}
 
 	// #2. Membuat Form Add lookup
@@ -84,19 +88,15 @@ public class LookupController {
 	// #3. Menangkap data dari form
 	@PostMapping(value = "/update")
 	public ModelAndView update(@Valid @ModelAttribute("lookup") LookupModel lookup, BindingResult result) {
-		// buat object view
-		ModelAndView view = new ModelAndView();
 		if (result.hasErrors()) {
 			logger.info("save lookup error");
-			view.setViewName("lookup/update");
-			view.addObject("lookup", lookup);
-			return view;
+		}else {
+			repo.save(lookup);
 		}
-		// jika tidak ada error
-		repo.save(lookup);
-		view.setViewName("lookup/index");
-		// redirect to index
-		return new ModelAndView("redirect:/lookup/index");
+		
+		ModelAndView view = new ModelAndView("lookup/update");
+		view.addObject("lookup", lookup);
+		return view;
 	}
 
 	// #4. Membuat Form Add lookup
@@ -128,12 +128,12 @@ public class LookupController {
 	// #3. Menangkap data dari form
 	@PostMapping(value = "/remove")
 	public ModelAndView remove(@ModelAttribute("lookup") LookupModel lookup) {
-		// buat object view
-		ModelAndView view = new ModelAndView();
-		// jika tidak ada error
+		// remove data dari database via repo
 		repo.delete(lookup);
-		view.setViewName("lookup/index");
+		// membuat object view
+		ModelAndView view = new ModelAndView("lookup/delete");
+		view.addObject("lookup", lookup);
 		// redirect to index
-		return new ModelAndView("redirect:/lookup/index");
+		return view;
 	}
 }

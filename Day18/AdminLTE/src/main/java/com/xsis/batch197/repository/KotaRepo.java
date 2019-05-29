@@ -4,11 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.xsis.batch197.model.ProvinsiModel;
+import com.xsis.batch197.model.KotaModel;
 
 @Repository
-public interface ProvinsiRepo extends JpaRepository<ProvinsiModel, Long> {
-	
-	@Query(value="select max(kdProvinsi) from ProvinsiModel")
+public interface KotaRepo extends JpaRepository<KotaModel, Long> {
+	@Query(value="select max(kdKota) from KotaModel")
 	public String getMaxKode();
 }

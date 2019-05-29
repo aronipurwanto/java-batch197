@@ -1,10 +1,14 @@
 package com.xsis.batch197.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotBlank;
@@ -31,6 +35,9 @@ public class ProvinsiModel {
 	@NotEmpty
 	@Column(name="nm_provinsi", nullable=false, length=120)
 	private String nmProvinsi;
+	
+	@OneToMany(mappedBy="provinsi")
+	private List<KotaModel> listKota = new ArrayList<KotaModel>();
 
 	public Long getId() {
 		return id;
@@ -54,5 +61,13 @@ public class ProvinsiModel {
 
 	public void setNmProvinsi(String nmProvinsi) {
 		this.nmProvinsi = nmProvinsi;
+	}
+
+	public List<KotaModel> getListKota() {
+		return listKota;
+	}
+
+	public void setListKota(List<KotaModel> listKota) {
+		this.listKota = listKota;
 	}
 }
