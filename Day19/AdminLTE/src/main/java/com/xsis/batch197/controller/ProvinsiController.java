@@ -157,8 +157,7 @@ public class ProvinsiController {
 		// remove data dari database via repo
 		repo.delete(provinsi);
 		// membuat object view
-		ModelAndView view = new ModelAndView("provinsi/delete");
-		view.addObject("provinsi", provinsi);
+		ModelAndView view = new ModelAndView("provinsi/create");
 		// redirect to index
 		return view;
 	}

@@ -143,8 +143,7 @@ public class LookupController {
 		// remove data dari database via repo
 		repo.delete(lookup);
 		// membuat object view
-		ModelAndView view = new ModelAndView("lookup/delete");
-		view.addObject("lookup", lookup);
+		ModelAndView view = new ModelAndView("lookup/create");
 		// redirect to index
 		return view;
 	}

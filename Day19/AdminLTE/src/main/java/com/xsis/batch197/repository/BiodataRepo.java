@@ -13,6 +13,6 @@ import com.xsis.batch197.model.BiodataModel;
 public interface BiodataRepo extends JpaRepository<BiodataModel, Long> {
 	public List<BiodataModel> findByNik(String nik);
 	
-	@Query(value="SELECT b FROM BiodataModel WHERE LOWER(nik) LIKE CONCAT('%',LOWER(:nama),'%')")
+	@Query(value="SELECT b FROM BiodataModel b WHERE LOWER(nik) LIKE CONCAT('%',LOWER(:nama),'%')")
 	public List<BiodataModel> search(@Param("nama") String nama);
 }

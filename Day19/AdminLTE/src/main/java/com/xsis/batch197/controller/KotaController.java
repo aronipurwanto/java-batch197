@@ -172,12 +172,10 @@ public class KotaController {
 	// #3. Menangkap data dari form
 	@PostMapping(value = "/remove")
 	public ModelAndView remove(@ModelAttribute("kota") KotaModel kota) {
+		// buat object view
+		ModelAndView view = new ModelAndView("kota/create");
 		// remove data dari database via repo
 		repo.delete(kota);
-		// membuat object view
-		ModelAndView view = new ModelAndView("kota/delete");
-		view.addObject("kota", kota);
-		// redirect to index
 		return view;
 	}
 }

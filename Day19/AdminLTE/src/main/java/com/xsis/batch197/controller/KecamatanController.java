@@ -176,8 +176,7 @@ public class KecamatanController {
 		// remove data dari database via repo
 		repo.delete(kecamatan);
 		// membuat object view
-		ModelAndView view = new ModelAndView("kecamatan/delete");
-		view.addObject("kecamatan", kecamatan);
+		ModelAndView view = new ModelAndView("kecamatan/create");
 		// redirect to index
 		return view;
 	}
