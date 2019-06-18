@@ -7,6 +7,9 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,11 +52,11 @@ public class ProvinsiController {
 
 	// #1. index => list data
 	@GetMapping(value = "/list")
-	public ModelAndView list() {
+	public ModelAndView list(@PageableDefault(size=10) Pageable pageable) {
 		// buat object view
 		ModelAndView view = new ModelAndView("provinsi/list");
 		// load data provinsi via repo, disimpan kedalam list
-		List<ProvinsiModel> listprovinsi = repo.findAll();
+		Page<ProvinsiModel> listprovinsi = repo.findAll(pageable);
 				// lemparkan data ke view, list object baru, datanya listprovinsi
 		view.addObject("list", listprovinsi);
 		return view;
