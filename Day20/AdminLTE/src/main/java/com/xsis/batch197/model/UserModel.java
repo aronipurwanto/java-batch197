@@ -23,6 +23,9 @@ public class UserModel {
 	
 	@Column(name="username", nullable=false, length=64)
 	private String username;
+
+	@Column(name="email", nullable=false, length=64)
+	private String email;
 	
 	@Column(name="password", nullable=false)
 	private String password;
@@ -39,8 +42,9 @@ public class UserModel {
 	public UserModel() {
 	}
 	
-	public UserModel(String username, String password, String roles, String permission) {
+	public UserModel(String username,String email, String password, String roles, String permission) {
 		this.username=username;
+		this.email = email;
 		this.password=password;
 		this.roles=roles;
 		this.permission=permission;
@@ -61,6 +65,14 @@ public class UserModel {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
