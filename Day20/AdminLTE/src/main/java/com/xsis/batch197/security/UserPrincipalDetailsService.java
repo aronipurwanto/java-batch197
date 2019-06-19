@@ -18,7 +18,12 @@ public class UserPrincipalDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserModel user = this.userRepo.findByUserAndEmail(username);
+		UserModel user = this.userRepo.findByUserAndEmail(username);/*
+		if(this.userRepo.findByUsername(username)!= null) {
+			user = this.userRepo.findByUsername(username);
+		}else {
+			user = this.userRepo.findByEmail(username);
+		}*/
 		UserPrincipal userPrincipal = new UserPrincipal(user);
 		return userPrincipal;
 	}
