@@ -21,7 +21,7 @@ import com.xsis.batch197.repository.LookupRepo;
 
 @Controller
 @RequestMapping(value = "/lookup")
-public class LookupController {
+public class LookupController extends BaseController{
 	private static final Logger logger = LoggerFactory.getLogger(LookupController.class);
 
 	@Autowired

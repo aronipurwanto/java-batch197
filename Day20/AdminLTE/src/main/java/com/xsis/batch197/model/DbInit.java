@@ -23,9 +23,9 @@ public class DbInit implements CommandLineRunner {
     public void run(String... args) throws Exception {
         this.userRepo.deleteAll();
 
-        UserModel roni = new UserModel("roni","roni@gmail.com", passwordEncoder.encode("roni123"),"USER","");
-        UserModel admin = new UserModel("admin", "admin@gmail.com", passwordEncoder.encode("admin123"),"ADMIN","ACCESS_TEST1,ACCESS_TEST1");
-        UserModel manager = new UserModel("manager","manager@gmail.com", passwordEncoder.encode("manager123"),"MANAGER","ACCESS_TEST1");
+        UserModel roni = new UserModel("roni","roni@gmail.com", passwordEncoder.encode("roni123"),"");
+        UserModel admin = new UserModel("admin", "admin@gmail.com", passwordEncoder.encode("admin123"),"ACCESS_TEST1,ACCESS_TEST1");
+        UserModel manager = new UserModel("manager","manager@gmail.com", passwordEncoder.encode("manager123"),"ACCESS_TEST1");
 
         List<UserModel> users = Arrays.asList(roni,admin,manager);
         this.userRepo.saveAll(users);

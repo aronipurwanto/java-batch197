@@ -24,7 +24,7 @@ import com.xsis.batch197.repository.KelurahanRepo;
 
 @Controller
 @RequestMapping(value = "/kelurahan")
-public class KelurahanController {
+public class KelurahanController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(KelurahanController.class);
 
 	@Autowired

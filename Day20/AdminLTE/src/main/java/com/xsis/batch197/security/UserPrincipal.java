@@ -25,12 +25,12 @@ public class UserPrincipal implements UserDetails {
 			GrantedAuthority authority = new SimpleGrantedAuthority(p);
 			authorities.add(authority);
 		});
-		
+		/*
 		this.user.getRolesList().forEach(r ->{
 			GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_"+r);
 			authorities.add(authority);
 		});
-		
+		*/
 		return authorities;
 	}
 
@@ -46,12 +46,12 @@ public class UserPrincipal implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return true;
+		return this.user.getIsExpired()==0;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return true;
+		return this.user.getIsLocked()==0;
 	}
 
 	@Override

@@ -24,7 +24,7 @@ import com.xsis.batch197.repository.KotaRepo;
 
 @Controller
 @RequestMapping(value = "/kecamatan")
-public class KecamatanController {
+public class KecamatanController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(KecamatanController.class);
 
 	@Autowired

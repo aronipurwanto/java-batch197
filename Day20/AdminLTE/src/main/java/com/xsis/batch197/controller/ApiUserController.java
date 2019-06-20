@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/")
-public class ApiUserController {
+public class ApiUserController extends BaseController {
     @Autowired
     private UserRepo userRepo;
 

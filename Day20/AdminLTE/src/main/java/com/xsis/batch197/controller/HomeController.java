@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-public class HomeController {
+public class HomeController extends BaseController {
 	@GetMapping(value="/")
 	public String index() {
 		return "home/index";

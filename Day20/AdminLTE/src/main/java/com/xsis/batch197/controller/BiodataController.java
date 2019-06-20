@@ -21,7 +21,7 @@ import com.xsis.batch197.repository.BiodataRepo;
 
 @Controller
 @RequestMapping(value = "/biodata")
-public class BiodataController {
+public class BiodataController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(BiodataController.class);
 
 	@Autowired

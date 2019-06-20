@@ -23,7 +23,7 @@ import com.xsis.batch197.repository.ProvinsiRepo;
 
 @Controller
 @RequestMapping(value = "/kota")
-public class KotaController {
+public class KotaController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(KotaController.class);
 
 	@Autowired

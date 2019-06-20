@@ -21,7 +21,7 @@ import com.xsis.batch197.repository.ProvinsiRepo;
 
 @Controller
 @RequestMapping(value = "/provinsi")
-public class ProvinsiController {
+public class ProvinsiController extends BaseController{
 	private static final Logger logger = LoggerFactory.getLogger(ProvinsiController.class);
 
 	@Autowired
