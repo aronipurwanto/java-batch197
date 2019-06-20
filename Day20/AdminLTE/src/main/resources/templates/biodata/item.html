@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:each="item :${list}">
+	<div class="box box-info box-solid">
+		<div class="box-body">
+			<p class="lead" th:text="${item.nama}"></p>
+			<table class="table-responsif">
+				<tr>
+					<th>Id</th>
+					<td th:text="${item.id}"></td>
+				</tr>
+				<tr>
+					<th>NIK</th>
+					<td th:text="${item.nik}"></td>
+				</tr>
+				<tr>
+					<th>Nama</th>
+					<td th:text="${item.nama}"></td>
+				</tr>
+				
+				<tr>
+					<th>No Telp</th>
+					<td th:text="${item.noTelp}"></td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td th:text="${item.email}"></td>
+				</tr>
+				<tr>
+					<th></th>
+					<th>
+						<div class="btn-group-sm pull-right">
+							<button class="btn btn-xs btn-detail btn-info" th:value="${item.id}">
+								<i class="fa fa-eye"></i>
+							</button>		
+							<button class="btn btn-xs btn-edit btn-success" th:value="${item.id}">
+								<i class="fa fa-envelope-o"></i>
+							</button>	
+						</div>
+					</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</html>

@@ -235,10 +235,10 @@
 		            </ul>
 		          </li>
 		          <!-- User Account: style can be found in dropdown.less -->
-		          <li class="dropdown user user-menu">
+		          <li sec:authorize="isAuthenticated()" class="dropdown user user-menu">
 		            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		              <img th:src="@{~/dist/img/user2-160x160.jpg}" class="user-image" alt="User Image">
-		              <span class="hidden-xs">Alexander Pierce</span>
+		              <span class="hidden-xs" sec:authentication="name">Alexander Pierce</span>
 		            </a>
 		            <ul class="dropdown-menu">
 		              <!-- User image -->
@@ -246,7 +246,7 @@
 		                <img th:src="@{~/dist/img/user2-160x160.jpg}" class="img-circle" alt="User Image">
 		
 		                <p>
-		                  Alexander Pierce - Web Developer
+		                  <span sec:authentication="name">Alexander Pierce</span> - <span sec:authentication="principal.authorities"> Web Developer </span>
 		                  <small>Member since Nov. 2012</small>
 		                </p>
 		              </li>
@@ -268,7 +268,7 @@
 		              <!-- Menu Footer-->
 		              <li class="user-footer">
 		                <div class="pull-left">
-		                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+		                  <a sec:authorize="isAuthenticated()" href="#" class="btn btn-default btn-flat">Profile</a>
 		                </div>
 		                <div class="pull-right">
 		                	<form method="post" th:action="@{/logout}">

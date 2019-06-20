@@ -18,6 +18,8 @@ public interface KecamatanRepo extends JpaRepository<KecamatanModel, Long> {
 	
 	public List<KecamatanModel> findByNmKecamatan(String nama);
 	
+	public List<KecamatanModel> findByKotaId(Long id);
+	
 	@Query(value="SELECT k FROM KecamatanModel k WHERE LOWER(nmKecamatan) LIKE CONCAT('%',:nama,'%')")
 	public List<KecamatanModel> search(@Param("nama") String nama);
 }

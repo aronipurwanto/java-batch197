@@ -41,7 +41,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<!-- content mulai -->
-						<div class="box box-info box-solid">
+						<div class="box box-default">
 							<div class="box-header with-border">
 								<h3 class="box-title">List biodata</h3>
 								<div class="box-tools">
@@ -58,20 +58,8 @@
 									</div>
 								</div>
 							</div>
-							<div class="box-body">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Id</th>
-											<th>Kode</th>
-											<th>Nama Propinsi</th>
-											<th>#</th>
-										</tr>
-									</thead>
-									<tbody id="list-data">
-										
-									</tbody>
-								</table>
+							<div class="box-body" id="list-data">
+							
 							</div>
 						</div>
 						<!-- content selesai -->
@@ -85,7 +73,7 @@
 	
 	<!-- modal mulai -->
 	<div class="modal fade" id="modal-input">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg" style="width:75%;">
 		
 		</div>
 	</div>
@@ -232,6 +220,10 @@
 					}
 				});
 			}
+		});
+		
+		$("#modal-input").on("change","#propinsiId", function(){
+			
 		});
 	</script>
 </body>

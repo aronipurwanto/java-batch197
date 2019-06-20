@@ -59,6 +59,11 @@
                 </div>
                 <!-- /.col -->
             </div>
+            
+            <div class="form-group has-feedback">
+                <input type="text" name="txtcount" id="txt-count" class="form-control" value="0">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
         </form>
 
         <!--div class="social-auth-links text-center">
@@ -70,7 +75,7 @@
         </div>
         <!-- /.social-auth-links -->
 
-        <a href="#">I forgot my password</a><br>
+        <a href="#" id="forgot">I forgot my password</a><br>
         <a href="register.html" class="text-center">Register a new membership</a>
 
     </div>
@@ -91,6 +96,17 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' /* optional */
         });
+    });
+    
+    $("#forgot").click(function(){
+    	var count = $("#txt-count").val();
+    	if(count==3){
+    		alert("Sudah Mentok");
+    	}else {
+    		count++;
+    		$("#txt-count").val(count);
+    	}
+    	
     });
 </script>
 </body>

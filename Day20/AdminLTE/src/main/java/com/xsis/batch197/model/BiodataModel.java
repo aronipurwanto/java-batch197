@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="tbl_biodata")
-public class BiodataModel {
+public class BiodataModel extends BaseModel {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="biodata_idx")
 	@TableGenerator(name="biodata_idx", table="tbl_index", pkColumnName="index_id", valueColumnName="index_value", initialValue=0, allocationSize=1)
@@ -69,6 +69,12 @@ public class BiodataModel {
 	
 	@Column(name="warga_negara", length=5, nullable=false)
 	private String wargaNegara;
+	
+	@Column(name="email", length=64, nullable=true)
+	private String email;
+	
+	@Column(name="no_telp", length=20, nullable=true)
+	private String noTelp;
 
 	public Long getId() {
 		return id;
@@ -188,5 +194,21 @@ public class BiodataModel {
 
 	public void setWargaNegara(String wargaNegara) {
 		this.wargaNegara = wargaNegara;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getNoTelp() {
+		return noTelp;
+	}
+
+	public void setNoTelp(String noTelp) {
+		this.noTelp = noTelp;
 	}
 }
