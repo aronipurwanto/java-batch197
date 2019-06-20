@@ -39,7 +39,7 @@
 				<div th:class="${#fields.hasErrors('tglLahir')} ? 'form-group has-error':'form-group'">
 					<label class="control-label">Tgl Lahir</label>
 					<div class="input-group">
-						<input type="text" th:field="*{tglLahir}" class="form-control" />
+						<input type="text" th:field="*{tglLahir}" class="form-control datepicker" />
 						<span class="input-group-addon">
 							<i class="fa fa-calendar"></i>
 						</span>

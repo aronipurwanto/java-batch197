@@ -17,6 +17,8 @@
    .example-modal .modal {
      background: transparent !important;
    }
+   
+   .datepicker{z-index:1151 !important;}
  </style>
 	<div class="wrapper">
 		<!-- header -->
@@ -152,6 +154,11 @@
 			});
 			// mencegah submit automatis, sehingga form akan diam tidak melakukan action
 			return false;
+		}).on('shown.bs.modal', function(){
+			$('.datepicker').datepicker({
+				autoclose : true,
+				format:'dd/mm/yyyy'
+			});
 		});
 		
 		//#5. menampilkan detail data
