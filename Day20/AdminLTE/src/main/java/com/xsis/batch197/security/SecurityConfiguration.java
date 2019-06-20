@@ -1,5 +1,6 @@
 package com.xsis.batch197.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -14,11 +15,18 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+	@Autowired
 	private UserPrincipalDetailsService userService;
-
+	
+	@Autowired
+	private AuthenticationFailureHandler authFailureHandler;
+	
+	@Autowired
+	private AuthenticationSuccessHandler authSuccessHandler;
+	/*
 	public SecurityConfiguration(UserPrincipalDetailsService userService){
 		this.userService = userService;
-	}
+	}*/
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,6 +53,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.usernameParameter("email")
 		.passwordParameter("password")
 		.loginPage("/login").permitAll()
+		.successHandler(authSuccessHandler)
+		.failureHandler(authFailureHandler)
 		.and()
 		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
 		.and()
