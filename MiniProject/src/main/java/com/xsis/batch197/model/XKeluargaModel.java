@@ -1,8 +1,5 @@
 package com.xsis.batch197.model;
 
-
-
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,54 +19,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "x_keluarga")
-public class XKeluargaModel {
+public class XKeluargaModel extends BaseModel {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE, generator="x_keluarga_idx")
-	@TableGenerator(name="x_keluarga_idx", table="tbl_index", pkColumnName="index_id", valueColumnName="index_value", initialValue=0, allocationSize=1)
+	@TableGenerator(name="x_keluarga_idx", table="x_index", pkColumnName="index_id", valueColumnName="index_value", initialValue=0, allocationSize=1)
 	@Column(name="id", length=11)
 	private Long id;
-	
-	@NotNull
-	@NotBlank
-	@NotEmpty
-	@Column(name="created_by", nullable=false, length=11)
-	private Long createdBy;
-	
-	@NotNull
-	@NotBlank
-	@NotEmpty
 
-	@Column(name="creted_on", nullable=false)
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date createdOn;
-
-	@Column(name="modified_by", nullable=true, length=11)
-	private Long modifiedBy;
-	
-	@Column(name="modified_on", nullable=true)
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date modifiedOn;
-	
-	@Column(name="deleted_by", nullable=true, length=11)
-	private Long deletedBy;
-	
-	@Column(name="deleted_on", nullable=true)
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date deletedOn;
-	
-	@NotNull
-	@NotBlank
-	@NotEmpty
-	@Column(name="is_deleted", nullable=false)
-	private Boolean isDeleted;
-	
-	@NotNull
-	@NotBlank
-	@NotEmpty
 	@Column(name="biodata_id", nullable=false, length=11)
 	private Long biodataId;
 	
@@ -85,8 +42,8 @@ public class XKeluargaModel {
 	@NotNull
 	@NotBlank
 	@NotEmpty
-	@Column(name="gender", nullable=false)
-	private Boolean gender;
+	@Column(name="gender", nullable=false, length=1)
+	private Integer gender;
 	
 	@Column(name="dob", nullable=true)
 	@Temporal(TemporalType.DATE)
@@ -102,68 +59,20 @@ public class XKeluargaModel {
 	@Column(name="notes", nullable=true, length=1000)
 	private String notes;
 
+	public XKeluargaModel() {
+		super();
+	}
+	
+	public XKeluargaModel(Long userId) {
+		super(userId);
+	}
+	
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedOn() {
-		return createdOn;
-	}
-
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
-
-	public Long getModifiedBy() {
-		return modifiedBy;
-	}
-
-	public void setModifiedBy(Long modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-
-	public Date getModifiedOn() {
-		return modifiedOn;
-	}
-
-	public void setModifiedOn(Date modifiedOn) {
-		this.modifiedOn = modifiedOn;
-	}
-
-	public Long getDeletedBy() {
-		return deletedBy;
-	}
-
-	public void setDeletedBy(Long deletedBy) {
-		this.deletedBy = deletedBy;
-	}
-
-	public Date getDeletedOn() {
-		return deletedOn;
-	}
-
-	public void setDeletedOn(Date deletedOn) {
-		this.deletedOn = deletedOn;
-	}
-
-	public Boolean getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
 	}
 
 	public Long getBiodataId() {
@@ -198,14 +107,6 @@ public class XKeluargaModel {
 		this.name = name;
 	}
 
-	public Boolean getGender() {
-		return gender;
-	}
-
-	public void setGender(Boolean gender) {
-		this.gender = gender;
-	}
-
 	public Date getDob() {
 		return dob;
 	}
@@ -237,6 +138,12 @@ public class XKeluargaModel {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	
-	
+
+	public Integer getGender() {
+		return gender;
+	}
+
+	public void setGender(Integer gender) {
+		this.gender = gender;
+	}
 }

@@ -103,11 +103,19 @@ public class XBiodataModel extends BaseModel {
 	@Column(name="company_id", length=11, nullable=false)
 	private String companyId;
 
-	@Column(name="is_process", nullable=true)
+	@Column(name="is_process", nullable=true, length=1)
 	private Integer isProcess;
 
-	@Column(name="is_complete", nullable=true)
+	@Column(name="is_complete", nullable=true, length=1)
 	private Integer isComplete;
+	
+	public XBiodataModel() {
+		super();
+	}
+	
+	public XBiodataModel(Long userId) {
+		super(userId);
+	}
 
 	public Long getId() {
 		return id;

@@ -1,7 +1,5 @@
 package com.xsis.batch197.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "x_address")
@@ -26,8 +17,7 @@ public class XAddressModel extends BaseModel {
 	@TableGenerator(name = "x_address_idx", table="x_index", pkColumnName="index_id", valueColumnName="index_value", initialValue=0, allocationSize=1)
 	@Column(name="id", length=11)
 	private Long id;
-	
-	@NotNull
+
 	@Column(name="biodata_id", length=11, nullable=false)
 	private Long biodataId;
 	
@@ -72,6 +62,15 @@ public class XAddressModel extends BaseModel {
 	
 	@Column(name="region2", length=100, nullable=true)
 	private String region2;
+	
+	public XAddressModel() {
+		super();
+	}
+	
+	public XAddressModel(Long userId, Long biodataId) {
+		super(userId);
+		this.biodataId=biodataId;
+	}
 
 	public Long getId() {
 		return id;

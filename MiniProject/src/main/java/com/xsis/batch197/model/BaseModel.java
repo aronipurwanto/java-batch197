@@ -47,6 +47,15 @@ public class BaseModel {
 		this.deletedOn = date;
 
 	}
+	
+	public BaseModel(Long userId) {
+		Date date = new Date();
+		this.isDelete = 0;
+		this.createdOn = date;
+		this.modifiedOn = date;
+		this.deletedOn = date;
+		this.createdBy=userId;
+	}
 
 	public Long getCreatedBy() {
 		return createdBy;

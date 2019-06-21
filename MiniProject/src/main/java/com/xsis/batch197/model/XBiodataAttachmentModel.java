@@ -1,7 +1,5 @@
 package com.xsis.batch197.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="x_biodata_attachment")
@@ -26,8 +17,7 @@ public class XBiodataAttachmentModel extends BaseModel {
 	@TableGenerator(name="x_biodata_attachment_idx", table="x_index", pkColumnName="index_id", valueColumnName="index_value", initialValue=0, allocationSize=1)
 	@Column(name="id", length=11)
 	private Long id;
-	
-	@NotNull
+
 	@Column(name="biodata_id", nullable=false, length=11)
 	private Long biodataId;
 	
@@ -40,8 +30,17 @@ public class XBiodataAttachmentModel extends BaseModel {
 	@Column(name="notes", nullable=true, length = 1000)
 	private String notes;
 	
-	@Column(name="is_photo", nullable=true)
-	private Boolean isPhoto;
+	@Column(name="is_photo", nullable=true, length=1)
+	private Integer isPhoto;
+	
+	public XBiodataAttachmentModel() {
+		super();
+	}
+	
+	public XBiodataAttachmentModel(Long userId, Long biodataId) {
+		super(userId);
+		this.biodataId=biodataId;
+	}
 
 	public Long getId() {
 		return id;
@@ -83,11 +82,11 @@ public class XBiodataAttachmentModel extends BaseModel {
 		this.notes = notes;
 	}
 
-	public Boolean getIsPhoto() {
+	public Integer getIsPhoto() {
 		return isPhoto;
 	}
 
-	public void setIsPhoto(Boolean isPhoto) {
+	public void setIsPhoto(Integer isPhoto) {
 		this.isPhoto = isPhoto;
 	}
 	

@@ -11,52 +11,24 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "x_rencana_jadwal")
-public class XRencanaJadwalModel {
+public class XRencanaJadwalModel extends BaseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "x_rencana_jadwal_idx")
-	@TableGenerator(name = "x_rencana_jadwal_idx", table = "tbl_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)
+	@TableGenerator(name = "x_rencana_jadwal_idx", table = "x_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)
 	@Column(name = "id", length = 11)
 	private Long id;
-
-	@Column(name = "created_by", length = 11, nullable = false)
-	private Long createdBy;
-
-	@Column(name = "created_on", nullable = false)
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	private Date createdOn;
-
-	@Column(name = "modified_by", length = 11, nullable = true)
-	private Long modifiedBy;
-
-	@Column(name = "modified_on", nullable = true)
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	private Date modifiedOn;
-
-	@Column(name = "delete_by", length = 11, nullable = true)
-	private Long deletedBy;
-
-	@Column(name = "deleted_on", nullable = true)
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
-	private Date deletedOn;
-
-	@Column(name = "is_delete", nullable = false)
-	private Boolean isDelete;
 
 	@Column(name = "schedule_code", length = 20, nullable = true)
 	private String scheduleCode;
 
 	@Column(name = "schedule_date", nullable = true)
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date scheduleDate;
 
 	@Column(name = "time", length = 10, nullable = true)
@@ -85,11 +57,19 @@ public class XRencanaJadwalModel {
 
 	@Column(name = "sent_datee", nullable = true)
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date sentDate;
 
 	@Column(name = "status", length = 50, nullable = true)
 	private String status;
+
+	public XRencanaJadwalModel() {
+		super();
+	}
+	
+	public XRencanaJadwalModel(Long userId) {
+		super(userId);
+	}
 
 	public Long getId() {
 		return id;
@@ -97,62 +77,6 @@ public class XRencanaJadwalModel {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Date getCreatedOn() {
-		return createdOn;
-	}
-
-	public void setCreatedOn(Date createdOn) {
-		this.createdOn = createdOn;
-	}
-
-	public Long getModifiedBy() {
-		return modifiedBy;
-	}
-
-	public void setModifiedBy(Long modifiedBy) {
-		this.modifiedBy = modifiedBy;
-	}
-
-	public Date getModifiedOn() {
-		return modifiedOn;
-	}
-
-	public void setModifiedOn(Date modifiedOn) {
-		this.modifiedOn = modifiedOn;
-	}
-
-	public Long getDeletedBy() {
-		return deletedBy;
-	}
-
-	public void setDeletedBy(Long deletedBy) {
-		this.deletedBy = deletedBy;
-	}
-
-	public Date getDeletedOn() {
-		return deletedOn;
-	}
-
-	public void setDeletedOn(Date deletedOn) {
-		this.deletedOn = deletedOn;
-	}
-
-	public Boolean getIsDelete() {
-		return isDelete;
-	}
-
-	public void setIsDelete(Boolean isDelete) {
-		this.isDelete = isDelete;
 	}
 
 	public String getScheduleCode() {

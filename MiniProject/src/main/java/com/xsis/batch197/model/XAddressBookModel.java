@@ -41,6 +41,14 @@ public class XAddressBookModel extends BaseModel{
 	@NotEmpty
 	@Column(name = "abpwd", length = 50, nullable = false)
 	private String abpwd;
+	
+	public XAddressBookModel() {
+		super();
+	}
+	
+	public XAddressBookModel(Long userId) {
+		super(userId);
+	}
 
 	public Long getId() {
 		return id;
