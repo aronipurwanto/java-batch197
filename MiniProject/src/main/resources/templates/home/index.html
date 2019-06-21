@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header_app"> 
+</head>
+<body>
+	<!-- Header -->
+	<header th:replace="fragments/header :: header"></header>
+	<!-- /Header -->
+
+	<!-- Content Wrapper -->
+	<div class="wrapper">
+		<div class="container">
+			<div class=row>
+				<section class="content-header">
+					<h1>XSIS 2.0</h1>
+				</section>
+				<!-- Sidebar Menu -->
+				<div class="col-md-2">
+					<aside th:replace="fragments/sidebar :: sidebar"></aside>
+				</div>
+				<!-- /Sidebar Menu -->
+				<!-- Content -->
+				<div class="col-md-10">
+					<div class="content">
+						<div class="module">
+							<div class="module-head">
+								<h3 style="font-weight:bold; color:#006;">Selamat Datang . . . </h3>
+							</div>
+							<div class="module-option clearfix">
+								<form>
+									<div class="input-append input-group input-group-sm pull-Left">
+										<input type="text" id="txt-search" class="form-control"
+											placeholder="Cari Nama Pelamar..."
+											style="width: 500px; border-color: #000066;">
+										<button type="submit" class="btn btn-sm" id="btn-search"
+											style="margin-right: 5px; background-color: #000066; color: white; font-weight: bold;" title="Cari Pelamar">Cari</button>
+										<button type="reset" class="btn btn-sm" id="btn-reset"
+											style="background-color: #000066; color: white; font-weight: bold;" title="Reset"
+											onclick="document.getElementById('txt-search').value = ''">Reset</button>
+									</div>
+								</form>
+								<div class="btn-group pull-right">
+									<button class="btn btn-sm" title="Ordererd">
+										<i class="fa fa-sort"></i>
+									</button>
+									<button class="btn btn-sm" title="Row per Page">
+										<i class="fa fa-list-ul"></i>
+									</button>
+									<button class="btn btn-sm" title="tambah">
+										<i class="fa fa-plus-circle"></i>
+									</button>
+								</div>
+							</div>
+							<div class="module-body">
+								<div class="row-fluid">																								
+									<div class="media user">
+										<a class="media-avatar pull-left" href="#"> <img
+											alt="Image" src="/dist/img/avatar04.png">
+										</a>
+										<div class="media-body">
+											<h4>
+												Arfan Anhari <small>Offline</small>
+											</h4>
+											<table>
+												<tr>
+													<td>Nama Panggilan</td>
+													<td>:</td>
+													<td>Arfan</td>
+												</tr>
+												<tr>
+													<td>Email</td>
+													<td>:</td>
+													<td>arfananakbogor@gmail.com</td>
+												</tr>
+												<tr>
+													<td>No. Handphone</td>
+													<td>:</td>
+													<td>14045</td>
+												</tr>
+												<tr>
+													<td>Pendidikan</td>
+													<td>:</td>
+													<td>IT (Ilmu Tafsir), Al-Azhar University</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+								<!-- Pagination -->
+								<div class="pagination pagination-right pull-right" style="margin-top: 40px;">
+									<button type="button" class="btn btn-outline-secondary">
+										Previous <a href="#" class="previous"></a>
+									</button>
+									<button type="button" class="btn btn-outline-secondary">
+										Next <a href="#" class="next"></a>
+									</button>
+								</div>
+								<!-- End Pagination -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Content -->
+			</div>
+			<!-- Footer -->
+			<div th:replace="fragments/footer :: footer"></div>
+			<!-- /Footer -->
+		</div>
+	</div>
+	<!-- /Content Wrapper -->
+</body>
+</html>
