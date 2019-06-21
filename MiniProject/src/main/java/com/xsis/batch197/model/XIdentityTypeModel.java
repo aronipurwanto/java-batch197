@@ -33,6 +33,12 @@ public class XIdentityTypeModel extends BaseModel {
 		super();
 	}
 	
+	public XIdentityTypeModel(String name, String desc) {
+		super();
+		this.name=name;
+		this.description=desc;
+	}
+	
 	public XIdentityTypeModel(Long userId) {
 		super(userId);
 	}

@@ -36,6 +36,12 @@ public class XTestTypeModel extends BaseModel {
 		super();
 	}
 	
+	public XTestTypeModel(String name, String desc) {
+		super();
+		this.name=name;
+		this.description=desc;
+	}
+	
 	public XTestTypeModel(Long userId) {
 		super(userId);
 	}

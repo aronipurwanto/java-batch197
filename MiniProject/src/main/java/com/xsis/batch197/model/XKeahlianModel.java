@@ -2,9 +2,12 @@ package com.xsis.batch197.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -27,8 +30,16 @@ public class XKeahlianModel extends BaseModel{
 	@Column(name="skill_level_id", nullable=true, length=11)
 	private Long skillLevelId;
 	
+	@ManyToOne
+	@JoinColumn(name="skill_level_id", foreignKey=@ForeignKey(name="fk_keahlian_sklev_id"), insertable=false, updatable=false)
+	private XSkillLevelModel skillLevel;
+	
 	@Column(name="notes", nullable=true, length=1000)
 	private String notes;
+	
+	@ManyToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_keahlian_bio_id"), insertable=false, updatable=false)
+	private XBiodataModel biodata;
 	
 	public XKeahlianModel() {
 		super();
@@ -76,6 +87,22 @@ public class XKeahlianModel extends BaseModel{
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public XSkillLevelModel getSkillLevel() {
+		return skillLevel;
+	}
+
+	public void setSkillLevel(XSkillLevelModel skillLevel) {
+		this.skillLevel = skillLevel;
+	}
+
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
 	}
 	
 }

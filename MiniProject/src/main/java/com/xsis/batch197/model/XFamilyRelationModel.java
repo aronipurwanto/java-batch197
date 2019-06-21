@@ -34,6 +34,12 @@ public class XFamilyRelationModel extends BaseModel {
 		super();
 	}
 	
+	public XFamilyRelationModel(String name, String desc) {
+		super();
+		this.name=name;
+		this.description=desc;
+	}
+	
 	public XFamilyRelationModel(Long userId) {
 		super(userId);
 	}

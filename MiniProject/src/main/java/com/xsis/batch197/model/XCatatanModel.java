@@ -30,6 +30,10 @@ public class XCatatanModel extends BaseModel {
 	@Column(name="note_type_id", nullable=true, length=11)
 	private Long noteTypeId;
 	
+	@ManyToOne
+	@JoinColumn(name="note_type_id", foreignKey=@ForeignKey(name="fk_catatan_notetype_id"), insertable=false, updatable=false)
+	private XNoteTypeModel noteType;
+	
 	@Column(name="notes", nullable=true, length=1000)
 	private String notes;
 	

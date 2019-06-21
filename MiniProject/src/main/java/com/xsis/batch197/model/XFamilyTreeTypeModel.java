@@ -36,6 +36,12 @@ public class XFamilyTreeTypeModel extends BaseModel{
 		super();
 	}
 	
+	public XFamilyTreeTypeModel(String name, String desc) {
+		super();
+		this.name=name;
+		this.description=desc;
+	}
+	
 	public XFamilyTreeTypeModel(Long userId) {
 		super(userId);
 	}

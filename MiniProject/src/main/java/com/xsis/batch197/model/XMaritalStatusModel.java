@@ -33,6 +33,12 @@ public class XMaritalStatusModel extends BaseModel {
 		super();
 	}
 	
+	public XMaritalStatusModel(String name, String desc) {
+		super();
+		this.name=name;
+		this.description=desc;
+	}
+	
 	public XMaritalStatusModel(Long userId) {
 		super(userId);
 	}

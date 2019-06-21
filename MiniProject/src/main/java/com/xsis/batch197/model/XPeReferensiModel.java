@@ -2,9 +2,12 @@ package com.xsis.batch197.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -19,6 +22,10 @@ public class XPeReferensiModel extends BaseModel {
 
 	@Column(name = "biodata_id", nullable = false, length = 11)
 	private Long biodataId;
+	
+	@ManyToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_pereff_bio_id"), insertable=false, updatable=false)
+	private XBiodataModel biodata;
 	
 	@Column(name = "name", nullable = true, length = 100)
 	private String name;
@@ -88,5 +95,12 @@ public class XPeReferensiModel extends BaseModel {
 	public void setRelation(String relation) {
 		this.relation = relation;
 	}
-	
+
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
+	}
 }

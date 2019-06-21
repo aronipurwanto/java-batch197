@@ -36,6 +36,12 @@ public class XVacancySourceModel extends BaseModel {
 	public XVacancySourceModel(Long userId) {
 		super(userId);
 	}
+	
+	public XVacancySourceModel(String name, String desc) {
+		super();
+		this.name=name;
+		this.description=desc;
+	}
 
 	// Start Getter, Setter
 	public Long getId() {

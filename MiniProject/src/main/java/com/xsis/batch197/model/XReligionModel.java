@@ -33,6 +33,12 @@ public class XReligionModel extends BaseModel {
 		super();
 	}
 	
+	public XReligionModel(String name, String desc) {
+		super();
+		this.name=name;
+		this.description= desc;
+	}
+	
 	public XReligionModel(Long userId) {
 		super(userId);
 	}

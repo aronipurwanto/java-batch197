@@ -47,7 +47,7 @@ public class XBiodataModel extends BaseModel {
 	private Date dob;
 	
 	@Column(name="gender", nullable=false)
-	private Boolean gender;
+	private Integer gender;
 	
 	@Column(name="religion_id", length=11, nullable=false)
 	private Long religionId;
@@ -125,7 +125,7 @@ public class XBiodataModel extends BaseModel {
 	private String marriageYear;
 	
 	@Column(name="company_id", length=11, nullable=false)
-	private String companyId;
+	private Long companyId;
 	
 	@ManyToOne
 	@JoinColumn(name="company_id",foreignKey=@ForeignKey(name="fk_bio_company_id"), insertable=false, updatable=false)
@@ -176,6 +176,9 @@ public class XBiodataModel extends BaseModel {
 	@OneToMany(mappedBy="biodata")
 	private List<XOrganisasiModel> listOrganisasi = new ArrayList<XOrganisasiModel>();
 	
+	@OneToMany(mappedBy="biodata")
+	private List<XKeahlianModel> listKeahlian = new ArrayList<XKeahlianModel>();
+	
 	public XBiodataModel() {
 		super();
 	}
@@ -224,11 +227,11 @@ public class XBiodataModel extends BaseModel {
 		this.dob = dob;
 	}
 
-	public Boolean getGender() {
+	public Integer getGender() {
 		return gender;
 	}
 
-	public void setGender(Boolean gender) {
+	public void setGender(Integer gender) {
 		this.gender = gender;
 	}
 
@@ -384,11 +387,11 @@ public class XBiodataModel extends BaseModel {
 		this.marriageYear = marriageYear;
 	}
 
-	public String getCompanyId() {
+	public Long getCompanyId() {
 		return companyId;
 	}
 
-	public void setCompanyId(String companyId) {
+	public void setCompanyId(Long companyId) {
 		this.companyId = companyId;
 	}
 
@@ -550,5 +553,13 @@ public class XBiodataModel extends BaseModel {
 
 	public void setListOrganisasi(List<XOrganisasiModel> listOrganisasi) {
 		this.listOrganisasi = listOrganisasi;
+	}
+
+	public List<XKeahlianModel> getListKeahlian() {
+		return listKeahlian;
+	}
+
+	public void setListKeahlian(List<XKeahlianModel> listKeahlian) {
+		this.listKeahlian = listKeahlian;
 	}
 }

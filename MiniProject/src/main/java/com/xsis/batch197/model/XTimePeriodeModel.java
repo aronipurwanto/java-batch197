@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class XTimePeriodeModel extends BaseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "x_time_periode_idx")
-	@TableGenerator(name = "x_time_periode_idx", table = "tbl_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)
+	@TableGenerator(name = "x_time_periode_idx", table = "x_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)
 	@Column(name = "id", length = 11)
 	private Long id;
 

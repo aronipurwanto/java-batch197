@@ -36,6 +36,12 @@ public class XScheduleTypeModel extends BaseModel {
 		super();
 	}
 	
+	public XScheduleTypeModel(String name, String desc) {
+		super();
+		this.name=name;
+		this.description=desc;
+	}
+	
 	public XScheduleTypeModel(Long userId) {
 		super(userId);
 	}

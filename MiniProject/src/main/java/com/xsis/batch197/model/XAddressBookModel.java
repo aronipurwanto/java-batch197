@@ -47,7 +47,7 @@ public class XAddressBookModel extends BaseModel {
 	@NotNull
 	@NotBlank
 	@NotEmpty
-	@Column(name = "abpwd", length = 50, nullable = false)
+	@Column(name = "abpwd", length = 225, nullable = false)
 	private String abpwd;
 
 	@ManyToMany

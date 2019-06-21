@@ -36,6 +36,12 @@ public class XSkillLevelModel extends BaseModel {
 		super();
 	}
 	
+	public XSkillLevelModel(String name, String desc) {
+		super();
+		this.name=name;
+		this.description=desc;
+	}
+	
 	public XSkillLevelModel(Long userId) {
 		super(userId);
 	}

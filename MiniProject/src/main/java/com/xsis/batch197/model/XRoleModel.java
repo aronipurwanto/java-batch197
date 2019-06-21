@@ -20,7 +20,7 @@ import javax.persistence.TableGenerator;
 public class XRoleModel extends BaseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "x_role_idx")
-	@TableGenerator(name = "x_role_idx", table = "tbl_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)
+	@TableGenerator(name = "x_role_idx", table = "x_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)
 
 	@Column(name = "id", length = 11)
 	private Long id;
@@ -30,24 +30,24 @@ public class XRoleModel extends BaseModel {
 
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
-	
-	@ManyToMany(mappedBy="listRole")
+
+	@ManyToMany(mappedBy = "listRole")
 	private List<XAddressBookModel> listAddr = new ArrayList<XAddressBookModel>();
-	
+
 	@ManyToMany
-	@JoinTable(
-			name="x_menu_access",
-			joinColumns=@JoinColumn(name="role_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_role_menu_id")),
-			inverseJoinColumns=@JoinColumn(name="menutree_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_menu_role_id")),
-			foreignKey=@ForeignKey(name="fk_role_menu_id"),
-			inverseForeignKey=@ForeignKey(name="fk_menu_role_id")
-			)
+	@JoinTable(name = "x_menu_access", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_role_menu_id")), inverseJoinColumns = @JoinColumn(name = "menutree_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_menu_role_id")), foreignKey = @ForeignKey(name = "fk_role_menu_id"), inverseForeignKey = @ForeignKey(name = "fk_menu_role_id"))
 	private List<XMenutreeModel> listMenu = new ArrayList<XMenutreeModel>();
 
 	public XRoleModel() {
 		super();
 	}
-	
+
+	public XRoleModel(String code, String name) {
+		super();
+		this.code = code;
+		this.name = name;
+	}
+
 	public XRoleModel(Long userId) {
 		super(userId);
 	}

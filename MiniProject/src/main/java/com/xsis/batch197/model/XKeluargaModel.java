@@ -37,8 +37,16 @@ public class XKeluargaModel extends BaseModel {
 	@Column(name="family_tree_type_id", nullable=true, length=11)
 	private Long familyTreeTypeId;
 	
+	@ManyToOne
+	@JoinColumn(name="family_tree_type_id", foreignKey=@ForeignKey(name="fk_kel_familytree_id"), insertable=false,updatable=false)
+	private XFamilyTreeTypeModel familyTree;
+	
 	@Column(name="family_relation_id", nullable=true, length=11)
 	private Long familyRelationId;
+	
+	@ManyToOne
+	@JoinColumn(name="family_relation_id", foreignKey=@ForeignKey(name="fk_kel_familyrelation_id"), insertable=false,updatable=false)
+	private XFamilyRelationModel familyRelation;
 	
 	@Column(name="name", nullable=true, length=100)
 	private String name;
@@ -173,5 +181,21 @@ public class XKeluargaModel extends BaseModel {
 
 	public void setEducationLevel(XEducationLevelModel educationLevel) {
 		this.educationLevel = educationLevel;
+	}
+
+	public XFamilyTreeTypeModel getFamilyTree() {
+		return familyTree;
+	}
+
+	public void setFamilyTree(XFamilyTreeTypeModel familyTree) {
+		this.familyTree = familyTree;
+	}
+
+	public XFamilyRelationModel getFamilyRelation() {
+		return familyRelation;
+	}
+
+	public void setFamilyRelation(XFamilyRelationModel familyRelation) {
+		this.familyRelation = familyRelation;
 	}
 }
