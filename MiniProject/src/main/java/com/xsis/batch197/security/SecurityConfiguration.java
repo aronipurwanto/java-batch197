@@ -16,28 +16,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
-		private UserPrincipalDetailsService userService;
-
-		public SecurityConfiguration(UserPrincipalDetailsService userService){
-			this.userService = userService;
-	}
+	@Autowired
+	private UserPrincipalDetailsService userService;
 	
 	@Autowired
-	private AuthenticationSuccessHandler authenticationSuccessHandler;
+	private AuthenticationSuccessHandler authSuccessHandler;
 	
 	@Autowired
-	private AuthenticationFailureHandler authenticationFailureHandler;
-//	@Autowired
-//	private DataSource dataSource;
-//	
-//	@Autowired
-//	  public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-//	    auth.jdbcAuthentication().dataSource(dataSource)
-//	        .usersByUsernameQuery("select u.email, u.abpwd, 1 as enabled from x_addrbook u where u.email=?")
-//	        .authoritiesByUsernameQuery("select u.email,  r.name from x_addrbook u inner join x_userrole ur on(u.id=ur.addrbook_id) inner join x_role r on(ur.role_id=r.id) where u.email=?");
-//	  }
-	
+	private AuthenticationFailureHandler authFailureHandler;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -51,18 +37,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers("/index").hasAnyAuthority("ROLE_ADMINISTRATOR", "ROLE_BOOTCAMP_QC", "ROLE_INTERNAL_SYSDEV")
 		.anyRequest().authenticated()
 		.and()
+		// disable csrf
+		.csrf().disable()
 		// form login
-		.csrf().disable().formLogin()
+		.formLogin()
 		.loginPage("/login")
 		.failureUrl("/login?error=true")
+		// jika sudah berhasil login akan diarahkan kemana
 		.defaultSuccessUrl("/pelamar/index")
+		// name text input di form login
 		.usernameParameter("email")
-		.passwordParameter("abpwd")
+		// name text input di form login
+		.passwordParameter("password")
+		.successHandler(authSuccessHandler)
+		.failureHandler(authFailureHandler)
 		.and()
 		//logout
-		.logout()
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/login").and()
+		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+		.and()
 		.exceptionHandling()
 		.accessDeniedPage("/access-denied");
 	}

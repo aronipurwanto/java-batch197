@@ -13,6 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.xsis.batch197.model.XAddressBookModel;
 
 public class UserPrincipal implements UserDetails{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private XAddressBookModel user;
 	
 	public UserPrincipal(XAddressBookModel user) {
@@ -21,40 +25,35 @@ public class UserPrincipal implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		/*
 		this.user.getPermisstionList().forEach(p ->{
 			GrantedAuthority authority = new SimpleGrantedAuthority(p);
 			authorities.add(authority);
-});
+});*/
 		return authorities;
 	}
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return this.user.getAbpwd();
 	}
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return this.user.getEmail();
 	}
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
 		return this.user.getIsLocked()==0;
 	}
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return this.user.getIsDelete()==0;
 	}
 

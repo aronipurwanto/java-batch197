@@ -21,15 +21,15 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "x_addrbook")
-public class XAddressBookModel extends BaseModel{
+public class XAddressBookModel extends BaseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "x_addrbook_idx")
 	@TableGenerator(name = "x_addrbook_idx", table = "x_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)
-	@Column(name = "id" , length = 11)
+	@Column(name = "id", length = 11)
 	private Long id;
 
 	@NotNull
-	@Column(name = "is_locked", nullable = false, length=1)
+	@Column(name = "is_locked", nullable = false, length = 1)
 	private Integer isLocked;
 
 	@NotNull
@@ -49,24 +49,27 @@ public class XAddressBookModel extends BaseModel{
 	@NotEmpty
 	@Column(name = "abpwd", length = 50, nullable = false)
 	private String abpwd;
-	
+
 	@ManyToMany
-	@JoinTable(
-			name="x_user_role",
-			joinColumns=@JoinColumn(name="addrbook_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_addr_role_id")),
-			inverseJoinColumns=@JoinColumn(name="role_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_role_addr_id")),
-			foreignKey=@ForeignKey(name="fk_addr_role_id"),
-			inverseForeignKey=@ForeignKey(name="fk_role_addr_id")
-			)
+	@JoinTable(name = "x_user_role", joinColumns = @JoinColumn(name = "addrbook_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_addr_role_id")), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_role_addr_id")), foreignKey = @ForeignKey(name = "fk_addr_role_id"), inverseForeignKey = @ForeignKey(name = "fk_role_addr_id"))
 	private List<XRoleModel> listRole = new ArrayList<XRoleModel>();
-	
-	@OneToOne(mappedBy="addressBook")
+
+	@OneToOne(mappedBy = "addressBook")
 	private XBiodataModel biodata;
-	
+
 	public XAddressBookModel() {
 		super();
 	}
-	
+
+	public XAddressBookModel(String email, String username, String password) {
+		super();
+		this.email = email;
+		this.abuid = username;
+		this.abpwd = password;
+		this.isLocked = 0;
+		this.setIsDelete(0);
+	}
+
 	public XAddressBookModel(Long userId) {
 		super(userId);
 	}

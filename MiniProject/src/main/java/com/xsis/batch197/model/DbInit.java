@@ -23,8 +23,8 @@ public class DbInit implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		this.userRepo.deleteAll();
 
-        XAddressBookModel irman = new XAddressBookModel("irman@gmail.com", "irman", encoderPassword.encode("irman123"), "");
-        XAddressBookModel kris = new XAddressBookModel("kris@gmail.com", "kris", encoderPassword.encode("kris123"), "");
+        XAddressBookModel irman = new XAddressBookModel("irman@gmail.com", "irman", encoderPassword.encode("irman123"));
+        XAddressBookModel kris = new XAddressBookModel("kris@gmail.com", "kris", encoderPassword.encode("kris123"));
         List<XAddressBookModel> users = Arrays.asList(irman, kris);
         this.userRepo.saveAll(users);
 }
