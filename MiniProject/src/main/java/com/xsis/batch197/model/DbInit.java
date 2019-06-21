@@ -30,6 +30,7 @@ public class DbInit implements CommandLineRunner {
 	@Autowired
 	private XMaritalStatusRepo maritalRepo;
 	
+	/*
 	@Autowired
 	private XFamilyTreeTypeModel familyTreeRepo;
 
