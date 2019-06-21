@@ -1,12 +1,18 @@
 package com.xsis.batch197.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -25,6 +31,10 @@ public class XUndanganModel extends BaseModel {
 
 	@Column(name = "schedule_type_id", length = 11, nullable = false)
 	private Long scheduleTypeId;
+	
+	@ManyToOne
+	@JoinColumn(name="schedule_type_id", foreignKey=@ForeignKey(name="fk_und_sectype_id"), insertable=false, updatable=false)
+	private XScheduleTypeModel scheduleType;
 
 	@Column(name = "invitation_date", nullable = true)
 	@Temporal(TemporalType.DATE)
@@ -45,6 +55,9 @@ public class XUndanganModel extends BaseModel {
 
 	@Column(name = "status", length = 50, nullable = true)
 	private String status;
+	
+	@OneToMany(mappedBy="undangan")
+	private List<XUndanganDetailModel> listDetailModels = new ArrayList<XUndanganDetailModel>();
 
 	public XUndanganModel() {
 		super();
@@ -112,5 +125,21 @@ public class XUndanganModel extends BaseModel {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public XScheduleTypeModel getScheduleType() {
+		return scheduleType;
+	}
+
+	public void setScheduleType(XScheduleTypeModel scheduleType) {
+		this.scheduleType = scheduleType;
+	}
+
+	public List<XUndanganDetailModel> getListDetailModels() {
+		return listDetailModels;
+	}
+
+	public void setListDetailModels(List<XUndanganDetailModel> listDetailModels) {
+		this.listDetailModels = listDetailModels;
 	}
 }

@@ -1,10 +1,14 @@
 package com.xsis.batch197.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -40,6 +44,9 @@ public class XMenutreeModel extends BaseModel{
 	
 	@Column(name="menu_type", length=10, nullable=false)
 	private String menuType;
+	
+	@ManyToMany(mappedBy="listMenu")
+	private List<XRoleModel> listRole = new ArrayList<XRoleModel>();
 	
 	public XMenutreeModel() {
 		super();
@@ -119,5 +126,13 @@ public class XMenutreeModel extends BaseModel{
 
 	public void setMenuType(String menuType) {
 		this.menuType = menuType;
+	}
+
+	public List<XRoleModel> getListRole() {
+		return listRole;
+	}
+
+	public void setListRole(List<XRoleModel> listRole) {
+		this.listRole = listRole;
 	}
 }

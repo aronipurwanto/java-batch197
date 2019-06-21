@@ -2,9 +2,12 @@ package com.xsis.batch197.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -48,8 +51,8 @@ public class XRiwayatPekerjaanModel extends BaseModel {
 	@Column(name = "income", length = 20, nullable = true)
 	private String income;
 
-	@Column(name = "is_it_related", nullable = true)
-	private Boolean isItRelated;
+	@Column(name = "is_it_related", nullable = true, length=1)
+	private Integer isItRelated;
 
 	@Column(name = "about_job", length = 1000, nullable = true)
 	private String aboutJob;
@@ -59,6 +62,10 @@ public class XRiwayatPekerjaanModel extends BaseModel {
 
 	@Column(name = "notes", length = 5000, nullable = true)
 	private String notes;
+	
+	@ManyToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_ripek_bio_id"), insertable=false, updatable=false)
+	private XBiodataModel biodata;
 
 	public XRiwayatPekerjaanModel() {
 		super();
@@ -157,11 +164,11 @@ public class XRiwayatPekerjaanModel extends BaseModel {
 		this.income = income;
 	}
 
-	public Boolean getIsItRelated() {
+	public Integer getIsItRelated() {
 		return isItRelated;
 	}
 
-	public void setIsItRelated(Boolean isItRelated) {
+	public void setIsItRelated(Integer isItRelated) {
 		this.isItRelated = isItRelated;
 	}
 
@@ -187,6 +194,14 @@ public class XRiwayatPekerjaanModel extends BaseModel {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
 	}
 
 }

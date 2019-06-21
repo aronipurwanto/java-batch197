@@ -2,9 +2,12 @@ package com.xsis.batch197.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -47,6 +50,10 @@ public class XRiwayatPelatihanModel extends BaseModel {
 
 	@Column(name = "notes", length = 1000, nullable = true)
 	private String notes;
+	
+	@ManyToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_ripel_bio_id"), insertable=false, updatable=false)
+	private XBiodataModel biodata;
 
 	public XRiwayatPelatihanModel() {
 		super();
@@ -143,6 +150,14 @@ public class XRiwayatPelatihanModel extends BaseModel {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
 	}
 
 }

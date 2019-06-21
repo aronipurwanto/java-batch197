@@ -1,12 +1,20 @@
 package com.xsis.batch197.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -42,6 +50,10 @@ public class XRencanaJadwalModel extends BaseModel {
 
 	@Column(name = "schedule_type_id", length = 11, nullable = true)
 	private Long scheduleTypeId;
+	
+	@ManyToOne
+	@JoinColumn(name="schedule_type_id", foreignKey=@ForeignKey(name="fk_renjad_shectype_id"), insertable=false, updatable=false)
+	private XScheduleTypeModel scheduleType;
 
 	@Column(name = "location", length = 100, nullable = true)
 	private String location;
@@ -62,6 +74,16 @@ public class XRencanaJadwalModel extends BaseModel {
 
 	@Column(name = "status", length = 50, nullable = true)
 	private String status;
+	
+	@ManyToMany
+	@JoinTable(
+			name="x_rencana_jadwal_detail",
+			joinColumns=@JoinColumn(name="rencana_jadwal_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_renjad_bio_id")),
+			inverseJoinColumns=@JoinColumn(name="biodata_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_bio_renjad_id")),
+			foreignKey=@ForeignKey(name="fk_renjad_bio_id"),
+			inverseForeignKey=@ForeignKey(name="fk_bio_renjad_id")
+			)
+	private List<XBiodataModel> listBiodata = new ArrayList<XBiodataModel>();
 
 	public XRencanaJadwalModel() {
 		super();
@@ -175,4 +197,11 @@ public class XRencanaJadwalModel extends BaseModel {
 		this.status = status;
 	}
 
+	public XScheduleTypeModel getScheduleType() {
+		return scheduleType;
+	}
+
+	public void setScheduleType(XScheduleTypeModel scheduleType) {
+		this.scheduleType = scheduleType;
+	}
 }

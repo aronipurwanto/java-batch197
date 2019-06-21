@@ -2,9 +2,12 @@ package com.xsis.batch197.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -33,6 +36,10 @@ public class XRiwayatPendidikanModel extends BaseModel{
 	@Column(name="education_level_id", length=11, nullable=true)
 	private Long educationLevelId;
 	
+	@ManyToOne
+	@JoinColumn(name="education_level_id", foreignKey=@ForeignKey(name="fk_ripen_edulev_id"), insertable=false, updatable=false)
+	private XEducationLevelModel eductationLevel;
+	
 	@Column(name="entry_year", length=10, nullable=true)
 	private String entryYear;
 	
@@ -56,6 +63,10 @@ public class XRiwayatPendidikanModel extends BaseModel{
 	
 	@Column(name="deskripsi_ta", length=5000, nullable=true)
 	private String deskripsiTa;
+	
+	@ManyToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_ripen_bio_id"), insertable=false, updatable=false)
+	private XBiodataModel biodata;
 	
 	public XRiwayatPendidikanModel() {
 		super();
@@ -176,6 +187,22 @@ public class XRiwayatPendidikanModel extends BaseModel{
 
 	public void setDeskripsiTa(String deskripsiTa) {
 		this.deskripsiTa = deskripsiTa;
+	}
+
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
+	}
+
+	public XEducationLevelModel getEductationLevel() {
+		return eductationLevel;
+	}
+
+	public void setEductationLevel(XEducationLevelModel eductationLevel) {
+		this.eductationLevel = eductationLevel;
 	}
 	
 }

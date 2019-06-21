@@ -2,9 +2,12 @@ package com.xsis.batch197.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -22,9 +25,17 @@ public class XOnlineTestDetailModel extends BaseModel {
 
 	@Column(name = "test_type_id", length = 11, nullable = true)
 	private Long testTypeId;
+	
+	@ManyToOne
+	@JoinColumn(name="test_type_id", foreignKey=@ForeignKey(name="fk_oldet_testype_id"), insertable=false,updatable=false)
+	private XTestTypeModel textType;
 
 	@Column(name = "test_order", nullable = true)
 	private Integer testOrder;
+	
+	@ManyToOne
+	@JoinColumn(name="online_test_id", foreignKey=@ForeignKey(name="fk_oldet_olparent_id"), insertable=false,updatable=false)
+	private XOnlineTestModel onlineTest;
 	
 	public XOnlineTestDetailModel() {
 		super();
@@ -64,5 +75,21 @@ public class XOnlineTestDetailModel extends BaseModel {
 
 	public void setTestOrder(Integer testOrder) {
 		this.testOrder = testOrder;
+	}
+
+	public XTestTypeModel getTextType() {
+		return textType;
+	}
+
+	public void setTextType(XTestTypeModel textType) {
+		this.textType = textType;
+	}
+
+	public XOnlineTestModel getOnlineTest() {
+		return onlineTest;
+	}
+
+	public void setOnlineTest(XOnlineTestModel onlineTest) {
+		this.onlineTest = onlineTest;
 	}
 }

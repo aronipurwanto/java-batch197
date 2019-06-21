@@ -1,10 +1,17 @@
 package com.xsis.batch197.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -23,6 +30,19 @@ public class XRoleModel extends BaseModel {
 
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
+	
+	@ManyToMany(mappedBy="listRole")
+	private List<XAddressBookModel> listAddr = new ArrayList<XAddressBookModel>();
+	
+	@ManyToMany
+	@JoinTable(
+			name="x_menu_access",
+			joinColumns=@JoinColumn(name="role_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_role_menu_id")),
+			inverseJoinColumns=@JoinColumn(name="menutree_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_menu_role_id")),
+			foreignKey=@ForeignKey(name="fk_role_menu_id"),
+			inverseForeignKey=@ForeignKey(name="fk_menu_role_id")
+			)
+	private List<XMenutreeModel> listMenu = new ArrayList<XMenutreeModel>();
 
 	public XRoleModel() {
 		super();
@@ -56,4 +76,19 @@ public class XRoleModel extends BaseModel {
 		this.name = name;
 	}
 
+	public List<XAddressBookModel> getListAddr() {
+		return listAddr;
+	}
+
+	public void setListAddr(List<XAddressBookModel> listAddr) {
+		this.listAddr = listAddr;
+	}
+
+	public List<XMenutreeModel> getListMenu() {
+		return listMenu;
+	}
+
+	public void setListMenu(List<XMenutreeModel> listMenu) {
+		this.listMenu = listMenu;
+	}
 }

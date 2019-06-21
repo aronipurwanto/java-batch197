@@ -2,9 +2,12 @@ package com.xsis.batch197.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -32,6 +35,10 @@ public class XBiodataAttachmentModel extends BaseModel {
 	
 	@Column(name="is_photo", nullable=true, length=1)
 	private Integer isPhoto;
+	
+	@ManyToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_attch_biodata_id"), insertable=false, updatable=false)
+	private XBiodataModel biodata;
 	
 	public XBiodataAttachmentModel() {
 		super();
@@ -89,5 +96,12 @@ public class XBiodataAttachmentModel extends BaseModel {
 	public void setIsPhoto(Integer isPhoto) {
 		this.isPhoto = isPhoto;
 	}
-	
+
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
+	}
 }

@@ -10,7 +10,7 @@ import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "x_userrole")
+@Table(name = "x_user_role")
 public class XUserRoleModel extends BaseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "x_userrole_idx")

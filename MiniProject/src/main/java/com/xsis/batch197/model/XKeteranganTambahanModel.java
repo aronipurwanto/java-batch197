@@ -2,9 +2,12 @@ package com.xsis.batch197.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -29,7 +32,7 @@ public class XKeteranganTambahanModel extends BaseModel {
 	@Column(name="expected_salary", nullable=true, length=20)
 	private String expectedSalary;
 	
-	@Column(name="is_negotiable", nullable=true)
+	@Column(name="is_negotiable", nullable=true, length=1)
 	private Integer isNegotiable;
 	
 	@Column(name="start_working", nullable=true, length=10)
@@ -70,6 +73,10 @@ public class XKeteranganTambahanModel extends BaseModel {
 	
 	@Column(name="other_notes", nullable=true, length=1000)
 	private String otherNotes;
+	
+	@OneToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_kettam_bio_id"), insertable=false,updatable=false)
+	private XBiodataModel biodata;
 	
 	public XKeteranganTambahanModel() {
 		super();
@@ -231,6 +238,12 @@ public class XKeteranganTambahanModel extends BaseModel {
 	public void setOtherNotes(String otherNotes) {
 		this.otherNotes = otherNotes;
 	}
-	
-	
+
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
+	}
 }

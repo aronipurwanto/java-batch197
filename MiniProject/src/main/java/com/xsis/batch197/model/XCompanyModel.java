@@ -1,10 +1,14 @@
 package com.xsis.batch197.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.NotBlank;
@@ -31,6 +35,9 @@ public class XCompanyModel extends BaseModel {
 	@NotEmpty
 	@Column(name="description", length = 100)
 	private String description;
+	
+	@OneToMany(mappedBy="company")
+	private List<XBiodataModel> listBiodata = new ArrayList<XBiodataModel>();
 	
 	public XCompanyModel() {
 		super();
@@ -62,6 +69,14 @@ public class XCompanyModel extends BaseModel {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<XBiodataModel> getListBiodata() {
+		return listBiodata;
+	}
+
+	public void setListBiodata(List<XBiodataModel> listBiodata) {
+		this.listBiodata = listBiodata;
 	}
 	
 }

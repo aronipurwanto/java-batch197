@@ -4,9 +4,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -53,11 +57,19 @@ public class XKeluargaModel extends BaseModel {
 	@Column(name="education_level_id", nullable=true, length=11)
 	private Long educationLevelId;
 	
+	@ManyToOne
+	@JoinColumn(name="education_level_id", foreignKey=@ForeignKey(name="fk_kel_edulev_id"), insertable=false,updatable=false)
+	private XEducationLevelModel educationLevel;
+	
 	@Column(name="job", nullable=true, length=100)
 	private String job;
 	
 	@Column(name="notes", nullable=true, length=1000)
 	private String notes;
+	
+	@ManyToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_kel_bio_id"), insertable=false,updatable=false)
+	private XBiodataModel biodata;
 
 	public XKeluargaModel() {
 		super();
@@ -145,5 +157,21 @@ public class XKeluargaModel extends BaseModel {
 
 	public void setGender(Integer gender) {
 		this.gender = gender;
+	}
+
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
+	}
+
+	public XEducationLevelModel getEducationLevel() {
+		return educationLevel;
+	}
+
+	public void setEducationLevel(XEducationLevelModel educationLevel) {
+		this.educationLevel = educationLevel;
 	}
 }

@@ -1,10 +1,18 @@
 package com.xsis.batch197.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -62,6 +70,10 @@ public class XAddressModel extends BaseModel {
 	
 	@Column(name="region2", length=100, nullable=true)
 	private String region2;
+	
+	@OneToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_addr_bio_id"), insertable=false,updatable=false)
+	private XBiodataModel biodata;
 	
 	public XAddressModel() {
 		super();
@@ -200,4 +212,11 @@ public class XAddressModel extends BaseModel {
 		this.region2 = region2;
 	}
 
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
+	}
 }

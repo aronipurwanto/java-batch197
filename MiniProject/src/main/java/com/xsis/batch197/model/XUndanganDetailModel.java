@@ -2,9 +2,12 @@ package com.xsis.batch197.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -26,6 +29,14 @@ public class XUndanganDetailModel extends BaseModel {
 
 	@Column(name = "notes", length = 1000, nullable = true)
 	private String notes;
+	
+	@ManyToOne
+	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_unddet_bio_id"), insertable=false, updatable=false)
+	private XBiodataModel biodata;
+	
+	@ManyToOne
+	@JoinColumn(name="undangan_id", foreignKey=@ForeignKey(name="fk_unddet_parent_id"), insertable=false, updatable=false)
+	private XUndanganModel undangan;
 
 	public XUndanganDetailModel() {
 		super();
@@ -66,5 +77,21 @@ public class XUndanganDetailModel extends BaseModel {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public XBiodataModel getBiodata() {
+		return biodata;
+	}
+
+	public void setBiodata(XBiodataModel biodata) {
+		this.biodata = biodata;
+	}
+
+	public XUndanganModel getUndangan() {
+		return undangan;
+	}
+
+	public void setUndangan(XUndanganModel undangan) {
+		this.undangan = undangan;
 	}
 }
