@@ -38,11 +38,6 @@ public class DbInit implements CommandLineRunner {
 	@Autowired
 	private XUserRoleRepo userRoleRepo;
 
-	/*
-	 * public DbInit(XAddressBookRepo userRepo, PasswordEncoder encoderPassword) {
-	 * this.userRepo = userRepo; this.encoderPassword = encoderPassword; }
-	 */
-
 	@Override
 	public void run(String... args) throws Exception {
 		// initial menu
