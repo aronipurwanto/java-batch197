@@ -18,6 +18,11 @@ public class AuthenticationController extends BaseModel {
 		return "auth/forgot-password";
 	}
 	
+	@GetMapping(value = "/select-role")
+	public String selectAccess() {
+		return "auth/select-access";
+	}
+	
 	@GetMapping(value = "/register")
 	public String register() {
 		return "auth/register";

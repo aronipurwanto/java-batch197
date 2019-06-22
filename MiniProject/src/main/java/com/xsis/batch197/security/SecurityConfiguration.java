@@ -32,16 +32,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+		.antMatchers("/","/select-role").permitAll()
 		.and()
-		.formLogin().loginProcessingUrl("/signin")
-		.usernameParameter("email")
+		.formLogin().loginProcessingUrl("/login")
+		.usernameParameter("username")
 		.passwordParameter("password")
 		.loginPage("/login").permitAll()
 		.successHandler(authSuccessHandler)
-		.failureHandler(authFailureHandler)
-		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+		.failureHandler(authFailureHandler)		
+		.defaultSuccessUrl("/select-role")
 		.and()
-		.rememberMe().rememberMeParameter("checkRememberMe").tokenValiditySeconds(2592000).key("RahasiaDong!!")
+		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+		.and()
+		.rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(2592000).key("RahasiaDong!!")
 		.and()
 		.exceptionHandling().accessDeniedPage("/access-denied");
 	}
