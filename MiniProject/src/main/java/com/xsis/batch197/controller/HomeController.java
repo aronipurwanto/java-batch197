@@ -1,13 +1,44 @@
 package com.xsis.batch197.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.xsis.batch197.repository.XCompanyRepo;
+import com.xsis.batch197.repository.XRoleRepo;
 
 @Controller
 public class HomeController {
-
+	@Autowired
+	private XRoleRepo roleRepo;
+	
+	@Autowired
+	private XCompanyRepo comRepo;
+	
 	@GetMapping(value = "/")
-	public String index() {
-		return "home/index";
+	public ModelAndView index() {
+		return new ModelAndView("home/index");
+	}
+	
+	@GetMapping(value = "/home/index")
+	public ModelAndView dashbord() {
+		return new ModelAndView("home/index");
+	}
+	
+	@GetMapping(value = "/forgot-password")
+	public ModelAndView forgot() {
+		return new ModelAndView("home/forgot-password");
+	}
+	
+	// setelah login pilih role dan pilih company
+	@GetMapping(value = "/select-role")
+	public ModelAndView selectAccess() {
+		ModelAndView view = new ModelAndView("home/select-access");
+		// add object to list
+		view.addObject("listRole", this.roleRepo.findAll());
+		view.addObject("listCompany", this.comRepo.findAll());
+		
+		return view;
 	}
 }
