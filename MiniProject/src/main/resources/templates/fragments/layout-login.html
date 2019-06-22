@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -8,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title data-layout-title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Gentellela!</title>
+    <title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Gentellela!</title>
      
     <!-- Bootstrap -->
     <link th:href="@{~/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
@@ -26,12 +28,12 @@
 	    <div class="animate form login_form">
 	    	<section class="login_content">
 	    		<!-- Login Content -->
-	        	<div data-layout-fragment="content"></div>
+	        	<div layout:fragment="content"></div>
 	    	</section>
 	    </div>
 	</div>
 	<!-- jQuery -->
-    <script th:src="@{~/jquery/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{~/jquery/dist/jquery.min.js}"></script>
     <!-- Bootstrap -->
     <script th:src="@{~/bootstrap/dist/js/bootstrap.min.js}"></script>
     <!-- NProgress -->

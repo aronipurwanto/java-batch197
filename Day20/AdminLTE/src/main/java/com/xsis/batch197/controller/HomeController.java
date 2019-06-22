@@ -11,11 +11,13 @@ import java.util.List;
 
 @Controller
 public class HomeController extends BaseController {
-	@GetMapping(value="/")
+	@GetMapping(value = "/")
 	public String index() {
 		return "home/index";
 	}
 
 	@GetMapping(value = "/login")
-	public String login(){return  "home/login";}
+	public String login() {
+		return "home/login";
+	}
 }
