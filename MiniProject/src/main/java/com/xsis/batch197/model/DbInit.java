@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.xsis.batch197.repository.XAddressBookRepo;
+import com.xsis.batch197.repository.XCompanyRepo;
 import com.xsis.batch197.repository.XMaritalStatusRepo;
 import com.xsis.batch197.repository.XMenuRepo;
 import com.xsis.batch197.repository.XReligionRepo;
@@ -37,6 +38,9 @@ public class DbInit implements CommandLineRunner {
 
 	@Autowired
 	private XUserRoleRepo userRoleRepo;
+	
+	@Autowired
+	private XCompanyRepo comRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -143,6 +147,20 @@ public class DbInit implements CommandLineRunner {
 			listUserRole.add(new XUserRoleModel(userId3, roleId3, userId));
 
 			this.userRoleRepo.saveAll(listUserRole);
+		}
+		
+		// initial company
+		if(this.comRepo.findAll().size()==0) {
+			Long userId = this.userRepo.findByAbuid("admin").getId();
+			List<XCompanyModel> listCompany = new ArrayList<>();
+			
+			listCompany.add(new XCompanyModel("XMU","Xsis Mitra Utama", userId));
+			listCompany.add(new XCompanyModel("XA","Xsis Academy", userId));
+			listCompany.add(new XCompanyModel("ETG","Equine Technology Group", userId));
+			listCompany.add(new XCompanyModel("ODI","Optima Data International", userId));
+			listCompany.add(new XCompanyModel("NPP","Niaga Prima Paramitra", userId));
+			
+			this.comRepo.saveAll(listCompany);
 		}
 	}
 

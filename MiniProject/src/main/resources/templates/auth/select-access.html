@@ -8,17 +8,19 @@
 </head>
 <body>
 	<div layout:fragment="content">
-		<form th:action="@{/select-role}" method="post" id="form-login">
+		<form th:action="@{/set-access}" method="post" id="form-access">
 			<h1>Select Your Role</h1>
 			<div>
 				<select id="roleId" name="roleId" class="form-control">
 					<option value="">= Role List =</option>
+					<option th:each="item : ${listRole}" th:value="${item.id}" th:text="${item.name}">
 				</select>
 			</div>
 			<br/>
 			<div>
 				<select id="companyId" name="companyId" class="form-control">
 					<option value="">= Company List =</option>
+					<option th:each="item : ${listCompany}" th:value="${item.id}" th:text="${item.name}">
 				</select>
 			</div>
 			<br/>
