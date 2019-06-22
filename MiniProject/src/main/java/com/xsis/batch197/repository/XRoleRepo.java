@@ -7,5 +7,6 @@ import com.xsis.batch197.model.XRoleModel;
 
 @Repository
 public interface XRoleRepo extends JpaRepository<XRoleModel, Long>{
-
+	public XRoleModel findByName(String name);
+	public XRoleModel findByCode(String code);
 }

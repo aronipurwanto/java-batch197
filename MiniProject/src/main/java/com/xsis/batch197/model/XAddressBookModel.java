@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -50,7 +51,7 @@ public class XAddressBookModel extends BaseModel {
 	@Column(name = "abpwd", length = 225, nullable = false)
 	private String abpwd;
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "x_user_role", joinColumns = @JoinColumn(name = "addrbook_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_addr_role_id")), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_role_addr_id")), foreignKey = @ForeignKey(name = "fk_addr_role_id"), inverseForeignKey = @ForeignKey(name = "fk_role_addr_id"))
 	private List<XRoleModel> listRole = new ArrayList<XRoleModel>();
 

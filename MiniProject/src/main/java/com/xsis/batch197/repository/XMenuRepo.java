@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.xsis.batch197.model.XMenuModel;
 
 @Repository
-public interface XMenutreeRepo extends JpaRepository<XMenuModel, Long> {
-
+public interface XMenuRepo extends JpaRepository<XMenuModel, Long> {
+	public XMenuModel findByTitle(String title);
 }
