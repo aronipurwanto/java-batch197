@@ -62,8 +62,8 @@ public class XMenuModel extends BaseModel{
 		this.menuType = type;
 	}
 	
-	public XMenuModel(String title, String icon, Integer order, Integer level, String url, String type, Long parentId) {
-		super();
+	public XMenuModel(String title, String icon, Integer order, Integer level, String url, String type, Long parentId, Long userId) {
+		super(userId);
 		this.title= title;
 		this.menuIcon = icon;
 		this.menuOrder = order;

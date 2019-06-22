@@ -43,6 +43,12 @@ public class XUserRoleModel extends BaseModel {
 		this.roleId=roleId;
 	}
 	
+	public XUserRoleModel(Long addbookId, Long roleId, Long userId) {
+		super(userId);
+		this.addrbookId=addbookId;
+		this.roleId=roleId;
+	}
+	
 	public XUserRoleModel(Long userId) {
 		super(userId);
 	}

@@ -47,6 +47,12 @@ public class XRoleModel extends BaseModel {
 		this.code = code;
 		this.name = name;
 	}
+	
+	public XRoleModel(String code, String name, Long userId) {
+		super(userId);
+		this.code = code;
+		this.name = name;
+	}
 
 	public XRoleModel(Long userId) {
 		super(userId);

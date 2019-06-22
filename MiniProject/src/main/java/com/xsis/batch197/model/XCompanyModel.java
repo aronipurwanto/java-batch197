@@ -42,6 +42,17 @@ public class XCompanyModel extends BaseModel {
 	public XCompanyModel() {
 		super();
 	}
+	public XCompanyModel(String name, String desc) {
+		super();
+		this.description = desc;
+		this.name= name;
+	}
+	
+	public XCompanyModel(String name, String desc, Long userId) {
+		super(userId);
+		this.description = desc;
+		this.name= name;
+	}
 	
 	public XCompanyModel(Long userId) {
 		super(userId);
