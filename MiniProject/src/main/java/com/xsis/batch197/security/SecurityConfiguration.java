@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -23,49 +22,49 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private AuthenticationSuccessHandler authSuccessHandler;
-	
+
 	@Autowired
 	private AuthenticationFailureHandler authFailureHandler;
+	/*
+	public SecurityConfiguration(UserPrincipalDetailsService service, AuthenticationSuccessHandler authSucces, AuthenticationFailureHandler authFailure) {
+		this.userService = service;
+		this.authSuccessHandler = authSucces;
+		this.authFailureHandler = authFailure;
+	}*/
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
 	}
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/","/select-role").permitAll()
-		.and()
-		.formLogin().loginProcessingUrl("/login")
-		.usernameParameter("username")
-		.passwordParameter("password")
-		.loginPage("/login").permitAll()
-		.successHandler(authSuccessHandler)
-		.failureHandler(authFailureHandler)		
-		.defaultSuccessUrl("/select-role")
-		.and()
-		.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
-		.and()
-		.rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(2592000).key("RahasiaDong!!")
-		.and()
-		.exceptionHandling().accessDeniedPage("/access-denied")
-		.and()
-		.sessionManagement()
-		.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-		.maximumSessions(2)
-		.expiredUrl("/session-expired");
+				.antMatchers("/","/select-role").permitAll()
+				.and()
+				.formLogin().loginProcessingUrl("/login")
+				.usernameParameter("username").passwordParameter("password").loginPage("/login").permitAll()
+				.successHandler(authSuccessHandler).failureHandler(authFailureHandler).defaultSuccessUrl("/select-role")
+				.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+				.and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(2)
+				.expiredUrl("/session-expired");
+		/*.and().rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(2592000)
+				.key("RahasiaDong!!").and().exceptionHandling().accessDeniedPage("/access-denied")*/
 	}
-	
+
 	@Bean
-	DaoAuthenticationProvider authenticationProvider(){
+	DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 		daoAuthenticationProvider.setPasswordEncoder(encoderPassword());
 		daoAuthenticationProvider.setUserDetailsService(this.userService);
 
-		return  daoAuthenticationProvider;
-}
+		return daoAuthenticationProvider;
+	}
+
 	@Bean
 	PasswordEncoder encoderPassword() {
 		return new BCryptPasswordEncoder();
-}
+	}
 
 }

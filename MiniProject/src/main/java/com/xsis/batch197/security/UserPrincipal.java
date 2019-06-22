@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.xsis.batch197.model.XAddressBookModel;
-import com.xsis.batch197.repository.XUserRoleRepo;
 
 public class UserPrincipal implements UserDetails {
 	/**
@@ -20,9 +18,6 @@ public class UserPrincipal implements UserDetails {
 
 	private XAddressBookModel user;
 
-	@Autowired
-	private XUserRoleRepo uroleRepo;
-	
 	public UserPrincipal(XAddressBookModel user) {
 		this.user = user;
 	}
@@ -36,11 +31,6 @@ public class UserPrincipal implements UserDetails {
 			GrantedAuthority auth = new SimpleGrantedAuthority(r.getCode());
 			authorities.add(auth);
 		});
-		
-		/*
-		 * this.user.getPermisstionList().forEach(p ->{ GrantedAuthority authority = new
-		 * SimpleGrantedAuthority(p); authorities.add(authority); });
-		 */
 		return authorities;
 	}
 

@@ -62,12 +62,12 @@ public class DbInit implements CommandLineRunner {
 		if (this.menuRepo.findAll().size() == 0) {
 			Long userId = this.userRepo.findByAbuid("admin").getId();
 			List<XMenuModel> listMenu = new ArrayList<XMenuModel>();
-			listMenu.add(new XMenuModel("Beranda", "", 0, 0, "/home/index", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Pelamar", "", 1, 0, "/pelamar/index", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Proses Pelamar", "", 2, 0, "/pelamar/proses", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Penjadwalan", "", 3, 0, "/penjadwalan/index", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Tes", "", 4, 0, "/test/index", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Bootcamp", "", 5, 0, "/bootcamp/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Beranda", "fa fa-home", 0, 0, "/home/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Pelamar", "fa fa-user", 1, 0, "/pelamar/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Proses Pelamar", "fa fa-edit", 2, 0, "/pelamar/proses", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Penjadwalan", "fa fa-calendar", 3, 0, "/penjadwalan/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Tes", "fa fa-text-height", 4, 0, "/test/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Bootcamp", "fa fa-laptop", 5, 0, "/bootcamp/index", "SIDEBAR", null, userId));
 			this.menuRepo.saveAll(listMenu);
 
 			Long pelamar = this.menuRepo.findByTitle("Pelamar").getId();

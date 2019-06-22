@@ -9,7 +9,6 @@ import com.xsis.batch197.model.XAddressBookModel;
 import com.xsis.batch197.repository.XAddressBookRepo;
 
 public class BaseController {
-
 	@Autowired
 	private XAddressBookRepo userRepo;
 
