@@ -18,8 +18,8 @@ public class XMenuAccessModel extends BaseModel{
 	@Column(name="id", length=11)
 	private Long id;	
 	
-	@Column(name="menutree_id", length=11, nullable=false)
-	private Long menutreeId;	
+	@Column(name="menu_id", length=11, nullable=false)
+	private Long menuId;	
 	
 	@Column(name="role_id", length=11, nullable=false)
 	private Long roleId;
@@ -40,12 +40,12 @@ public class XMenuAccessModel extends BaseModel{
 		this.id = id;
 	}
 
-	public Long getMenutreeId() {
-		return menutreeId;
+	public Long getMenuId() {
+		return menuId;
 	}
 
-	public void setMenutreeId(Long menutreeId) {
-		this.menutreeId = menutreeId;
+	public void setMenuId(Long menuId) {
+		this.menuId = menuId;
 	}
 
 	public Long getRoleId() {

@@ -35,8 +35,8 @@ public class XRoleModel extends BaseModel {
 	private List<XAddressBookModel> listAddr = new ArrayList<XAddressBookModel>();
 
 	@ManyToMany
-	@JoinTable(name = "x_menu_access", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_role_menu_id")), inverseJoinColumns = @JoinColumn(name = "menutree_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_menu_role_id")), foreignKey = @ForeignKey(name = "fk_role_menu_id"), inverseForeignKey = @ForeignKey(name = "fk_menu_role_id"))
-	private List<XMenutreeModel> listMenu = new ArrayList<XMenutreeModel>();
+	@JoinTable(name = "x_menu_access", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_role_menu_id")), inverseJoinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_menu_role_id")), foreignKey = @ForeignKey(name = "fk_role_menu_id"), inverseForeignKey = @ForeignKey(name = "fk_menu_role_id"))
+	private List<XMenuModel> listMenu = new ArrayList<XMenuModel>();
 
 	public XRoleModel() {
 		super();
@@ -84,11 +84,11 @@ public class XRoleModel extends BaseModel {
 		this.listAddr = listAddr;
 	}
 
-	public List<XMenutreeModel> getListMenu() {
+	public List<XMenuModel> getListMenu() {
 		return listMenu;
 	}
 
-	public void setListMenu(List<XMenutreeModel> listMenu) {
+	public void setListMenu(List<XMenuModel> listMenu) {
 		this.listMenu = listMenu;
 	}
 }

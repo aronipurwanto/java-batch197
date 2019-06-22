@@ -13,11 +13,11 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name="x_menutree")
-public class XMenutreeModel extends BaseModel{
+@Table(name="x_menu")
+public class XMenuModel extends BaseModel{
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE, generator="x_menutree_idx")
-	@TableGenerator(name="x_menutree_idx", table="x_index", pkColumnName="index_id", valueColumnName="index_value", initialValue=0, allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="x_menu_idx")
+	@TableGenerator(name="x_menu_idx", table="x_index", pkColumnName="index_id", valueColumnName="index_value", initialValue=0, allocationSize=1)
 	@Column(name="id", length=11)
 	private Long id;
 	
@@ -40,7 +40,7 @@ public class XMenutreeModel extends BaseModel{
 	private Long menuParent;
 	
 	@Column(name="menu_url", length=100, nullable=false)
-	private Long menuUrl;
+	private String menuUrl;
 	
 	@Column(name="menu_type", length=10, nullable=false)
 	private String menuType;
@@ -48,11 +48,21 @@ public class XMenutreeModel extends BaseModel{
 	@ManyToMany(mappedBy="listMenu")
 	private List<XRoleModel> listRole = new ArrayList<XRoleModel>();
 	
-	public XMenutreeModel() {
+	public XMenuModel() {
 		super();
 	}
 	
-	public XMenutreeModel(Long userId) {
+	public XMenuModel(String title, String icon, Integer order, Integer level, String url, String type) {
+		super();
+		this.title= title;
+		this.menuIcon = icon;
+		this.menuOrder = order;
+		this.menuLevel = level;
+		this.menuUrl = url;
+		this.menuType = type;
+	}
+	
+	public XMenuModel(Long userId) {
 		super(userId);
 	}
 
@@ -112,11 +122,11 @@ public class XMenutreeModel extends BaseModel{
 		this.menuParent = menuParent;
 	}
 
-	public Long getMenuUrl() {
+	public String getMenuUrl() {
 		return menuUrl;
 	}
 
-	public void setMenuUrl(Long menuUrl) {
+	public void setMenuUrl(String menuUrl) {
 		this.menuUrl = menuUrl;
 	}
 
