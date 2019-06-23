@@ -62,34 +62,34 @@ public class DbInit implements CommandLineRunner {
 		if (this.menuRepo.findAll().size() == 0) {
 			Long userId = this.userRepo.findByAbuid("admin").getId();
 			List<XMenuModel> listMenu = new ArrayList<XMenuModel>();
-			listMenu.add(new XMenuModel("Beranda", "fa fa-home", 0, 0, "/home/index", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Pelamar", "fa fa-user", 1, 0, "/pelamar/index", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Proses Pelamar", "fa fa-edit", 2, 0, "/pelamar/proses", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Penjadwalan", "fa fa-calendar", 3, 0, "/penjadwalan/index", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Tes", "fa fa-text-height", 4, 0, "/test/index", "SIDEBAR", null, userId));
-			listMenu.add(new XMenuModel("Bootcamp", "fa fa-laptop", 5, 0, "/bootcamp/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Beranda", "fa fa-home", 0, 0, "home/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Pelamar", "fa fa-user", 1, 0, "pelamar/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Proses Pelamar", "fa fa-edit", 2, 0, "pelamar/proses", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Penjadwalan", "fa fa-calendar", 3, 0, "penjadwalan/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Tes", "fa fa-text-height", 4, 0, "test/index", "SIDEBAR", null, userId));
+			listMenu.add(new XMenuModel("Bootcamp", "fa fa-laptop", 5, 0, "bootcamp/index", "SIDEBAR", null, userId));
 			this.menuRepo.saveAll(listMenu);
 
 			Long pelamar = this.menuRepo.findByTitle("Pelamar").getId();
 			listMenu = new ArrayList<XMenuModel>();
-			listMenu.add(new XMenuModel("Profile", "", 0, 1, "/pelamar/profile", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Biodata", "", 1, 1, "/pelamar/biodata", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Profile", "", 0, 1, "pelamar/profile", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Biodata", "", 1, 1, "pelamar/biodata", "BIODATA", pelamar, userId));
 			listMenu.add(
-					new XMenuModel("Pelangalaman Kerja", "", 2, 1, "/pelamar/pengalaman", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Pendidikan", "", 3, 1, "/pelamar/pendidikan", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Pelatihan", "", 4, 1, "/pelamar/pelatihan", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Sertifikasi", "", 5, 1, "/pelamar/sertifikasi", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Sumber Lowongan Kerja", "", 6, 1, "/pelamar/sumber-low-kerja", "BIODATA",
+					new XMenuModel("Pelangalaman Kerja", "", 2, 1, "pelamar/pengalaman", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Pendidikan", "", 3, 1, "pelamar/pendidikan", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Pelatihan", "", 4, 1, "pelamar/pelatihan", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Sertifikasi", "", 5, 1, "pelamar/sertifikasi", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Sumber Lowongan Kerja", "", 6, 1, "pelamar/sumber-low-kerja", "BIODATA",
 					pelamar, userId));
-			listMenu.add(new XMenuModel("Organisasi", "", 7, 1, "/pelamar/organisasi", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Keluarga", "", 8, 1, "/pelamar/keluarga", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Keahlian", "", 9, 1, "/pelamar/keahlian", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Lain-Lain", "", 10, 1, "/pelamar/biodata", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Dokument", "", 11, 1, "/pelamar/dokumen", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Catatan", "", 12, 1, "/pelamar/catatan", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Aktifiasi Akun", "", 13, 1, "/pelamar/aktifasi", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Lihat Test", "", 14, 1, "/pelamar/lihat-test", "BIODATA", pelamar, userId));
-			listMenu.add(new XMenuModel("Hasil Test", "", 15, 1, "/pelamar/hasil-test", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Organisasi", "", 7, 1, "pelamar/organisasi", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Keluarga", "", 8, 1, "pelamar/keluarga", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Keahlian", "", 9, 1, "pelamar/keahlian", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Lain-Lain", "", 10, 1, "pelamar/biodata", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Dokument", "", 11, 1, "pelamar/dokumen", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Catatan", "", 12, 1, "pelamar/catatan", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Aktifiasi Akun", "", 13, 1, "pelamar/aktifasi", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Lihat Test", "", 14, 1, "pelamar/lihat-test", "BIODATA", pelamar, userId));
+			listMenu.add(new XMenuModel("Hasil Test", "", 15, 1, "pelamar/hasil-test", "BIODATA", pelamar, userId));
 
 			this.menuRepo.saveAll(listMenu);
 		}

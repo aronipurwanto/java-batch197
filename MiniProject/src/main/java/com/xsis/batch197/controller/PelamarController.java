@@ -34,7 +34,7 @@ public class PelamarController {
 	// Method Button Add
 	@GetMapping(value = "/add")
 	public ModelAndView create() {
-		ModelAndView view = new ModelAndView("pelamar/create");
+		ModelAndView view = new ModelAndView("pelamar/_create");
 		XBiodataModel pelamar = new XBiodataModel();
 		view.addObject("pelamar", pelamar);
 		return view;
@@ -54,7 +54,7 @@ public class PelamarController {
 	// Method untuk button search STATUS FIX
 	@GetMapping(value = "/list/{key}")
 	public ModelAndView list(@PathVariable("key") String key, @PageableDefault(size = 10) Pageable pageable) {
-		ModelAndView view = new ModelAndView("pelamar/list");
+		ModelAndView view = new ModelAndView("pelamar/_item");
 
 		// load data pelamar via repo, disimpan kedalam list
 		Page<XBiodataModel> listPelamar = repoPaging.search(key, pageable);

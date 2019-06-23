@@ -72,6 +72,8 @@
 	        <!-- /footer content -->
 	    </div>
 	</div>
+	
+	<div layout:fragment="content-modal"></div>
 	<!-- jQuery -->
     <script th:src="@{~/jquery/dist/jquery.min.js}"></script>
     <!-- Bootstrap -->
@@ -95,6 +97,6 @@
     <!-- Custom Theme Scripts -->
     <script th:src="@{~/build/js/custom.min.js}"></script>
     
-    <script th:fagment="script-js"></script>
+    <script layout:fragment="script-js" type="text/javascript"></script>
 </body>
 </html>

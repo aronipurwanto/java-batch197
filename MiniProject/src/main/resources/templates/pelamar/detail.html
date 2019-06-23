@@ -1,33 +1,18 @@
-<!-- content mulai -->
-<form th:object="${biodata}" method="post" id="form-pelamar">
-	<div class="box box-success box-solid">
-		<div class="box-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<h4  class="box-title" id="modal-title-detail">Detail Pelamar</h4>
-		</div>
-		<div class="box-body form-horizontal">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-3" id="modal-sidebar-detail">
-						<aside th:replace="fragments/sidebarmodal :: sidebarmodal"></aside>
-					</div>
-					<div class="col-md-9" id="modal-content-detail">
-					<table class="table">
-						<thead>ISI JUDUL KONTEN DISINI</thead>
-						<tbody>
-						CONTENTNYA
-						</tbody>
-					</table>
-					</div>
-				</div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="modal-header">
+	<button type="button" class="close btn-xs" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+	<h4 class="modal-title" id="biodata-title">Tambah Pelamar</h4>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-12">
+			<div class="btn-group-vertical">
+				<button th:each="item : ${biodataMenuList}" class="btn btn-default biodata-menu" th:href="@{~/{url}(url=${item.menuUrl})}" th:text="${item.title}" data-biodata-id="1"></button>
 			</div>
 		</div>
-		<div class="box-footer">
-			<button data-dismiss="modal" class="btn btn-default pull-right">Cancel</button>
+		<div class="col-md-10 col-sm-10 col-xs-12" id="detail-content">
+		
 		</div>
 	</div>
-</form>
-<!-- content selesai -->
+</div>
+</html>

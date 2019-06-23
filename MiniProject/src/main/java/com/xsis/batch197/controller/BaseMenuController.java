@@ -26,7 +26,12 @@ public class BaseMenuController {
 
 	@ModelAttribute
 	public void addAttribute(Model model, HttpSession session) {
+		// main menu
 		model.addAttribute("menuList", this.menuRepo.findByMenuType("SIDEBAR"));
+		// biodata menu
+		model.addAttribute("biodataMenuList", this.menuRepo.findByMenuType("BIODATA"));
+		
+		
 		if (session.getAttribute("roleId") != null) {
 			Long roleId = Long.parseLong(session.getAttribute("roleId").toString());
 			if (roleId != 0) {

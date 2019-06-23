@@ -3,8 +3,8 @@
     <div class="menu_section">
         <h3>General</h3>
         <ul class="nav side-menu">
-            <li th:each="menu : ${menuList}">
-            	<a th:href="@{/}"><i th:class="${menu.menuIcon}"></i> <span th:text="${menu.title}">Home</span></a>
+            <li th:each="item : ${menuList}">
+            	<a th:href="@{~/{url}(url=${item.menuUrl})}"><i th:class="${item.menuIcon}"></i> <span th:text="${item.title}">Home</span></a>
             </li>
         </ul>
     </div>
