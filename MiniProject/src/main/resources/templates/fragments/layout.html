@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" 
 	xmlns:th="http://www.thymeleaf.org" 
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -10,13 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Gentellela!</title>
+    <title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">Min Project</title>
     
     <!-- Bootstrap -->
     <link th:href="@{~/bootstrap/dist/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Font Awesome -->
-    <link th:href="@{~/fontawesome/css/fontawesome.min.css}" rel="stylesheet">
-    <link th:href="@{~/fontawesome/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{~/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
     <!-- NProgress -->
     <link th:href="@{~/nprogress/nprogress.css}" rel="stylesheet">
     <!-- iCheck -->
@@ -43,7 +43,7 @@
 	                <div class="clearfix"></div>
 	
 	                <!-- menu profile quick info -->
-	                <div th:replace="fragments/fragment-menu-profile-quick-info :: menu-profile-quick-info"></div>
+	                <div sec:authorize="isAuthenticated()" th:replace="fragments/fragment-menu-profile-quick-info :: menu-profile-quick-info"></div>
 	                <!-- /menu profile quick info -->
 	
 	                <br/>
@@ -77,7 +77,7 @@
     <!-- Bootstrap -->
     <script th:src="@{~/bootstrap/dist/js/bootstrap.min.js}"></script>
     <!-- Fontawesome -->
-    <script th:src="@{~/fontawesome/js/all.min.js}"></script>
+    <!-- script th:src="@{~/fontawesome/js/all.min.js}"></script>
     <!-- FastClick -->
     <script th:src="@{~/fastclick/lib/fastclick.js}"></script>
     <!-- NProgress -->
@@ -96,5 +96,7 @@
 
     <!-- Custom Theme Scripts -->
     <script th:src="@{~/build/js/custom.min.js}"></script>
+    
+    <script th:fagment="script-js"></script>
 </body>
 </html>

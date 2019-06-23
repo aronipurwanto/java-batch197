@@ -1,5 +1,6 @@
 package com.xsis.batch197.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "x_addrbook")
-public class XAddressBookModel extends BaseModel {
+public class XAddressBookModel extends BaseModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "x_addrbook_idx")
 	@TableGenerator(name = "x_addrbook_idx", table = "x_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)

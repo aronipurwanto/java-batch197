@@ -1,5 +1,7 @@
 package com.xsis.batch197.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +48,10 @@ public class HomeController {
 
 	// untuk menangkap request setelah dipilih role dan company
 	@PostMapping(value = "/set-access")
-	private String setAccess(@RequestParam("roleId") Long roleId, @RequestParam("companyId") Long companyId) {
-
+	private String setAccess(@RequestParam("roleId") Long roleId, @RequestParam("companyId") Long companyId, HttpSession session) {
+		session.setAttribute("roleId", roleId);
+		session.setAttribute("companyId", companyId);
+		
 		return "redirect:/home/index";
 	}
 }

@@ -13,11 +13,7 @@ import com.xsis.batch197.repository.XAddressBookRepo;
 public class UserPrincipalDetailsService implements UserDetailsService {
 	@Autowired
 	private XAddressBookRepo userRepo;
-/*
-	public UserPrincipalDetailsService(XAddressBookRepo userRepo) {
-		this.userRepo = userRepo;
-	}
-*/	
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		XAddressBookModel user = this.userRepo.findByAbuidAndEmail(username);

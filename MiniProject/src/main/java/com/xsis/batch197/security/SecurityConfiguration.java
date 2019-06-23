@@ -25,12 +25,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AuthenticationFailureHandler authFailureHandler;
-	/*
-	public SecurityConfiguration(UserPrincipalDetailsService service, AuthenticationSuccessHandler authSucces, AuthenticationFailureHandler authFailure) {
-		this.userService = service;
-		this.authSuccessHandler = authSucces;
-		this.authFailureHandler = authFailure;
-	}*/
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

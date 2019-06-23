@@ -1,5 +1,7 @@
 package com.xsis.batch197.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -14,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "x_user_role")
-public class XUserRoleModel extends BaseModel {
+public class XUserRoleModel extends BaseModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "x_userrole_idx")
 	@TableGenerator(name = "x_userrole_idx", table = "x_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)

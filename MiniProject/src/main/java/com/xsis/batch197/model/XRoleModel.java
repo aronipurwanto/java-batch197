@@ -1,5 +1,6 @@
 package com.xsis.batch197.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import javax.persistence.TableGenerator;
 
 @Entity
 @Table(name = "x_role")
-public class XRoleModel extends BaseModel {
+public class XRoleModel extends BaseModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "x_role_idx")
 	@TableGenerator(name = "x_role_idx", table = "x_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)
