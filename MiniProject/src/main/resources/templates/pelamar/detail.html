@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="col-md-2 col-sm-2 col-xs-12">
 			<div class="btn-group-vertical">
-				<button th:each="item : ${biodataMenuList}" class="btn btn-default biodata-menu" th:href="@{~/{url}(url=${item.menuUrl})}" th:text="${item.title}" data-biodata-id="1"></button>
+				<button th:each="item : ${biodataMenuList}" class="btn btn-default biodata-menu" th:href="@{~/{url}(url=${item.menuUrl})}" th:text="${item.title}" th:attr="data-biodata-id=${pelamar.id}"></button>
 			</div>
 		</div>
 		<div class="col-md-10 col-sm-10 col-xs-12" id="detail-content">

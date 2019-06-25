@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.xsis.batch197.repository.XAddressBookRepo;
 import com.xsis.batch197.repository.XCompanyRepo;
+import com.xsis.batch197.repository.XIdentityTypeRepo;
 import com.xsis.batch197.repository.XMaritalStatusRepo;
 import com.xsis.batch197.repository.XMenuRepo;
 import com.xsis.batch197.repository.XReligionRepo;
@@ -41,6 +42,9 @@ public class DbInit implements CommandLineRunner {
 	
 	@Autowired
 	private XCompanyRepo comRepo;
+	
+	@Autowired
+	private XIdentityTypeRepo identityRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -57,10 +61,10 @@ public class DbInit implements CommandLineRunner {
 
 			this.userRepo.saveAll(users);
 		}
-
+		
+		Long userId = this.userRepo.findByAbuid("admin").getId();
 		// initial menu
 		if (this.menuRepo.findAll().size() == 0) {
-			Long userId = this.userRepo.findByAbuid("admin").getId();
 			List<XMenuModel> listMenu = new ArrayList<XMenuModel>();
 			listMenu.add(new XMenuModel("Beranda", "fa fa-home", 0, 0, "home/index", "SIDEBAR", null, userId));
 			listMenu.add(new XMenuModel("Pelamar", "fa fa-user", 1, 0, "pelamar/index", "SIDEBAR", null, userId));
@@ -95,8 +99,6 @@ public class DbInit implements CommandLineRunner {
 		}
 		// initial marital status
 		if (this.maritalRepo.findAll().size() == 0) {
-			Long userId = this.userRepo.findByAbuid("admin").getId();
-
 			List<XMaritalStatusModel> listMarital = new ArrayList<XMaritalStatusModel>();
 			listMarital.add(new XMaritalStatusModel("SINGLE", "Single", userId));
 			listMarital.add(new XMaritalStatusModel("MARRIED", "Married", userId));
@@ -105,7 +107,6 @@ public class DbInit implements CommandLineRunner {
 		}
 		// initial religion
 		if (this.religionRepo.findAll().size() == 0) {
-			Long userId = this.userRepo.findByAbuid("admin").getId();
 			List<XReligionModel> listReligion = new ArrayList<XReligionModel>();
 
 			listReligion.add(new XReligionModel("ISLAM", "Islam", userId));
@@ -120,7 +121,6 @@ public class DbInit implements CommandLineRunner {
 		}
 		// initial repo
 		if (this.roleRepo.findAll().size() == 0) {
-			Long userId = this.userRepo.findByAbuid("admin").getId();
 			XRoleModel admin = new XRoleModel("ROLE_ADMINISTRATOR", "Role Administrator", userId);
 			XRoleModel qc = new XRoleModel("ROLE_BOOTCAMP_QC", "Role Bootcamp QC", userId);
 			XRoleModel sys = new XRoleModel("ROLE_INTERNAL_SYSDEV", "Role Internal Sysdev", userId);
@@ -131,7 +131,6 @@ public class DbInit implements CommandLineRunner {
 		}
 
 		if (this.userRoleRepo.findAll().size() == 0) {
-			Long userId = this.userRepo.findByAbuid("admin").getId();
 			List<XUserRoleModel> listUserRole = new ArrayList<XUserRoleModel>();
 
 			Long userId1 = this.userRepo.findByAbuid("admin").getId();
@@ -151,7 +150,6 @@ public class DbInit implements CommandLineRunner {
 		
 		// initial company
 		if(this.comRepo.findAll().size()==0) {
-			Long userId = this.userRepo.findByAbuid("admin").getId();
 			List<XCompanyModel> listCompany = new ArrayList<>();
 			
 			listCompany.add(new XCompanyModel("XMU","Xsis Mitra Utama", userId));
@@ -161,6 +159,16 @@ public class DbInit implements CommandLineRunner {
 			listCompany.add(new XCompanyModel("NPP","Niaga Prima Paramitra", userId));
 			
 			this.comRepo.saveAll(listCompany);
+		}
+		
+		// initial identity
+		if(this.identityRepo.findAll().size()==0) {
+			List<XIdentityTypeModel> identityList = new ArrayList<XIdentityTypeModel>();
+			identityList.add(new XIdentityTypeModel("KTP", "Kartu Tanda Penduduk", userId));
+			identityList.add(new XIdentityTypeModel("SIM", "Surat Ijin Mengemudi", userId));
+			identityList.add(new XIdentityTypeModel("PASSPOR", "Paspor", userId));
+			
+			this.identityRepo.saveAll(identityList);
 		}
 	}
 

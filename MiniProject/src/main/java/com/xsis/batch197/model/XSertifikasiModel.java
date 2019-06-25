@@ -137,4 +137,5 @@ public class XSertifikasiModel extends BaseModel {
 	public void setBiodata(XBiodataModel biodata) {
 		this.biodata = biodata;
 	}
+	
 }

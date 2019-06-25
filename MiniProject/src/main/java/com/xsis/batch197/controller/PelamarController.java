@@ -43,7 +43,7 @@ public class PelamarController {
 	// Method List data saat load pelamar/index STATUS FIX
 	@GetMapping(value = "/list")
 	public ModelAndView list(@PageableDefault(size = 10) Pageable pageable) {
-		ModelAndView view = new ModelAndView("pelamar/list");
+		ModelAndView view = new ModelAndView("pelamar/_item");
 		
 		Page<XBiodataModel> listPelamar = repoPaging.findAll(pageable);
 		view.addObject("list", listPelamar);
