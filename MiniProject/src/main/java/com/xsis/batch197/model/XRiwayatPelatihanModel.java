@@ -54,6 +54,10 @@ public class XRiwayatPelatihanModel extends BaseModel {
 	@ManyToOne
 	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_ripel_bio_id"), insertable=false, updatable=false)
 	private XBiodataModel biodata;
+	
+	@ManyToOne
+	@JoinColumn(name="time_period_id", foreignKey=@ForeignKey(name="fk_ripel_periode_id"), insertable=false, updatable=false)
+	private XTimePeriodeModel timePeriode;
 
 	public XRiwayatPelatihanModel() {
 		super();
@@ -158,6 +162,14 @@ public class XRiwayatPelatihanModel extends BaseModel {
 
 	public void setBiodata(XBiodataModel biodata) {
 		this.biodata = biodata;
+	}
+
+	public XTimePeriodeModel getTimePeriode() {
+		return timePeriode;
+	}
+
+	public void setTimePeriode(XTimePeriodeModel timePeriode) {
+		this.timePeriode = timePeriode;
 	}
 
 }

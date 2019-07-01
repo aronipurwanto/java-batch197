@@ -2,30 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div class="x_panel">
 	<div class="x_title">
-		<h2>Setifikasi</h2>
+		<h2>Pelatihan</h2>
 		<ul class="nav navbar-right panel_toolbox">
-			<!-- button ADD sertifikasi -->
-			<li><a th:href="@{~/sertifikasi/add/}" id="btn-add-sertifikasi" th:attr="data-biodata-id=${biodata.id}"><i class="fa fa-plus"></i></a></li>
+			<!-- button ADD pelatihan -->
+			<li><a th:href="@{~/pelatihan/add/}" id="btn-add-pelatihan" th:attr="data-biodata-id=${biodata.id}"><i class="fa fa-plus"></i></a></li>
 		</ul>
 		<div class="clearfix"></div>
 	</div>
-	<div class="x_content" id="sertifikasi-content">
+	<div class="x_content" id="pelatihan-content">
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Nama Sertifikasi</th>
-					<th>Penerbit</th>
-					<th>Berlaku</th>
+					<th>Nama Pelatihan</th>
+					<th>Penyelenggara</th>
+					<th>Waktu</th>
+					<th>Durasi</th>
 					<th>#</th>
 				</tr>
 			</thead>
-			<tbody id="list-sertifikasi">
-				<tr th:each="item : ${listSertifikasi}">
-					<td th:text="${item.certificateName}"></td>
-					<td th:text="${item.publisher}"></td>
+			<tbody id="list-pelatihan">
+				<tr th:each="item : ${listpelatihan}">
+					<td th:text="${item.trainingName}"></td>
+					<td th:text="${item.organizer}"></td>
 					<td>
-						<span th:text="${item.validStartYear}"></span> - <span th:text="${item.validStartMonth}"></span> s.d 
-						<span th:text="${item.untilYear}"></span> - <span th:text="${item.untilMonth}"></span>
+						<span th:text="${item.trainingYear}"></span> - <span th:text="${item.trainingMonth}"></span>
+					</td>
+					<td>
+						<span th:text="${item.trainingDuration}"></span> - <span th:text="${item.timePeriode.description}"></span>
 					</td>
 					<td>
 						<div class="btn-group">
@@ -33,8 +36,8 @@
 								More <span class="caret"></span>
 							</button>
 							<ul role="menu" class="dropdown-menu">
-		                      <li><a th:href="@{/sertifikasi/ubah/{sid}(sid=${item.id})}" class="btn-ubah">Ubah</a></li>
-		                      <li><a th:href="@{/sertifikasi/hapus/{sid}(sid=${item.id})}" class="btn-hapus">Hapus</a></li>
+		                      <li><a th:href="@{/pelatihan/ubah/{sid}(sid=${item.id})}" class="btn-ubah">Ubah</a></li>
+		                      <li><a th:href="@{/pelatihan/hapus/{sid}(sid=${item.id})}" class="btn-hapus">Hapus</a></li>
 		                    </ul>
 						</div>
 					</td>
@@ -42,7 +45,7 @@
 			</tbody>
 		</table>
 		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12" id="list-sertifikasi">
+			<div class="col-md-12 col-sm-12 col-xs-12" id="list-pelatihan">
 			
 			</div>
 		</div>
@@ -65,18 +68,18 @@
 
 <script type="text/javascript">
 	// saat button add di click
-	$("#btn-add-sertifikasi").click(function(event){
+	$("#btn-add-pelatihan").click(function(event){
 		// cegah link redirect
 		event.preventDefault();
-		// mengambil nilai dari attribute btn-add-sertifikasi
+		// mengambil nilai dari attribute btn-add-pelatihan
 		// lihat sintaks ini th:attr="data-biodata-id=${biodata.id}"
 		var biodataId = $(this).attr('data-biodata-id');
 		
 		// ambil nilai attribute href
-		// lihat th:href="@{~/sertifikasi/add/}"
+		// lihat th:href="@{~/pelatihan/add/}"
 		var url =  $(this).attr('href')+biodataId;
 		// buat ajax untuk create
-		// lihat sertifikasi controller @GetMapping(value="/sertifikasi/add/{bid}")
+		// lihat pelatihan controller @GetMapping(value="/pelatihan/add/{bid}")
 		$.ajax({
 			url:url,
 			type:'GET',
@@ -89,9 +92,9 @@
 		
 	});
 	
-	// submit data from atau simpan data sertifikasi
-	$("#form-modal").on('submit','#form-sertifikasi', function(){
-		// dapatkan url dari attribute action dari form #form-sertifikasi
+	// submit data from atau simpan data pelatihan
+	$("#form-modal").on('submit','#form-pelatihan', function(){
+		// dapatkan url dari attribute action dari form #form-pelatihan
 		// lihat di file _create.html
 		var url = $(this).attr('action');
 		// datakan data form dengan method serialize
@@ -120,34 +123,37 @@
 	})
 	.on('click','#btn-close-form', function(){
 		$("#form-modal").modal('hide');
+	})
+	.on('click',"#btn-close-top-form", function(){
+		$("#form-modal").modal('hide');
 	});
 	
 	function loadData(){
-		// ambil nilai biodata id yang disimpan di  $("#btn-add-sertifikasi")
+		// ambil nilai biodata id yang disimpan di  $("#btn-add-pelatihan")
 		// lihat sintaks ini th:attr="data-biodata-id=${biodata.id}"
-		var biodataId = $("#btn-add-sertifikasi").attr('data-biodata-id');
+		var biodataId = $("#btn-add-pelatihan").attr('data-biodata-id');
 		
 		$.ajax({
-			url:'/sertifikasi/list/'+biodataId,
+			url:'/pelatihan/list/'+biodataId,
 			type:'GET',
 			dataType:'html',
 			success:function(data){
-				// <tbody id="list-sertifikasi"> akan di repleace dengan data baru
+				// <tbody id="list-pelatihan"> akan di repleace dengan data baru
 				// dari file _list.html
 				// masukan dulu result ke modal
-				$("#list-sertifikasi").html(data);
+				$("#list-pelatihan").html(data);
 			}
 		});
 	}
 	
 	// event hapus
-	$('#list-sertifikasi').on('click','.btn-hapus', function(event){
+	$('#list-pelatihan').on('click','.btn-hapus', function(event){
 		// cegah link redirect
 		event.preventDefault();
 		
 		var url =  $(this).attr('href');
 		// buat ajax untuk create
-		// lihat sertifikasi controller @GetMapping(value="/sertifikasi/hapus/{sid}")
+		// lihat pelatihan controller @GetMapping(value="/pelatihan/hapus/{sid}")
 		$.ajax({
 			url:url,
 			type:'GET',
@@ -157,13 +163,14 @@
 				$("#hapus-modal").modal('show');
 			}
 		});
-	}).on('click','.btn-ubah', function(event){
+	})
+	.on('click','.btn-ubah', function(event){
 		// cegah link redirect
 		event.preventDefault();
 		
 		var url =  $(this).attr('href');
 		// buat ajax untuk create
-		// lihat sertifikasi controller @GetMapping(value="/sertifikasi/hapus/{sid}")
+		// lihat pelatihan controller @GetMapping(value="/pelatihan/hapus/{sid}")
 		$.ajax({
 			url:url,
 			type:'GET',
@@ -175,8 +182,8 @@
 		});
 	});
 	
-	$("#hapus-modal").on('submit','#form-sertifikasi',function(){
-		// dapatkan url dari attribute action dari form #form-sertifikasi
+	$("#hapus-modal").on('submit','#form-pelatihan',function(){
+		// dapatkan url dari attribute action dari form #form-pelatihan
 		// lihat di file _create.html
 		var url = $(this).attr('action');
 		// datakan data form dengan method serialize
@@ -192,6 +199,9 @@
 		});
 		// cegah form redirect
 		return false;
+	})
+	.on('click','#btn-close-hapus', function(){
+		$("#hapus-modal").modal('hide');
 	})
 	.on('click','#btn-close-hapus', function(){
 		$("#hapus-modal").modal('hide');

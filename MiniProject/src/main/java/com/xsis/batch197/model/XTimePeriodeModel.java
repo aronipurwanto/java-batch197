@@ -36,6 +36,12 @@ public class XTimePeriodeModel extends BaseModel {
 	public XTimePeriodeModel(Long userId) {
 		super(userId);
 	}
+	
+	public XTimePeriodeModel(String name, String desc,Long userId) {
+		super(userId);
+		this.name=name;
+		this.description = desc;
+	}
 
 	// Start Getter, Setter
 	public Long getId() {

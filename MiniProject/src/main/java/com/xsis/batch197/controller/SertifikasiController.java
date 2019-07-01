@@ -143,4 +143,38 @@ public class SertifikasiController extends BaseController {
 		view.addObject("sertifikasi", sertifikasi);
 		return view;
 	}
+	
+	@GetMapping(value="/sertifikasi/add/{sid}") // bid sebagai vaiable biodataId
+	public ModelAndView edit(@PathVariable("sid") Long sid) {
+		// menampilkan view dari folder sertifikasi file _create.html
+		ModelAndView view = new ModelAndView("sertifikasi/_create");
+		// membuat object sertifikasi model
+		XSertifikasiModel sertifikasi = this.sertRepo.findById(sid).orElse(null);
+		
+		Calendar date = new GregorianCalendar();
+		Integer currentYear = date.get(Calendar.YEAR);
+		List<Integer> listBulan = new ArrayList<Integer>();
+		for (int i = 1; i <= 12; i++) {
+			listBulan.add(i);
+		}
+		
+		List<Integer> listStartYear = new ArrayList<Integer>();
+		for (int i = currentYear-20; i <= currentYear; i++) {
+			listStartYear.add(i);
+		}
+		
+		List<Integer> listValidYear = new ArrayList<Integer>();
+		for (int i = currentYear; i <= currentYear+10; i++) {
+			listValidYear.add(i);
+		}
+		// add object sertifikasi
+		view.addObject("sertifikasi", sertifikasi);
+		// add object list mothn
+		view.addObject("listBulan", listBulan);
+		// add object tahun start
+		view.addObject("listStartYear", listStartYear);
+		// add object tahun valid
+		view.addObject("listValidYear", listValidYear);
+		return view;
+	}
 }

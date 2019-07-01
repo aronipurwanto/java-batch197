@@ -15,6 +15,7 @@ import com.xsis.batch197.repository.XMaritalStatusRepo;
 import com.xsis.batch197.repository.XMenuRepo;
 import com.xsis.batch197.repository.XReligionRepo;
 import com.xsis.batch197.repository.XRoleRepo;
+import com.xsis.batch197.repository.XTimePeriodeRepo;
 import com.xsis.batch197.repository.XUserRoleRepo;
 
 @Service
@@ -45,6 +46,9 @@ public class DbInit implements CommandLineRunner {
 	
 	@Autowired
 	private XIdentityTypeRepo identityRepo;
+	
+	@Autowired
+	private XTimePeriodeRepo timeRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -169,6 +173,16 @@ public class DbInit implements CommandLineRunner {
 			identityList.add(new XIdentityTypeModel("PASSPOR", "Paspor", userId));
 			
 			this.identityRepo.saveAll(identityList);
+		}
+		
+		if(this.timeRepo.findAll().size()==0) {
+			List<XTimePeriodeModel> listTime = new ArrayList<XTimePeriodeModel>();
+			listTime.add(new XTimePeriodeModel("HARI", "Hari", userId));
+			listTime.add(new XTimePeriodeModel("MINGGU", "Minggu", userId));
+			listTime.add(new XTimePeriodeModel("BULAN", "Bulan", userId));
+			listTime.add(new XTimePeriodeModel("TAHUN", "Tahun", userId));
+			
+			this.timeRepo.saveAll(listTime);
 		}
 	}
 
