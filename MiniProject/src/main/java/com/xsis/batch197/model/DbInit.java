@@ -10,11 +10,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.xsis.batch197.repository.XAddressBookRepo;
 import com.xsis.batch197.repository.XCompanyRepo;
+import com.xsis.batch197.repository.XEducationLevelRepo;
 import com.xsis.batch197.repository.XIdentityTypeRepo;
 import com.xsis.batch197.repository.XMaritalStatusRepo;
 import com.xsis.batch197.repository.XMenuRepo;
 import com.xsis.batch197.repository.XReligionRepo;
 import com.xsis.batch197.repository.XRoleRepo;
+import com.xsis.batch197.repository.XSkillLevelRepo;
 import com.xsis.batch197.repository.XTimePeriodeRepo;
 import com.xsis.batch197.repository.XUserRoleRepo;
 
@@ -49,6 +51,12 @@ public class DbInit implements CommandLineRunner {
 	
 	@Autowired
 	private XTimePeriodeRepo timeRepo;
+	
+	@Autowired
+	private XEducationLevelRepo eduRepo;
+	
+	@Autowired
+	private XSkillLevelRepo skillRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -183,6 +191,29 @@ public class DbInit implements CommandLineRunner {
 			listTime.add(new XTimePeriodeModel("TAHUN", "Tahun", userId));
 			
 			this.timeRepo.saveAll(listTime);
+		}
+		
+		if(this.eduRepo.findAll().size()==0) {
+			List<XEducationLevelModel> listEdu = new ArrayList<XEducationLevelModel>();
+			listEdu.add(new XEducationLevelModel("SD","Sekolah Dasar", userId));
+			listEdu.add(new XEducationLevelModel("SMP","Sekolah Menengah Pertama", userId));
+			listEdu.add(new XEducationLevelModel("SMA","Sekolah Menengah Atas", userId));
+			listEdu.add(new XEducationLevelModel("D1","Diploma I", userId));
+			listEdu.add(new XEducationLevelModel("D2","Diploma II", userId));
+			listEdu.add(new XEducationLevelModel("D3","Diploma III", userId));
+			listEdu.add(new XEducationLevelModel("D4","Diploma IV", userId));
+			listEdu.add(new XEducationLevelModel("S1","Sarjana", userId));
+			listEdu.add(new XEducationLevelModel("S2","Magister", userId));
+			listEdu.add(new XEducationLevelModel("S3","Doktoral", userId));
+			
+			this.eduRepo.saveAll(listEdu);
+		}
+		
+		if(this.skillRepo.findAll().size()==0) {
+			List<XSkillLevelModel> listSkill = new ArrayList<XSkillLevelModel>();
+			listSkill.add(new XSkillLevelModel("Junior","Junior",userId));
+			listSkill.add(new XSkillLevelModel("Middle","Middle",userId));
+			listSkill.add(new XSkillLevelModel("Senior","Senior",userId));
 		}
 	}
 

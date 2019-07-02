@@ -39,6 +39,12 @@ public class XEducationLevelModel extends BaseModel {
 		this.description=desc;
 	}
 	
+	public XEducationLevelModel(String name, String desc, Long userId) {
+		super(userId);
+		this.name=name;
+		this.description=desc;
+	}
+	
 	public XEducationLevelModel(Long userId) {
 		super(userId);
 	}
