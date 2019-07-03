@@ -144,7 +144,7 @@ public class SertifikasiController extends BaseController {
 		return view;
 	}
 	
-	@GetMapping(value="/sertifikasi/add/{sid}") // bid sebagai vaiable biodataId
+	@GetMapping(value="/sertifikasi/ubah/{sid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("sid") Long sid) {
 		// menampilkan view dari folder sertifikasi file _create.html
 		ModelAndView view = new ModelAndView("sertifikasi/_create");

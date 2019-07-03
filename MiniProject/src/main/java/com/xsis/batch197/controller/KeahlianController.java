@@ -126,7 +126,7 @@ private static final Logger logger = LoggerFactory.getLogger(KeahlianController.
 		return view;
 	}
 	
-	@GetMapping(value="/keahlian/add/{sid}") // bid sebagai vaiable biodataId
+	@GetMapping(value="/keahlian/ubah/{sid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("sid") Long sid) {
 		// menampilkan view dari folder keahlian file _create.html
 		ModelAndView view = new ModelAndView("keahlian/_create");

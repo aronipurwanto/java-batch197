@@ -41,6 +41,10 @@ public class XCatatanModel extends BaseModel {
 	@JoinColumn(name="biodata_id", foreignKey=@ForeignKey(name="fk_catatan_bio_id"), insertable=false, updatable=false)
 	private XBiodataModel biodata;
 	
+	@ManyToOne
+	@JoinColumn(name="created_by", foreignKey=@ForeignKey(name="fk_catatan_addrb_id"), insertable=false, updatable=false)
+	private XAddressBookModel user;
+	
 	public XCatatanModel() {
 		super();
 	}

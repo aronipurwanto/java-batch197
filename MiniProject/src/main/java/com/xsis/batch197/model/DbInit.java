@@ -14,6 +14,7 @@ import com.xsis.batch197.repository.XEducationLevelRepo;
 import com.xsis.batch197.repository.XIdentityTypeRepo;
 import com.xsis.batch197.repository.XMaritalStatusRepo;
 import com.xsis.batch197.repository.XMenuRepo;
+import com.xsis.batch197.repository.XNoteTypeRepo;
 import com.xsis.batch197.repository.XReligionRepo;
 import com.xsis.batch197.repository.XRoleRepo;
 import com.xsis.batch197.repository.XSkillLevelRepo;
@@ -57,6 +58,9 @@ public class DbInit implements CommandLineRunner {
 	
 	@Autowired
 	private XSkillLevelRepo skillRepo;
+	
+	@Autowired
+	private XNoteTypeRepo noteTypeRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -214,6 +218,14 @@ public class DbInit implements CommandLineRunner {
 			listSkill.add(new XSkillLevelModel("Junior","Junior",userId));
 			listSkill.add(new XSkillLevelModel("Middle","Middle",userId));
 			listSkill.add(new XSkillLevelModel("Senior","Senior",userId));
+		}
+		
+		if(this.noteTypeRepo.findAll().size()==0) {
+			List<XNoteTypeModel> listType = new ArrayList<XNoteTypeModel>();
+			listType.add(new XNoteTypeModel("TRO","Tenichal Reviewer Officer", userId));
+			listType.add(new XNoteTypeModel("SRO","Soft Reviewer Officer", userId));
+			listType.add(new XNoteTypeModel("HRO","Hard Reviewer Officer", userId));
+			listType.add(new XNoteTypeModel("MRO","Manual Reviewer Officer", userId));
 		}
 	}
 
