@@ -1,29 +1,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<form id="form-keahlian" th:action="@{~/keahlian/save}" th:object="${keahlian}" method="POST">
+<form id="form-sertifikasi" th:action="@{~/sertifikasi/save}" th:object="${sertifikasi}" method="POST">
 	<div class="modal-header">
 		<button type="button" class="close btn-xs" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-		<h4 class="modal-title">Tambah Keahlian </h4>
+		<h4 class="modal-title">Tambah Setifikasi </h4>
 		
 		<!-- Biodata ID, dengan HIDDEN -->
 		<input type="hidden" th:field="*{biodataId}" />
+		<input type="hidden" th:field="*{id}" />
 	</div>
 	<div class="modal-body">
 		<div class="row">
 			<div class="col-md-6 col-sm-6 col-xs-12">
-				<div th:class="${#fields.hasErrors('certificateName')} ? 'form-group has-error':'form-group'">
-					<label>Nama Keahlian</label>
-					<input type="text" th:field="*{certificateName}" class="form-control"/>
-					<span th:if="${#fields.hasErrors('certificateName')}" class="help-block" th:errors="*{certificateName}">pesan error</span>
+				<div th:class="${#fields.hasErrors('title')} ? 'form-group has-error':'form-group'">
+					<label>Nama Setifikasi</label>
+					<input type="text" th:field="*{title}" class="form-control"/>
+					<span th:if="${#fields.hasErrors('title')}" class="help-block" th:errors="*{title}">pesan error</span>
 				</div>
 			</div>			
 			<div class="col-md-6 col-sm-6 col-xs-12">
-				<div th:class="${#fields.hasErrors('skillLevelId')} ? 'form-group has-error':'form-group'">
-					<label>Level Keahlian</label>
-					<select th:field="*{skillLevelId}" class="form-control">
-						<option value="">- Pilih Level-</option>
-						<option th:each="item : ${listSkill}" th:text="${item.description}" th:value="${item.id}"></option>
+				<div th:class="${#fields.hasErrors('noteTypeId')} ? 'form-group has-error':'form-group'">
+					<label>Jenis Catatan</label>
+					<select th:field="*{noteTypeId}" class="form-control">
+						<option value="">- Pilih -</option>
+						<option th:each="item : ${listType}" th:value="${item.id}" th:text="${item.description}" ></option>
 					</select>
-					<span th:if="${#fields.hasErrors('skillLevelId')}" class="help-block" th:errors="*{skillLevelId}">pesan error</span>
+					<span th:if="${#fields.hasErrors('noteTypeId')}" class="help-block" th:errors="*{noteTypeId}">pesan error</span>
 				</div>
 			</div>
 		</div>

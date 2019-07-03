@@ -55,8 +55,8 @@ public class PelatihanController extends BaseController {
 
 	@GetMapping(value = "/pelatihan/add/{bid}") // bid sebagai vaiable biodataId
 	public ModelAndView create(@PathVariable("bid") Long biodataId) {
-		// menampilkan view dari folder pelatihan file _create.html
-		ModelAndView view = new ModelAndView("pelatihan/_create");
+		// menampilkan view dari folder pelatihan file _form.html
+		ModelAndView view = new ModelAndView("pelatihan/_form");
 		// membuat object pelatihan model
 		XRiwayatPelatihanModel pelatihan = new XRiwayatPelatihanModel();
 		// set biodata id
@@ -89,8 +89,8 @@ public class PelatihanController extends BaseController {
 	@PostMapping(value = "/pelatihan/save")
 	public ModelAndView save(@Valid @ModelAttribute("pelatihan") XRiwayatPelatihanModel pelatihan,
 			BindingResult result) {
-		// menampilkan view dari folder pelatihan file _create.html
-		ModelAndView view = new ModelAndView("pelatihan/_create");
+		// menampilkan view dari folder pelatihan file _form.html
+		ModelAndView view = new ModelAndView("pelatihan/_form");
 
 		if (result.hasErrors()) {
 			logger.info("save biodata error");
@@ -148,8 +148,8 @@ public class PelatihanController extends BaseController {
 	
 	@GetMapping(value = "/pelatihan/ubah/{pid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("pid") Long pid) {
-		// menampilkan view dari folder pelatihan file _create.html
-		ModelAndView view = new ModelAndView("pelatihan/_create");
+		// menampilkan view dari folder pelatihan file _form.html
+		ModelAndView view = new ModelAndView("pelatihan/_form");
 		// membuat object pelatihan model
 		XRiwayatPelatihanModel pelatihan = this.pelRepo.findById(pid).orElse(null);
 

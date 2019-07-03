@@ -55,8 +55,8 @@ public class CatatanController extends BaseController {
 
 	@GetMapping(value = "/catatan/add/{bid}") // bid sebagai vaiable biodataId
 	public ModelAndView create(@PathVariable("bid") Long biodataId) {
-		// menampilkan view dari folder catatan file _create.html
-		ModelAndView view = new ModelAndView("catatan/_create");
+		// menampilkan view dari folder catatan file _form.html
+		ModelAndView view = new ModelAndView("catatan/_form");
 		// membuat object catatan model
 		XCatatanModel catatan = new XCatatanModel();
 		// set biodata id
@@ -72,8 +72,8 @@ public class CatatanController extends BaseController {
 
 	@PostMapping(value = "/catatan/save")
 	public ModelAndView save(@Valid @ModelAttribute("catatan") XCatatanModel catatan, BindingResult result) {
-		// menampilkan view dari folder catatan file _create.html
-		ModelAndView view = new ModelAndView("catatan/_create");
+		// menampilkan view dari folder catatan file _form.html
+		ModelAndView view = new ModelAndView("catatan/_form");
 
 		if (result.hasErrors()) {
 			logger.info("save biodata error");
@@ -131,8 +131,8 @@ public class CatatanController extends BaseController {
 
 	@GetMapping(value = "/catatan/ubah/{sid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("sid") Long sid) {
-		// menampilkan view dari folder catatan file _create.html
-		ModelAndView view = new ModelAndView("catatan/_create");
+		// menampilkan view dari folder catatan file _form.html
+		ModelAndView view = new ModelAndView("catatan/_form");
 		// membuat object catatan model
 		XCatatanModel catatan = this.catRepo.findById(sid).orElse(null);
 

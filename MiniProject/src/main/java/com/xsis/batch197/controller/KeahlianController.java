@@ -52,8 +52,8 @@ private static final Logger logger = LoggerFactory.getLogger(KeahlianController.
 	
 	@GetMapping(value="/keahlian/add/{bid}") // bid sebagai vaiable biodataId
 	public ModelAndView create(@PathVariable("bid") Long biodataId) {
-		// menampilkan view dari folder keahlian file _create.html
-		ModelAndView view = new ModelAndView("keahlian/_create");
+		// menampilkan view dari folder keahlian file _form.html
+		ModelAndView view = new ModelAndView("keahlian/_form");
 		// membuat object keahlian model
 		XKeahlianModel keahlian = new XKeahlianModel();
 		// set biodata id
@@ -69,8 +69,8 @@ private static final Logger logger = LoggerFactory.getLogger(KeahlianController.
 	
 	@PostMapping(value="/keahlian/save")
 	public ModelAndView save(@Valid @ModelAttribute("keahlian") XKeahlianModel keahlian, BindingResult result) {
-		// menampilkan view dari folder keahlian file _create.html
-		ModelAndView view = new ModelAndView("keahlian/_create");
+		// menampilkan view dari folder keahlian file _form.html
+		ModelAndView view = new ModelAndView("keahlian/_form");
 		
 		if (result.hasErrors()) {
 			logger.info("save biodata error");
@@ -128,8 +128,8 @@ private static final Logger logger = LoggerFactory.getLogger(KeahlianController.
 	
 	@GetMapping(value="/keahlian/ubah/{sid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("sid") Long sid) {
-		// menampilkan view dari folder keahlian file _create.html
-		ModelAndView view = new ModelAndView("keahlian/_create");
+		// menampilkan view dari folder keahlian file _form.html
+		ModelAndView view = new ModelAndView("keahlian/_form");
 		// membuat object keahlian model
 		XKeahlianModel keahlian = this.sertRepo.findById(sid).orElse(null);
 		

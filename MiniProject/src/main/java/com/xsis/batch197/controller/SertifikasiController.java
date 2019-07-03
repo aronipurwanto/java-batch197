@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xsis.batch197.model.XBiodataModel;
@@ -51,8 +50,8 @@ public class SertifikasiController extends BaseController {
 	
 	@GetMapping(value="/sertifikasi/add/{bid}") // bid sebagai vaiable biodataId
 	public ModelAndView create(@PathVariable("bid") Long biodataId) {
-		// menampilkan view dari folder sertifikasi file _create.html
-		ModelAndView view = new ModelAndView("sertifikasi/_create");
+		// menampilkan view dari folder sertifikasi file _form.html
+		ModelAndView view = new ModelAndView("sertifikasi/_form");
 		// membuat object sertifikasi model
 		XSertifikasiModel sertifikasi = new XSertifikasiModel();
 		// set biodata id
@@ -87,8 +86,8 @@ public class SertifikasiController extends BaseController {
 	
 	@PostMapping(value="/sertifikasi/save")
 	public ModelAndView save(@Valid @ModelAttribute("sertifikasi") XSertifikasiModel sertifikasi, BindingResult result) {
-		// menampilkan view dari folder sertifikasi file _create.html
-		ModelAndView view = new ModelAndView("sertifikasi/_create");
+		// menampilkan view dari folder sertifikasi file _form.html
+		ModelAndView view = new ModelAndView("sertifikasi/_form");
 		
 		if (result.hasErrors()) {
 			logger.info("save biodata error");
@@ -146,8 +145,8 @@ public class SertifikasiController extends BaseController {
 	
 	@GetMapping(value="/sertifikasi/ubah/{sid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("sid") Long sid) {
-		// menampilkan view dari folder sertifikasi file _create.html
-		ModelAndView view = new ModelAndView("sertifikasi/_create");
+		// menampilkan view dari folder sertifikasi file _form.html
+		ModelAndView view = new ModelAndView("sertifikasi/_form");
 		// membuat object sertifikasi model
 		XSertifikasiModel sertifikasi = this.sertRepo.findById(sid).orElse(null);
 		

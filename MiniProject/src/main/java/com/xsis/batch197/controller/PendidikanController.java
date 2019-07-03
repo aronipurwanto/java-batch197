@@ -57,8 +57,8 @@ public class PendidikanController extends BaseController {
 
 	@GetMapping(value = "/pendidikan/add/{bid}") // bid sebagai vaiable biodataId
 	public ModelAndView create(@PathVariable("bid") Long biodataId) {
-		// menampilkan view dari folder pendidikan file _create.html
-		ModelAndView view = new ModelAndView("pendidikan/_create");
+		// menampilkan view dari folder pendidikan file _form.html
+		ModelAndView view = new ModelAndView("pendidikan/_form");
 		// membuat object pendidikan model
 		XRiwayatPendidikanModel pendidikan = new XRiwayatPendidikanModel();
 		// set biodata id
@@ -85,8 +85,8 @@ public class PendidikanController extends BaseController {
 	@PostMapping(value = "/pendidikan/save")
 	public ModelAndView save(@Valid @ModelAttribute("pendidikan") XRiwayatPendidikanModel pendidikan,
 			BindingResult result) {
-		// menampilkan view dari folder pendidikan file _create.html
-		ModelAndView view = new ModelAndView("pendidikan/_create");
+		// menampilkan view dari folder pendidikan file _form.html
+		ModelAndView view = new ModelAndView("pendidikan/_form");
 
 		if (result.hasErrors()) {
 			logger.info("save biodata error");
@@ -144,8 +144,8 @@ public class PendidikanController extends BaseController {
 	
 	@GetMapping(value = "/pendidikan/ubah/{pid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("pid") Long pid) {
-		// menampilkan view dari folder pendidikan file _create.html
-		ModelAndView view = new ModelAndView("pendidikan/_create");
+		// menampilkan view dari folder pendidikan file _form.html
+		ModelAndView view = new ModelAndView("pendidikan/_form");
 		// membuat object pendidikan model
 		XRiwayatPendidikanModel pendidikan = this.penRepo.findById(pid).orElse(null);
 
