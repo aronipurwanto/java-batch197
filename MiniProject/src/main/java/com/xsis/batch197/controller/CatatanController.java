@@ -35,7 +35,7 @@ public class CatatanController extends BaseController {
 
 	@Autowired
 	private XCatatanRepo catRepo;
-	
+
 	@Autowired
 	private XNoteTypeRepo noteTypeRepo;
 
@@ -120,8 +120,12 @@ public class CatatanController extends BaseController {
 	private ModelAndView remove(@ModelAttribute("catatan") XCatatanModel catatan) {
 		// get catatan
 		XCatatanModel item = this.catRepo.findById(catatan.getId()).orElse(null);
-		catatan.setIsDelete(1);
-		this.catRepo.save(catatan);
+
+		// set delete
+		item.setDeletedOn(new Date());
+		item.setDeletedBy(this.getAbuid());
+		item.setIsDelete(1);
+		this.catRepo.save(item);
 
 		// view sertifkasi
 		ModelAndView view = new ModelAndView("catatan/_hapus");

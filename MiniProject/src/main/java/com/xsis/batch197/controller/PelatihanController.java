@@ -32,7 +32,7 @@ public class PelatihanController extends BaseController {
 
 	@Autowired
 	private XBiodataRepo bioRepo;
-	
+
 	@Autowired
 	private XTimePeriodeRepo timeRepo;
 
@@ -137,15 +137,19 @@ public class PelatihanController extends BaseController {
 	private ModelAndView remove(@ModelAttribute("pelatihan") XRiwayatPelatihanModel pelatihan) {
 		// get pelatihan
 		XRiwayatPelatihanModel item = this.pelRepo.findById(pelatihan.getId()).orElse(null);
-		pelatihan.setIsDelete(1);
-		this.pelRepo.save(pelatihan);
+		
+		// set delete
+		item.setDeletedOn(new Date());
+		item.setDeletedBy(this.getAbuid());
+		item.setIsDelete(1);
+		this.pelRepo.save(item);
 
 		// view sertifkasi
 		ModelAndView view = new ModelAndView("pelatihan/_hapus");
-		view.addObject("pelatihan", pelatihan);
+		view.addObject("pelatihan", item);
 		return view;
 	}
-	
+
 	@GetMapping(value = "/pelatihan/ubah/{pid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("pid") Long pid) {
 		// menampilkan view dari folder pelatihan file _form.html

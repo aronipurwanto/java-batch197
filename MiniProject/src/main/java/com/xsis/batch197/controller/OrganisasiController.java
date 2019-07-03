@@ -26,29 +26,29 @@ import com.xsis.batch197.repository.XOrganisasiRepo;
 
 @Controller
 public class OrganisasiController extends BaseController {
-private static final Logger logger = LoggerFactory.getLogger(OrganisasiController.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(OrganisasiController.class);
+
 	@Autowired
 	private XBiodataRepo bioRepo;
-	
+
 	@Autowired
 	private XOrganisasiRepo sertRepo;
-	
-	@GetMapping(value="/pelamar/organisasi/{bid}")
+
+	@GetMapping(value = "/pelamar/organisasi/{bid}")
 	private ModelAndView index(@PathVariable("bid") Long biodataId) {
 		// view sertifkasi
 		ModelAndView view = new ModelAndView("organisasi/index");
 		// get biodata Id
 		XBiodataModel biodata = this.bioRepo.findById(biodataId).orElse(null);
 		view.addObject("biodata", biodata);
-		
+
 		// get organisasi
 		List<XOrganisasiModel> listorganisasi = this.sertRepo.findByBiodataId(biodataId);
 		view.addObject("listorganisasi", listorganisasi);
 		return view;
 	}
-	
-	@GetMapping(value="/organisasi/add/{bid}") // bid sebagai vaiable biodataId
+
+	@GetMapping(value = "/organisasi/add/{bid}") // bid sebagai vaiable biodataId
 	public ModelAndView create(@PathVariable("bid") Long biodataId) {
 		// menampilkan view dari folder organisasi file _form.html
 		ModelAndView view = new ModelAndView("organisasi/_form");
@@ -56,12 +56,12 @@ private static final Logger logger = LoggerFactory.getLogger(OrganisasiControlle
 		XOrganisasiModel organisasi = new XOrganisasiModel();
 		// set biodata id
 		organisasi.setBiodataId(biodataId);
-		
+
 		Calendar date = new GregorianCalendar();
 		Integer currentYear = date.get(Calendar.YEAR);
-		
+
 		List<Integer> listStartYear = new ArrayList<Integer>();
-		for (int i = currentYear-20; i <= currentYear; i++) {
+		for (int i = currentYear - 20; i <= currentYear; i++) {
 			listStartYear.add(i);
 		}
 		// add object organisasi
@@ -70,19 +70,19 @@ private static final Logger logger = LoggerFactory.getLogger(OrganisasiControlle
 		view.addObject("listStartYear", listStartYear);
 		return view;
 	}
-	
-	@PostMapping(value="/organisasi/save")
+
+	@PostMapping(value = "/organisasi/save")
 	public ModelAndView save(@Valid @ModelAttribute("organisasi") XOrganisasiModel organisasi, BindingResult result) {
 		// menampilkan view dari folder organisasi file _form.html
 		ModelAndView view = new ModelAndView("organisasi/_form");
-		
+
 		if (result.hasErrors()) {
 			logger.info("save biodata error");
-			
+
 			// add object organisasi dengan error nya ke view
 			view.addObject("organisasi", organisasi);
 		} else {
-			//set user id
+			// set user id
 			organisasi.setCreatedBy(this.getAbuid());
 			organisasi.setCreatedOn(new Date());
 			// simpan ke repo
@@ -92,22 +92,22 @@ private static final Logger logger = LoggerFactory.getLogger(OrganisasiControlle
 		}
 		return view;
 	}
-	
-	@GetMapping(value="/organisasi/list/{bid}")
+
+	@GetMapping(value = "/organisasi/list/{bid}")
 	private ModelAndView list(@PathVariable("bid") Long biodataId) {
 		// view sertifkasi
 		ModelAndView view = new ModelAndView("organisasi/_list");
 		// get biodata Id
 		XBiodataModel biodata = this.bioRepo.findById(biodataId).orElse(null);
 		view.addObject("biodata", biodata);
-		
+
 		// get organisasi
 		List<XOrganisasiModel> listorganisasi = this.sertRepo.findByBiodataId(biodataId);
 		view.addObject("listorganisasi", listorganisasi);
 		return view;
 	}
-	
-	@GetMapping(value="/organisasi/hapus/{sid}")
+
+	@GetMapping(value = "/organisasi/hapus/{sid}")
 	private ModelAndView hapus(@PathVariable("sid") Long sid) {
 		// view sertifkasi
 		ModelAndView view = new ModelAndView("organisasi/_hapus");
@@ -116,31 +116,35 @@ private static final Logger logger = LoggerFactory.getLogger(OrganisasiControlle
 		view.addObject("organisasi", organisasi);
 		return view;
 	}
-	
-	@PostMapping(value="/organisasi/remove")
+
+	@PostMapping(value = "/organisasi/remove")
 	private ModelAndView remove(@ModelAttribute("organisasi") XOrganisasiModel organisasi) {
 		// get organisasi
 		XOrganisasiModel item = this.sertRepo.findById(organisasi.getId()).orElse(null);
-		organisasi.setIsDelete(1);
-		this.sertRepo.save(organisasi);
 		
+		// set delete
+		item.setDeletedOn(new Date());
+		item.setDeletedBy(this.getAbuid());
+		item.setIsDelete(1);
+		this.sertRepo.save(item);
+
 		// view sertifkasi
 		ModelAndView view = new ModelAndView("organisasi/_hapus");
-		view.addObject("organisasi", organisasi);
+		view.addObject("organisasi", item);
 		return view;
 	}
-	
-	@GetMapping(value="/organisasi/ubah/{sid}") // bid sebagai vaiable biodataId
+
+	@GetMapping(value = "/organisasi/ubah/{sid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("sid") Long sid) {
 		// menampilkan view dari folder organisasi file _form.html
 		ModelAndView view = new ModelAndView("organisasi/_form");
 		// membuat object organisasi model
 		XOrganisasiModel organisasi = this.sertRepo.findById(sid).orElse(null);
-		
+
 		Calendar date = new GregorianCalendar();
 		Integer currentYear = date.get(Calendar.YEAR);
 		List<Integer> listStartYear = new ArrayList<Integer>();
-		for (int i = currentYear-20; i <= currentYear; i++) {
+		for (int i = currentYear - 20; i <= currentYear; i++) {
 			listStartYear.add(i);
 		}
 		// add object organisasi

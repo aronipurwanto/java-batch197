@@ -34,7 +34,7 @@ public class PendidikanController extends BaseController {
 
 	@Autowired
 	private XBiodataRepo bioRepo;
-	
+
 	@Autowired
 	private XEducationLevelRepo eduRepo;
 
@@ -133,15 +133,19 @@ public class PendidikanController extends BaseController {
 	private ModelAndView remove(@ModelAttribute("pendidikan") XRiwayatPendidikanModel pendidikan) {
 		// get pendidikan
 		XRiwayatPendidikanModel item = this.penRepo.findById(pendidikan.getId()).orElse(null);
-		pendidikan.setIsDelete(1);
-		this.penRepo.save(pendidikan);
+
+		// set delete
+		item.setDeletedOn(new Date());
+		item.setDeletedBy(this.getAbuid());
+		item.setIsDelete(1);
+		this.penRepo.save(item);
 
 		// view sertifkasi
 		ModelAndView view = new ModelAndView("pendidikan/_hapus");
-		view.addObject("pendidikan", pendidikan);
+		view.addObject("pendidikan", item);
 		return view;
 	}
-	
+
 	@GetMapping(value = "/pendidikan/ubah/{pid}") // bid sebagai vaiable biodataId
 	public ModelAndView edit(@PathVariable("pid") Long pid) {
 		// menampilkan view dari folder pendidikan file _form.html

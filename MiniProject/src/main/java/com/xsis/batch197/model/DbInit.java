@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.xsis.batch197.repository.XAddressBookRepo;
 import com.xsis.batch197.repository.XCompanyRepo;
 import com.xsis.batch197.repository.XEducationLevelRepo;
+import com.xsis.batch197.repository.XFamilyRelationRepo;
+import com.xsis.batch197.repository.XFamilyTreeTypeRepo;
 import com.xsis.batch197.repository.XIdentityTypeRepo;
 import com.xsis.batch197.repository.XMaritalStatusRepo;
 import com.xsis.batch197.repository.XMenuRepo;
@@ -61,6 +63,12 @@ public class DbInit implements CommandLineRunner {
 	
 	@Autowired
 	private XNoteTypeRepo noteTypeRepo;
+	
+	@Autowired
+	private XFamilyTreeTypeRepo familyTreeRepo;
+	
+	@Autowired
+	private XFamilyRelationRepo familyRelRepo;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -226,6 +234,25 @@ public class DbInit implements CommandLineRunner {
 			listType.add(new XNoteTypeModel("SRO","Soft Reviewer Officer", userId));
 			listType.add(new XNoteTypeModel("HRO","Hard Reviewer Officer", userId));
 			listType.add(new XNoteTypeModel("MRO","Manual Reviewer Officer", userId));
+		}
+		
+		if(this.familyTreeRepo.findAll().size()==0) {
+			List<XFamilyTreeTypeModel> listTree = new ArrayList<XFamilyTreeTypeModel>();
+			listTree.add(new XFamilyTreeTypeModel("AYAH", "Ayah",userId));
+			listTree.add(new XFamilyTreeTypeModel("IBU", "Ibu",userId));
+			listTree.add(new XFamilyTreeTypeModel("ANAK", "Anak",userId));
+			
+			this.familyTreeRepo.saveAll(listTree);
+		}
+		
+		if(this.familyRelRepo.findAll().size()==0) {
+			List<XFamilyRelationModel> listRel = new ArrayList<XFamilyRelationModel>();
+			listRel.add(new XFamilyRelationModel("SAUDARA","Saudara Kandung"));
+			listRel.add(new XFamilyRelationModel("ORTU","Orang Tua"));
+			listRel.add(new XFamilyRelationModel("KAKEK","Kakek"));
+			listRel.add(new XFamilyRelationModel("NENEK","Nenek"));
+			
+			this.familyRelRepo.saveAll(listRel);
 		}
 	}
 

@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+			<div class="col-md-3 col-sm-3 col-xs-12">
 				<div th:class="${#fields.hasErrors('validStartMonth')} ? 'form-group has-error':'form-group'">
 					<label>Berlaku Mulai</label>
 					<select th:field="*{validStartMonth}" class="form-control">
@@ -47,7 +47,7 @@
 					<span th:if="${#fields.hasErrors('validStartYear')}" class="help-block" th:errors="*{validStartYear}">pesan error</span>
 				</div>
 			</div>		
-			<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+			<div class="col-md-3 col-sm-3 col-xs-12">
 				<div th:class="${#fields.hasErrors('untilMonth')} ? 'form-group has-error':'form-group'">
 					<label>Berlaku Sampai</label>
 					<select th:field="*{untilMonth}" class="form-control">
@@ -58,7 +58,7 @@
 				</div>
 			</div>
 			
-			<div class="col-md-3 col-sm-3 col-xs-12 form-group">
+			<div class="col-md-3 col-sm-3 col-xs-12">
 				<div th:class="${#fields.hasErrors('untilYear')} ? 'form-group has-error':'form-group'">
 					<label>&nbsp;</label>
 					<select th:field="*{untilYear}" class="form-control">
