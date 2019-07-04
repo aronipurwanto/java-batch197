@@ -1,8 +1,5 @@
 package com.xsis.batch197.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
@@ -10,8 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -82,6 +77,46 @@ public class XAddressModel extends BaseModel {
 	public XAddressModel(Long userId, Long biodataId) {
 		super(userId);
 		this.biodataId=biodataId;
+	}
+	
+	public XAddressModel(FormBiodataModel form, Long userId, Long biodataId) {
+		super(userId);
+		this.id = form.getAddressId();
+		this.biodataId=biodataId;
+		this.address1 = form.getAddress1();
+		this.postalCode1 = form.getPostalCode1();
+		this.rt1 = form.getRt1();
+		this.rw1 = form.getRw1();
+		this.kelurahan1 = form.getKelurahan1();
+		this.kecamatan1 = form.getKecamatan1();
+		this.region1 = form.getRegion1();
+		this.address2 = form.getAddress2();
+		this.postalCode2 = form.getPostalCode2();
+		this.rt2 = form.getRt2();
+		this.rw2 = form.getRw2();
+		this.kecamatan2 = form.getKecamatan2();
+		this.kelurahan2 = form.getKelurahan2();
+		this.region2 = form.getRegion2();
+	}
+	
+	public XAddressModel(FormBiodataModel form, Long userId) {
+		super(userId);
+		this.id = form.getAddressId();
+		this.biodataId=form.getBiodataId();
+		this.address1 = form.getAddress1();
+		this.postalCode1 = form.getPostalCode1();
+		this.rt1 = form.getRt1();
+		this.rw1 = form.getRw1();
+		this.kelurahan1 = form.getKelurahan1();
+		this.kecamatan1 = form.getKecamatan1();
+		this.region1 = form.getRegion1();
+		this.address2 = form.getAddress2();
+		this.postalCode2 = form.getPostalCode2();
+		this.rt2 = form.getRt2();
+		this.rw2 = form.getRw2();
+		this.kecamatan2 = form.getKecamatan2();
+		this.kelurahan2 = form.getKelurahan2();
+		this.region2 = form.getRegion2();
 	}
 
 	public Long getId() {

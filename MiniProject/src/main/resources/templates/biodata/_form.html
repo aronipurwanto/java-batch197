@@ -1,8 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<form id="form-biodata" th:action="@{~/pelamar/save}" th:object="${pelamar}" method="post">
+<form id="form-biodata" th:action="@{~/biodata/save}" th:object="${biodata}" method="post">
 	<div class="modal-header">
 		<button type="button" class="close btn-xs" id="btn-close-form"><span aria-hidden="true">&times;</span></button>
-		<h4 class="modal-title">Tambah Pelamar</h4>
+		<h4 class="modal-title">Edit Pelamar</h4>
 		<!-- HIDDEN ID -->
 		<input type="hidden" th:field="*{id}" class="form-control"/>
 	</div>
@@ -296,10 +296,10 @@
 			</div>
 			
 			<div class="col-md-2 col-sm-2 col-xs-12">
-				<div th:class="${#fields.hasErrors('kota1')} ? 'form-group has-error':'form-group'">
+				<div th:class="${#fields.hasErrors('region1')} ? 'form-group has-error':'form-group'">
 					<label>Kota</label>
-					<input type="text" th:field="*{kota1}" class="form-control"/>
-					<span th:if="${#fields.hasErrors('kota1')}" class="help-block" th:errors="*{kota1}">pesan error</span>
+					<input type="text" th:field="*{region1}" class="form-control"/>
+					<span th:if="${#fields.hasErrors('region1')}" class="help-block" th:errors="*{region1}">pesan error</span>
 				</div>
 			</div>
 			
@@ -320,10 +320,10 @@
 			</div>
 			
 			<div class="col-md-2 col-sm-2 col-xs-12">
-				<div th:class="${#fields.hasErrors('kota2')} ? 'form-group has-error':'form-group'">
+				<div th:class="${#fields.hasErrors('region2')} ? 'form-group has-error':'form-group'">
 					<label>Kota</label>
-					<input type="text" th:field="*{kota2}" class="form-control"/>
-					<span th:if="${#fields.hasErrors('kota2')}" class="help-block" th:errors="*{kota2}">pesan error</span>
+					<input type="text" th:field="*{region2}" class="form-control"/>
+					<span th:if="${#fields.hasErrors('region2')}" class="help-block" th:errors="*{region2}">pesan error</span>
 				</div>
 			</div>
 		</div>

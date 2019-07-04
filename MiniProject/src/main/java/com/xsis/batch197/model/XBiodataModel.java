@@ -186,6 +186,38 @@ public class XBiodataModel extends BaseModel {
 	public XBiodataModel(Long userId) {
 		super(userId);
 	}
+	
+	public XBiodataModel(FormBiodataModel form, Long userId) {
+		super(userId);
+		this.id = form.getId();
+		this.fullname= form.getFullname();
+		this.nickname= form.getNickname();
+		this.pob= form.getPob();
+		this.dob= form.getDob();
+		this.gender= form.getGender();
+		this.religionId= form.getReligionId();
+		this.high = form.getHigh();
+		this.weight = form.getWeight();
+		this.nationality = form.getNationality();
+		this.ethnic = form.getEthnic();
+		this.hobby = form.getHobby();
+		this.identityTypeId = form.getIdentityTypeId();
+		this.identityNo = form.getIdentityNo();
+		this.email = form.getEmail();
+		this.phoneNumber1 = form.getPhoneNumber1();
+		this.phoneNumber2 = form.getPhoneNumber2();
+		this.parentPhoneNumber= form.getParentPhoneNumber();
+		this.childSequence = form.getChildSequence();
+		this.howManyBrothers = form.getHowManyBrothers();
+		this.maritalStatusId = form.getMaritalStatusId();
+		this.addrbookId = form.getAddrbookId();
+		this.token = form.getToken();
+		this.expiredToken = form.getExpiredToken();
+		this.marriageYear = form.getMarriageYear();
+		this.companyId = form.getCompanyId();
+		this.isProcess = form.getIsProcess();
+		this.isComplete = form.getIsComplete();
+	}
 
 	public Long getId() {
 		return id;

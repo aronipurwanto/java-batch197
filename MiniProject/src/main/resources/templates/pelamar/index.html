@@ -143,6 +143,27 @@
 				$('#main-modal').find('#detail-content').html(data);				
 			}
 		});
+	})
+	// edit biodata
+	.on('click','#btn-edit-biodata',function(event) {
+		// cegah link redirect
+		event.preventDefault();
+
+		var url = $(this).attr('href');
+		// buat ajax untuk create
+		// lihat sertifikasi controller @GetMapping(value="/sertifikasi/ubah/{sid}")
+		$.ajax({
+			url : url,
+			type : 'GET',
+			dataType : 'html',
+			success : function(data) {
+				// replace content
+				$('#main-modal-content').html(data);
+			}
+		});
+	})
+	.on('click',"#btn-close-form", function(){
+		$('#main-modal').modal('hide');
 	});
 </script>
 </body>
