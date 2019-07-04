@@ -14,29 +14,41 @@ import com.xsis.batch197.repository.XAddressBookRepo;
 
 @RestController
 @RequestMapping("/api")
-public class ApiUserController extends BaseController{
+public class ApiUserController extends BaseController {
 	@Autowired
 	private XAddressBookRepo userRepo;
-	
 
-    @GetMapping(value = "user")
-    public List<XAddressBookModel> listUser(){
-        return userRepo.findAll();
-}
-	
-	@GetMapping(value="user/get/{id}")
-	public XAddressBookModel getUser (@PathVariable("id") Long id) {
+	@GetMapping(value = "user")
+	public List<XAddressBookModel> listUser() {
+		return userRepo.findAll();
+	}
+
+	@GetMapping(value = "user/get/{id}")
+	public XAddressBookModel getUser(@PathVariable("id") Long id) {
 		return userRepo.findById(id).orElse(new XAddressBookModel());
 	}
-	
-	@PostMapping(value="user/{username}")
+
+	@PostMapping(value = "user/{username}")
 	public XAddressBookModel lockUser(@PathVariable("username") String username) {
 		// get data lewat repo
 		XAddressBookModel user = this.userRepo.findByEmail(username);
-		if(user != null) {
-			//mengganti user locked =>1
-			user.setIsLocked(1);
-			//simpan user
+		// check dulu user berdasarkan username yang login kalau ada
+		if (user != null) {
+			// dapatkan counter dari database
+			Integer count = user.getFpCounter();
+			// jika counter sudah 3 maka
+			if (count >= 3) {
+				// user loked menjadi 1 => user di lock
+				user.setIsLocked(1);
+			} else {
+				// jika masih kurang dari 3, maka counter ditambah
+				count++;
+				// update counter nya di databse
+				user.setFpCounter(count);
+				// masih belun di lock user nya
+				user.setIsLocked(0);
+			}
+			// kemudian disimpan ke database
 			this.userRepo.save(user);
 		}
 		return user;

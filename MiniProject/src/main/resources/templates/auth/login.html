@@ -7,8 +7,8 @@
 <title>Login App</title>
 </head>
 <body>
-	<div layout:fragment="content">
-		<form th:action="@{~/login}" method="POST" id="form-login">
+	<div data-layout-fragment="content">
+		<form th:action="@{/login}" method="POST" id="form-login">
 			<h1>Login Form</h1>
 			<div>
 				<input type="text" class="form-control" name="username" placeholder="Username" required="" />
@@ -18,6 +18,7 @@
 			</div>
 			<div>
 				<button type="submit" class="btn btn-default submit">Log in</button> 
+				<input type="hidden" name="txtcount" id="txt-count" value="0">
 				<!-- div class="col-md-6 pull-left">
 					<div class="checkbox">
 						<label>
@@ -42,4 +43,38 @@
 			</div>
 		</form>
 	</div>
+	<script type="text/javascript" data-layout-fragment="script-js">
+	
+		$("#form-login").submit(function(){
+	    	$.ajax({
+	    		url:$(this).attr('action'),
+	    		type:'POST',
+	    		data:$(this).serialize(),
+	    		statusCode:{
+	    			401:function(){
+	    				alert('Test Tist');
+	    			}
+	    		},
+	    	});
+	    	/*
+	    	.done(function(data, textStatus, jqXHR) {
+	    		alert('success');
+	    	    window.location.href = "http://localhost:8085/";
+	    	}).fail(function(jqXHR, textStatus, errorThrown) {
+	    		alert('Booh! Wrong credentials, try again!'+ errorThrown.status);
+	    		
+	    		var username = $("#username").val();
+	    		var count = $("#txt-count").val();
+	        	if(count==3){
+	        		alert("Maaf Bro! User kamu aku lock ya");
+	        		// panggil method ini diatas
+	        		///lockUser(username);
+	        	}else {
+	        		count++;
+	        		$("#txt-count").val(count);
+	        	}
+	        }); */   	
+	    	return false;
+	    });
+	</script>
 </body>

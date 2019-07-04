@@ -19,10 +19,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	private UserPrincipalDetailsService userService;
 	
 	@Autowired
-	private AuthenticationFailureHandler authFailureHandler;
+	private AuthFailureHandler authFailureHandler;
 	
 	@Autowired
-	private AuthenticationSuccessHandler authSuccessHandler;
+	private AuthSuccessHandler authSuccessHandler;
 	/*
 	public SecurityConfiguration(UserPrincipalDetailsService userService){
 		this.userService = userService;
