@@ -120,6 +120,12 @@
 	})
 	.on('click','#btn-close-form', function(){
 		$("#form-modal").modal('hide');
+	})
+	.on('change','#start-month', function(){
+		$("#form-modal").find('#until-month').attr('disabled',false);
+	})
+	.on('change','#start-year', function(){
+		$("#form-modal").find('#until-year').attr('disabled',false);
 	});
 	
 	function loadData(){
@@ -170,6 +176,8 @@
 			dataType:'html',
 			success:function(data){
 				$("#form-modal-content").html(data);
+				$("#form-modal").find('#until-month').attr('disabled',false);
+				$("#form-modal").find('#until-year').attr('disabled',false);
 				$("#form-modal").modal('show');
 			}
 		});

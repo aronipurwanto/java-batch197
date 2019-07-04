@@ -39,43 +39,43 @@
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Nama Event *</label>
-						<input th:field="*{eventName}" type="text" class="form-control" id="event-name" disabled required />
-						<input type="text" class="form-control" id="event-name2" disabled />
+						<input th:field="*{eventName}" type="text" class="form-control" id="event-name" readonly="readonly"/>
+						<input type="text" class="form-control" id="event-name2" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Nama Karir Center *</label>
-						<input th:field="*{careerCenterName}" type="text" class="form-control" id="nama-career-center" disabled />
-						<input type="text" class="form-control" id="nama-career-center2" disabled />
+						<input th:field="*{careerCenterName}" type="text" class="form-control" id="nama-career-center" readonly="readonly" />
+						<input type="text" class="form-control" id="nama-career-center2" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Referrer Name *</label>
-						<input th:field="*{referrerName}" type="text" class="form-control" id="ref-name" disabled />
-						<input type="text" class="form-control" id="ref-name2" disabled />
+						<input th:field="*{referrerName}" type="text" class="form-control" id="ref-name" readonly="readonly" />
+						<input type="text" class="form-control" id="ref-name2" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Referrer Mobile Number *</label>
-						<input th:field="*{referrerPhone}" type="text" class="form-control" id="ref-mobile-num" disabled />
-						<input type="text" class="form-control" id="ref-mobile-num2" disabled />
+						<input th:field="*{referrerPhone}" type="text" class="form-control" id="ref-mobile-num" readonly="readonly" />
+						<input type="text" class="form-control" id="ref-mobile-num2" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Referrer email *</label>
-						<input th:field="*{referrerEmail}" type="text" class="form-control" id="ref-email" disabled />
-						<input type="text" class="form-control" id="ref-email2" disabled />
+						<input th:field="*{referrerEmail}" type="text" class="form-control" id="ref-email" readonly="readonly" />
+						<input type="text" class="form-control" id="ref-email2" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Sumber Lain *</label>
-						<input th:field="*{otherSource}" type="text" class="form-control" id="input-sumber-lain" disabled />
-						<input type="text" class="form-control" id="input-sumber-lain2" disabled />
+						<input th:field="*{otherSource}" type="text" class="form-control" id="input-sumber-lain" readonly="readonly" />
+						<input type="text" class="form-control" id="input-sumber-lain2" readonly="readonly" />
 					</div>
 				</div>
 
@@ -136,7 +136,7 @@
 	$(document).ready(function() {
 
 		//#input2 dibuat hanya untuk mengisi kekosongan 
-		//tidak akan pernah memasukan input karena statusnya selalu disabled
+		//tidak akan pernah memasukan input karena statusnya selalu readonly
 		$("#event-name2").hide();
 		$("#nama-career-center2").hide();
 		$("#ref-name2").hide();
@@ -151,145 +151,145 @@
 			if (drop_pilih == 'event') {
 				//Hanya nama event yg aktif
 				
-				//enabled & munculkan input (event-name) -> disabled & sembunyikan input selainnya
-				$("#event-name").prop("disabled", false);
+				//enabled & munculkan input (event-name) -> readonly & sembunyikan input selainnya
+				$("#event-name").prop("readonly", false);
 				$("#event-name").show();
 				$("#event-name2").hide();
 				
-				$("#nama-career-center").prop("disabled", true);
+				$("#nama-career-center").prop("readonly", true);
 				$("#nama-career-center").hide();
 				$("#nama-career-center2").show();
 				
-				$("#ref-name").prop("disabled", true);
+				$("#ref-name").prop("readonly", true);
 				$("#ref-name").hide();
 				$("#ref-name2").show();
 				
-				$("#ref-mobile-num").prop("disabled", true);
+				$("#ref-mobile-num").prop("readonly", true);
 				$("#ref-mobile-num").hide();
 				$("#ref-mobile-num2").show();
 				
-				$("#ref-email").prop("disabled", true);
+				$("#ref-email").prop("readonly", true);
 				$("#ref-email").hide();
 				$("#ref-email2").show();
 				
-				$("#input-sumber-lain").prop("disabled", true);
+				$("#input-sumber-lain").prop("readonly", true);
 				$("#input-sumber-lain").hide();
 				$("#input-sumber-lain2").show();
 
 			} else if (drop_pilih == 'career-center') {
 				//Hanya nama karir center yg aktif
 				
-				$("#event-name").prop("disabled", true);
+				$("#event-name").prop("readonly", true);
 				$("#event-name").hide();
 				$("#event-name2").show();
 				
-				//enabled & munculkan input (nama-career-center) -> disabled & sembunyikan input selainnya
-				$("#nama-career-center").prop("disabled", false); 
+				//enabled & munculkan input (nama-career-center) -> readonly & sembunyikan input selainnya
+				$("#nama-career-center").prop("readonly", false); 
 				$("#nama-career-center").show();
 				$("#nama-career-center2").hide();
 				
-				$("#ref-name").prop("disabled", true);
+				$("#ref-name").prop("readonly", true);
 				$("#ref-name").hide();
 				$("#ref-name2").show();
 				
-				$("#ref-mobile-num").prop("disabled", true);
+				$("#ref-mobile-num").prop("readonly", true);
 				$("#ref-mobile-num").hide();
 				$("#ref-mobile-num2").show();
 				
-				$("#ref-email").prop("disabled", true);
+				$("#ref-email").prop("readonly", true);
 				$("#ref-email").hide();
 				$("#ref-email2").show();
 				
-				$("#input-sumber-lain").prop("disabled", true);
+				$("#input-sumber-lain").prop("readonly", true);
 				$("#input-sumber-lain").hide();
 				$("#input-sumber-lain2").show();
 
 			} else if (drop_pilih == 'referensi') {
 				//Hanya field Referrer yang aktif
 				
-				$("#event-name").prop("disabled", true);
+				$("#event-name").prop("readonly", true);
 				$("#event-name").hide();
 				$("#event-name2").show();
 				
-				$("#nama-career-center").prop("disabled", true);
+				$("#nama-career-center").prop("readonly", true);
 				$("#nama-career-center").hide();
 				$("#nama-career-center2").show();
 				
-				//enabled & munculkan input (ref-name, mobile-num & email) -> disabled & sembunyikan input selainnya
-				$("#ref-name").prop("disabled", false);
+				//enabled & munculkan input (ref-name, mobile-num & email) -> readonly & sembunyikan input selainnya
+				$("#ref-name").prop("readonly", false);
 				$("#ref-name").show();
 				$("#ref-name2").hide();
 				
-				$("#ref-mobile-num").prop("disabled", false);
+				$("#ref-mobile-num").prop("readonly", false);
 				$("#ref-mobile-num").show();
 				$("#ref-mobile-num2").hide();
 				
-				$("#ref-email").prop("disabled", false);
+				$("#ref-email").prop("readonly", false);
 				$("#ref-email").show();
 				$("#ref-email2").hide();
 				
-				$("#input-sumber-lain").prop("disabled", true);
+				$("#input-sumber-lain").prop("readonly", true);
 				$("#input-sumber-lain").hide();
 				$("#input-sumber-lain2").show();
 
 			} else if (drop_pilih == 'sumber-lain') {
 				//Hanya sumber lain yang aktif
 				
-				$("#event-name").prop("disabled", true);
+				$("#event-name").prop("readonly", true);
 				$("#event-name").hide();
 				$("#event-name2").show();
 				
-				$("#nama-career-center").prop("disabled", true);
+				$("#nama-career-center").prop("readonly", true);
 				$("#nama-career-center").hide();
 				$("#nama-career-center2").show();
 				
-				$("#ref-name").prop("disabled", true);
+				$("#ref-name").prop("readonly", true);
 				$("#ref-name").hide();
 				$("#ref-name2").show();
 				
-				$("#ref-mobile-num").prop("disabled", true);
+				$("#ref-mobile-num").prop("readonly", true);
 				$("#ref-mobile-num").hide();
 				$("#ref-mobile-num2").show();
 				
-				$("#ref-email").prop("disabled", true);
+				$("#ref-email").prop("readonly", true);
 				$("#ref-email").hide();
 				$("#ref-email2").show();
 				
-				//enabled & munculkan input (input-sumber-lain) -> disabled & sembunyikan input selainnya
-				$("#input-sumber-lain").prop("disabled", false);
+				//enabled & munculkan input (input-sumber-lain) -> readonly & sembunyikan input selainnya
+				$("#input-sumber-lain").prop("readonly", false);
 				$("#input-sumber-lain").show();
 				$("#input-sumber-lain2").hide();
 
 			} else {
-				//disabled & sembunyikan semua input
-				$("#event-name").prop("disabled", true);
+				//readonly & sembunyikan semua input
+				$("#event-name").prop("readonly", true);
 				$("#event-name").hide();
 				$("#event-name2").show();
 		
-				$("#nama-career-center").prop("disabled", true);
+				$("#nama-career-center").prop("readonly", true);
 				$("#nama-career-center").hide();
 				$("#nama-career-center2").show();
 				
 				
-				$("#ref-name").prop("disabled", true);
+				$("#ref-name").prop("readonly", true);
 				$("#ref-name").hide();
 				$("#ref-name2").show();
 				
-				$("#ref-mobile-num").prop("disabled", true);
+				$("#ref-mobile-num").prop("readonly", true);
 				$("#ref-mobile-num").hide();
 				$("#ref-mobile-num2").show();
 				
-				$("#ref-email").prop("disabled", true);
+				$("#ref-email").prop("readonly", true);
 				$("#ref-email").hide();
 				$("#ref-email2").show();
 				
-				$("#input-sumber-lain").prop("disabled", true);
+				$("#input-sumber-lain").prop("readonly", true);
 				$("#input-sumber-lain").hide();
 				$("#input-sumber-lain2").show();
 			}
 		});
 	});
 
-	//Buat fungsi dimana ketika button submit diklik cek #sumber-loker option apa yg dipilih, dan bersihkan field input yang disabled
+	//Buat fungsi dimana ketika button submit diklik cek #sumber-loker option apa yg dipilih, dan bersihkan field input yang readonly
 </script>
 </html>

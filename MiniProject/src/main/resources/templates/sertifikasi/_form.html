@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <form id="form-sertifikasi" th:action="@{~/sertifikasi/save}" th:object="${sertifikasi}" method="POST">
 	<div class="modal-header">
-		<button type="button" class="close btn-xs" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+		<button type="button" class="close btn-xs" id="btn-close-form"><span aria-hidden="true">&times;</span></button>
 		<h4 class="modal-title">Tambah Setifikasi </h4>
 		
 		<!-- Biodata ID, dengan HIDDEN -->
@@ -29,7 +29,7 @@
 			<div class="col-md-3 col-sm-3 col-xs-12">
 				<div th:class="${#fields.hasErrors('validStartMonth')} ? 'form-group has-error':'form-group'">
 					<label>Berlaku Mulai</label>
-					<select th:field="*{validStartMonth}" class="form-control">
+					<select th:field="*{validStartMonth}" class="form-control" id="start-month">
 						<option value="">- Pilih Bulan-</option>
 						<option th:each="item : ${listBulan}" th:text="${item}" th:value="${item}"></option>
 					</select>
@@ -40,7 +40,7 @@
 			<div class="col-md-3 col-sm-3 col-xs-12">
 				<div th:class="${#fields.hasErrors('validStartYear')} ? 'form-group has-error':'form-group'">
 					<label>&nbsp;</label>
-					<select th:field="*{validStartYear}" class="form-control">
+					<select th:field="*{validStartYear}" class="form-control" id="start-year">
 						<option value="">- Pilih Tahun-</option>
 						<option th:each="item : ${listStartYear}" th:text="${item}" th:value="${item}"></option>
 					</select>
@@ -50,7 +50,7 @@
 			<div class="col-md-3 col-sm-3 col-xs-12">
 				<div th:class="${#fields.hasErrors('untilMonth')} ? 'form-group has-error':'form-group'">
 					<label>Berlaku Sampai</label>
-					<select th:field="*{untilMonth}" class="form-control">
+					<select th:field="*{untilMonth}" class="form-control" id="until-month" disabled="disabled">
 						<option value="">- Pilih Bulan-</option>
 						<option th:each="item : ${listBulan}" th:text="${item}" th:value="${item}"></option>
 					</select>
@@ -61,7 +61,7 @@
 			<div class="col-md-3 col-sm-3 col-xs-12">
 				<div th:class="${#fields.hasErrors('untilYear')} ? 'form-group has-error':'form-group'">
 					<label>&nbsp;</label>
-					<select th:field="*{untilYear}" class="form-control">
+					<select th:field="*{untilYear}" class="form-control" id="until-year" disabled="disabled">
 						<option value="">- Pilih Tahun-</option>
 						<option th:each="item : ${listValidYear}" th:text="${item}" th:value="${item}"></option>
 					</select>
