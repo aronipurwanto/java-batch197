@@ -3,10 +3,13 @@ package com.xsis.batch197.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xsis.batch197.model.XAddressBookModel;
@@ -28,12 +31,14 @@ public class ApiUserController extends BaseController {
 		return userRepo.findById(id).orElse(new XAddressBookModel());
 	}
 
-	@PostMapping(value = "user/{username}")
-	public XAddressBookModel lockUser(@PathVariable("username") String username) {
+	@PostMapping(value = "user/fp-count")
+	public ResponseEntity<XAddressBookModel> lockUser(@RequestParam("username") String username) {
+		ResponseEntity<XAddressBookModel> result = new ResponseEntity<XAddressBookModel>(HttpStatus.INTERNAL_SERVER_ERROR);
 		// get data lewat repo
-		XAddressBookModel user = this.userRepo.findByEmail(username);
+		XAddressBookModel user = null;
 		// check dulu user berdasarkan username yang login kalau ada
-		if (user != null) {
+		if (this.userRepo.findByEmail(username)!= null) {
+			user = this.userRepo.findByEmail(username);
 			// dapatkan counter dari database
 			Integer count = user.getFpCounter();
 			// jika counter sudah 3 maka
@@ -49,9 +54,14 @@ public class ApiUserController extends BaseController {
 				user.setIsLocked(0);
 			}
 			// kemudian disimpan ke database
-			this.userRepo.save(user);
+			try {
+				this.userRepo.save(user);
+				result =new ResponseEntity<XAddressBookModel>(user, HttpStatus.OK);
+			} catch (Exception e) {
+				result =new ResponseEntity<XAddressBookModel>(user, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 		}
-		return user;
+		return result;
 	}
 
 }

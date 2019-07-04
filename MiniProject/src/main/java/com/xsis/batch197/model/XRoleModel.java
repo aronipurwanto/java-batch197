@@ -32,9 +32,6 @@ public class XRoleModel extends BaseModel implements Serializable {
 	@Column(name = "name", length = 50, nullable = false)
 	private String name;
 
-	@ManyToMany(mappedBy = "listRole")
-	private List<XAddressBookModel> listAddr = new ArrayList<XAddressBookModel>();
-
 	@ManyToMany
 	@JoinTable(name = "x_menu_access", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_role_menu_id")), inverseJoinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_menu_role_id")), foreignKey = @ForeignKey(name = "fk_role_menu_id"), inverseForeignKey = @ForeignKey(name = "fk_menu_role_id"))
 	private List<XMenuModel> listMenu = new ArrayList<XMenuModel>();
@@ -81,14 +78,6 @@ public class XRoleModel extends BaseModel implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<XAddressBookModel> getListAddr() {
-		return listAddr;
-	}
-
-	public void setListAddr(List<XAddressBookModel> listAddr) {
-		this.listAddr = listAddr;
 	}
 
 	public List<XMenuModel> getListMenu() {

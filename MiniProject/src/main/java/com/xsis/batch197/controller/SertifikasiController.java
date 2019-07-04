@@ -43,7 +43,8 @@ public class SertifikasiController extends BaseController {
 		view.addObject("biodata", biodata);
 
 		// get sertifikasi
-		List<XSertifikasiModel> listsertifikasi = this.sertRepo.findByBiodataId(biodataId);
+		//List<XSertifikasiModel> listsertifikasi = this.sertRepo.findByBiodataId(biodataId);
+		List<XSertifikasiModel> listsertifikasi = this.sertRepo.findAllActive(biodataId);
 		view.addObject("listsertifikasi", listsertifikasi);
 		return view;
 	}
@@ -102,7 +103,8 @@ public class SertifikasiController extends BaseController {
 			// simpan ke repo
 			sertRepo.save(sertifikasi);
 			// add object baru tanpa error
-			view.addObject("sertifikasi", new XSertifikasiModel());
+			//view.addObject("sertifikasi", new XSertifikasiModel());
+			view = new ModelAndView("redirect:/sertifikasi/add/"+ sertifikasi.getBiodataId());
 		}
 		return view;
 	}
@@ -116,7 +118,8 @@ public class SertifikasiController extends BaseController {
 		view.addObject("biodata", biodata);
 
 		// get sertifikasi
-		List<XSertifikasiModel> listsertifikasi = this.sertRepo.findByBiodataId(biodataId);
+		//List<XSertifikasiModel> listsertifikasi = this.sertRepo.findByBiodataId(biodataId);
+		List<XSertifikasiModel> listsertifikasi = this.sertRepo.findAllActive(biodataId);
 		view.addObject("listsertifikasi", listsertifikasi);
 		return view;
 	}

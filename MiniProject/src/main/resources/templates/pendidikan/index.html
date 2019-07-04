@@ -22,7 +22,7 @@
 				</tr>
 			</thead>
 			<tbody id="list-pendidikan">
-				<tr th:each="item : ${listpendidikan}">
+				<tr th:each="item : ${listPendidikan}">
 					<td th:text="${item.schoolName}"></td>
 					<td th:text="${item.eductationLevel.name}"></td>
 					<td>
@@ -191,6 +191,8 @@
 			dataType:'html',
 			success:function(data){
 				$("#hapus-modal").modal('hide');
+				// tampilkan data dengan memanggil method loadData
+				loadData();
 			}
 		});
 		// cegah form redirect

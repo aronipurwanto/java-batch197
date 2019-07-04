@@ -49,12 +49,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll().and().formLogin().loginPage("/login")
-				.permitAll().loginProcessingUrl("/login").failureHandler(failureHandler())
-				.defaultSuccessUrl("/select-role").usernameParameter("username").passwordParameter("password").and()
-				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(2)
-				.expiredUrl("/session-expired");
+		http.csrf().disable().authorizeRequests()
+			.antMatchers("/api/user/fp-count").permitAll()
+			.and()
+			.formLogin()
+			.loginPage("/login").permitAll()
+			.loginProcessingUrl("/login").failureHandler(failureHandler())
+			.defaultSuccessUrl("/select-role")
+			.usernameParameter("username").passwordParameter("password")
+			.and()
+			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+			.and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(2)
+			.expiredUrl("/session-expired");
 		// .and().rememberMe().rememberMeParameter("remember-me")
 		// .tokenValiditySeconds(600).key("RahasiaDong!!").and().exceptionHandling().accessDeniedPage("/access-denied")
 		// .successHandler(authSuccessHandler).failureHandler(authFailureHandler)

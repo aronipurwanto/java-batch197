@@ -20,7 +20,7 @@
 				</tr>
 			</thead>
 			<tbody id="list-sertifikasi">
-				<tr th:each="item : ${listSertifikasi}">
+				<tr th:each="item : ${listsertifikasi}">
 					<td th:text="${item.certificateName}"></td>
 					<td th:text="${item.publisher}"></td>
 					<td>
@@ -109,7 +109,7 @@
 				var check = $("#form-modal-content").find(".has-error").length;
 				// jika tidak ada error
 				if(check==0){
-					$("#form-modal").modal('hide');
+					//$("#form-modal").modal('hide');
 					// tampilkan data dengan memanggil method loadData
 					loadData();
 				}
@@ -188,6 +188,9 @@
 			dataType:'html',
 			success:function(data){
 				$("#hapus-modal").modal('hide');
+				
+				// tampilkan data dengan memanggil method loadData
+				loadData();
 			}
 		});
 		// cegah form redirect

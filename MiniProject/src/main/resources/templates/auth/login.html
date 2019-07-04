@@ -11,10 +11,10 @@
 		<form th:action="@{/login}" method="POST" id="form-login">
 			<h1>Login Form</h1>
 			<div>
-				<input type="text" class="form-control" name="username" placeholder="Username" required="" />
+				<input type="text" class="form-control" id="username" name="username" placeholder="Username" required="" />
 			</div>
 			<div>
-				<input type="password" class="form-control" name="password" placeholder="Password" required="" />
+				<input type="password" class="form-control" id="password" name="password" placeholder="Password" required="" />
 			</div>
 			<div>
 				<button type="submit" class="btn btn-default submit">Log in</button> 
@@ -44,7 +44,21 @@
 		</form>
 	</div>
 	<script type="text/javascript" data-layout-fragment="script-js">
-	
+		// untuk ajax lock user
+	    function lockUser(username){
+	    	$.ajax({
+	    		url:'/api/user/fp-count',
+	    		type:'post',
+	    		data:{"username": username},
+	    		success:function(data){
+	    			if(data.fpCount >= 3){
+	    				alert("User Berhasil di LOCK");
+	    			} else {
+	    				alert('Kesempatan login anda sisa : '+ (3 - data.fpCount));
+	    			}
+	    		}
+	    	});
+	    }
 		$("#form-login").submit(function(){
 	    	$.ajax({
 	    		url:$(this).attr('action'),
@@ -52,9 +66,15 @@
 	    		data:$(this).serialize(),
 	    		statusCode:{
 	    			401:function(){
-	    				alert('Test Tist');
-	    			}
+	    				//alert('Test Tist');
+	    				var username = $("#username").val();
+	    	    		var count = $("#txt-count").val();
+	    	    		lockUser(username);
+	    			},
 	    		},
+	    		success: function(){
+	    			window.location.href = "/select-role";
+	    		}
 	    	});
 	    	/*
 	    	.done(function(data, textStatus, jqXHR) {
