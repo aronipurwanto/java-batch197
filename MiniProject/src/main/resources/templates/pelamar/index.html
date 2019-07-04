@@ -85,6 +85,7 @@
 			dataType:'html',
 			success: function(data){
 				$('#main-modal-content').html(data);
+				$('#main-modal-content').find(".modal-title").html("Biodata Pelamar Baru");
 				$('#main-modal').modal('show');
 			}
 		});
@@ -143,9 +144,9 @@
 				$('#main-modal').find('#detail-content').html(data);				
 			}
 		});
-	})
+	});
 	// edit biodata
-	.on('click','#btn-edit-biodata',function(event) {
+	$('#main-modal').on('click','#btn-edit-biodata',function(event) {
 		// cegah link redirect
 		event.preventDefault();
 
@@ -159,11 +160,60 @@
 			success : function(data) {
 				// replace content
 				$('#main-modal-content').html(data);
+				$('#main-modal-content').find(".modal-title").html("Edit Biodata Pelamar");
 			}
 		});
-	})
-	.on('click',"#btn-close-form", function(){
+	});
+	$('#main-modal').on('click',"#btn-close-form", function(){
 		$('#main-modal').modal('hide');
+	});
+	
+	// sumbit form create
+	$('#main-modal').on('submit','#form-biodata-create', function(){
+		var vurl = $(this).attr('action');
+		var vdata = $(this).serialize();
+		$.ajax({
+			url : vurl,
+			type : 'post',
+			data:vdata,
+			dataType : 'html',
+			success : function(data) {
+				// masukan dulu result ke modal
+				$("#form-modal-content").html(data);
+				// check jumlah element yang memiliki class has-error
+				var check = $("#form-modal-content").find(".has-error").length;
+				// jika tidak ada error
+				if(check==0){
+					$("#form-modal").modal('hide');
+					// tampilkan data dengan memanggil method loadData
+				}
+			}
+		});
+		return false;
+	});
+	
+	// submit form edit
+	$('#main-modal').on('submit','#form-biodata-edit', function(){
+		var vurl = $(this).attr('action');
+		var vdata = $(this).serialize();
+		$.ajax({
+			url : vurl,
+			type : 'post',
+			data:vdata,
+			dataType : 'html',
+			success : function(data) {
+				// masukan dulu result ke modal
+				$("#form-modal-content").html(data);
+				// check jumlah element yang memiliki class has-error
+				var check = $("#form-modal-content").find(".has-error").length;
+				// jika tidak ada error
+				if(check==0){
+					$("#form-modal").modal('hide');
+					// tampilkan data dengan memanggil method loadData
+				}
+			}
+		});
+		return false;
 	});
 </script>
 </body>

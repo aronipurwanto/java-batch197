@@ -124,11 +124,11 @@ public class XBiodataModel extends BaseModel {
 	@Column(name="marriage_year", length=10, nullable=true)
 	private String marriageYear;
 	
-	@Column(name="company_id", length=11, nullable=false)
+	@Column(name="company_id", length=11, nullable=true)
 	private Long companyId;
 	
 	@ManyToOne
-	@JoinColumn(name="company_id",foreignKey=@ForeignKey(name="fk_bio_company_id"), insertable=false, updatable=false)
+	@JoinColumn(name="company_id",foreignKey=@ForeignKey(name="fk_bio_company_id"), nullable = true, insertable=false, updatable=false)
 	private XCompanyModel company;
 
 	@Column(name="is_process", nullable=true, length=1)
@@ -142,7 +142,7 @@ public class XBiodataModel extends BaseModel {
 	
 	@OneToOne(mappedBy="biodata")
 	private XKeteranganTambahanModel ketTambahan;
-	
+	/*
 	@OneToMany(mappedBy="biodata")
 	private List<XBiodataAttachmentModel> listAttch = new ArrayList<XBiodataAttachmentModel>();
 	
@@ -178,7 +178,7 @@ public class XBiodataModel extends BaseModel {
 	
 	@OneToMany(mappedBy="biodata")
 	private List<XKeahlianModel> listKeahlian = new ArrayList<XKeahlianModel>();
-	
+	*/
 	public XBiodataModel() {
 		super();
 	}
@@ -498,7 +498,7 @@ public class XBiodataModel extends BaseModel {
 	public void setKetTambahan(XKeteranganTambahanModel ketTambahan) {
 		this.ketTambahan = ketTambahan;
 	}
-
+/*
 	public List<XBiodataAttachmentModel> getListAttch() {
 		return listAttch;
 	}
@@ -593,5 +593,5 @@ public class XBiodataModel extends BaseModel {
 
 	public void setListKeahlian(List<XKeahlianModel> listKeahlian) {
 		this.listKeahlian = listKeahlian;
-	}
+	}*/
 }

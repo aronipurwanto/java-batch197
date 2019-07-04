@@ -50,7 +50,38 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests()
-			.antMatchers("/api/user/fp-count").permitAll()
+			.antMatchers("/bootstrap/dist/css/**",
+					"/bootstrap/dist/js/**",
+					"/bootstrap/dist/fonts/**",
+					"/font-awesome/css/**",
+					"/font-awesome/fonts/**",
+					"/font-awesome/less/**",
+					"/font-awesome/scss/**",
+					"/nprogress/**",
+					"/nprogress/support/**",
+					"/iCheck/skins/flat/**",
+					"/iCheck/**",
+					"/bootstrap-progressbar/css/**",
+					"/bootstrap-progressbar/less/**",
+					"/bootstrap-progressbar/scss/**",
+					"/bootstrap-progressbar/**",
+					"/bootstrap-daterangepicker/**",
+					"/bootstrap-datetimepicker/build/css/**",
+					"/bootstrap-datetimeepicker/build/js/**",
+					"/build/css/**",
+					"/build/js/**",
+					"/build/images/**",
+					"/jquery/dist/**",		
+					"/jquery/**",		
+					"/fastclick/lib/**",
+					"/skycons/**",
+					"/moment/**",
+					"/select2/dist/css/**",
+					"/select2/dist/js/**",
+					"/animate.css/**",
+					"/api/user/fp-count",
+					"/login").permitAll()
+			.anyRequest().authenticated()
 			.and()
 			.formLogin()
 			.loginPage("/login").permitAll()

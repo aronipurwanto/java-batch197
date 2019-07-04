@@ -48,19 +48,13 @@ public class BiodataController extends BaseController {
 	private XBiodataRepo repoBio;
 
 	@Autowired
-	private XAddressBookRepo repoAddressBook;
+	private XIdentityTypeRepo identityRepo;
 
 	@Autowired
-	private XCompanyRepo repoCompany;
+	private XMaritalStatusRepo maritalRepo;
 
 	@Autowired
-	private XIdentityTypeRepo repoIdentityType;
-
-	@Autowired
-	private XMaritalStatusRepo repoMarital;
-
-	@Autowired
-	private XReligionRepo repoReligion;
+	private XReligionRepo religionRepo;
 
 	@Autowired
 	private XAddressRepo repoAddress;
@@ -93,13 +87,13 @@ public class BiodataController extends BaseController {
 		//kirim ke view
 		view.addObject("biodata", form);
 		
-		List<XReligionModel> listReligion = this.repoReligion.findAll();
+		List<XReligionModel> listReligion = this.religionRepo.findAll();
 		view.addObject("listReligion", listReligion);
 		
-		List<XIdentityTypeModel> listIdentity = repoIdentityType.findAll();
+		List<XIdentityTypeModel> listIdentity = identityRepo.findAll();
 		view.addObject("listIdentity", listIdentity);
 		
-		List<XMaritalStatusModel> listMarital = repoMarital.findAll();
+		List<XMaritalStatusModel> listMarital = maritalRepo.findAll();
 		view.addObject("listMarital", listMarital);
 
 		return view;

@@ -79,7 +79,7 @@ public class XAddressModel extends BaseModel {
 		this.biodataId=biodataId;
 	}
 	
-	public XAddressModel(FormBiodataModel form, Long userId, Long biodataId) {
+	public XAddressModel(FormBiodataModel form, Long biodataId, Long userId) {
 		super(userId);
 		this.id = form.getAddressId();
 		this.biodataId=biodataId;

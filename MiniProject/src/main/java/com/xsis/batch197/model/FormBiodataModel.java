@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -50,7 +51,8 @@ public class FormBiodataModel {
 
 	@NotNull(message = "Tidak boleh kosong")
 	private Long identityTypeId;
-
+	
+	@NotEmpty(message = "Tidak boleh kosong")
 	private String identityNo;
 
 	@Email(message = "Format email salah")

@@ -418,40 +418,12 @@
 								</div>
 							</div>
 					</div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary pull-right">
-								<i class="fa fa-save"></i> Save
-							</button>
-							<button data-dismiss="modal" class="btn btn-default pull-right">Cancel</button>
-						</div>
-					</div>
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-primary pull-right">
+				<i class="fa fa-save"></i> Save
+			</button>
+			<button data-dismiss="modal" class="btn btn-default pull-right">Cancel</button>
+		</div>
+	</div>
 </form>
-<script>
-	$(document).ready(function() {
-		var minOffset = 0, maxOffset = 20; // Change to whatever you want
-		var thisYear = (new Date()).getFullYear();
-		var select = $('<select class="form-control" th:field="*{biodata.marriageYear}" id="biodata.marriageYear" name="biodata.marriageYear">');
-		
-		$('<option>', {
-			value : "",
-			text : "Pilih"
-		}).appendTo(select);
-	
-		for (var i = minOffset; i <= maxOffset; i++) {
-			var year = thisYear - i;
-			$('<option>', {
-				value : year,
-				text : year
-			}).appendTo(select);
-		}
-
-		$("#marriedYear").append(select);
-
-		$("#marriedDiv input").datepicker({
-			 format: 'yyyy-mm-dd'
-		});
-		
-
-	})
-</script>
 <!-- content selesai -->
