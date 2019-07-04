@@ -40,54 +40,48 @@
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Nama Event *</label>
 						<input th:field="*{eventName}" type="text" class="form-control" id="event-name" readonly="readonly"/>
-						<input type="text" class="form-control" id="event-name2" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Nama Karir Center *</label>
-						<input th:field="*{careerCenterName}" type="text" class="form-control" id="nama-career-center" readonly="readonly" />
-						<input type="text" class="form-control" id="nama-career-center2" readonly="readonly" />
+						<input th:field="*{careerCenterName}" type="text" class="form-control" id="career-center-name" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Referrer Name *</label>
-						<input th:field="*{referrerName}" type="text" class="form-control" id="ref-name" readonly="readonly" />
-						<input type="text" class="form-control" id="ref-name2" readonly="readonly" />
+						<input th:field="*{referrerName}" type="text" class="form-control" id="referrer-name" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Referrer Mobile Number *</label>
-						<input th:field="*{referrerPhone}" type="text" class="form-control" id="ref-mobile-num" readonly="readonly" />
-						<input type="text" class="form-control" id="ref-mobile-num2" readonly="readonly" />
+						<input th:field="*{referrerPhone}" type="text" class="form-control" id="referrer-phone" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Referrer email *</label>
-						<input th:field="*{referrerEmail}" type="text" class="form-control" id="ref-email" readonly="readonly" />
-						<input type="text" class="form-control" id="ref-email2" readonly="readonly" />
+						<input th:field="*{referrerEmail}" type="text" class="form-control" id="referrer-email" readonly="readonly" />
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-12 col-sm-6 col-xs-12 form-group">
 						<label>Sumber Lain *</label>
-						<input th:field="*{otherSource}" type="text" class="form-control" id="input-sumber-lain" readonly="readonly" />
-						<input type="text" class="form-control" id="input-sumber-lain2" readonly="readonly" />
+						<input th:field="*{otherSource}" type="text" class="form-control" id="other-source" readonly="readonly" />
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-md-6 col-sm-6 col-xs-12 form-group">
 						<label>Penghasilan Terakhir (IDR)</label>
-						<input th:field="*{lastIncome}" type="text" class="form-control" />
+						<input th:field="*{lastIncome}" type="text" class="form-control" id="last-income"/>
 					</div>
 					<div class="col-md-6 xdisplay_inputx form-group has-feedback"
 						id="tgl-lamar">
 						<label>Tgl. Lamaran Kerja</label>
-						<input th:field="*{applyDate}" type="date" class="form-control datepicker" />
+						<input th:field="*{applyDate}" type="date" class="form-control datepicker" id="apply-date" />
 						<span class="fa fa-calendar-o form-control-feedback right"></span>
 					</div>
 				</div>
