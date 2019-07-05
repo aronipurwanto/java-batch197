@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,19 +58,16 @@ public class AuthenticationController {
 			XAddressBookModel user = this.addrBookRepo.findByEmail(forgot.getEmail());
 			// jika di check user berdasarkan email tidak ada, maka tampilkan pesan berikut
 			if(user==null) {
-				ObjectError error = new ObjectError("email","Email anda tidak terdaftar.");
-				result.addError(error);
+				result.addError(new FieldError("forgot", "email",forgot.getEmail(), false, null, null, "Email anda tidak terdaftar."));
 				view.addObject("forgot", forgot);
 			}else if(user.getIsLocked()==1){
 				// jika user di lock
-				ObjectError error = new ObjectError("email","User anda terkunci, Tidak bisa merubah");
-				result.addError(error);
+				result.addError(new FieldError("forgot", "email",forgot.getEmail(), false, null, null, "User anda terkunci, Tidak bisa merubah"));
 				view.addObject("forgot", forgot);
 				
 			}else if(user.getIsDelete()==1) {
 				// jika user anda tidak aktif
-				ObjectError error = new ObjectError("email","User anda tidak aktif, Tidak bisa merubah");
-				result.addError(error);
+				result.addError(new FieldError("forgot", "email",forgot.getEmail(), false, null, null, "User anda tidak aktif, Tidak bisa merubah"));
 				view.addObject("forgot", forgot);
 			}else {
 				// kirim link email
