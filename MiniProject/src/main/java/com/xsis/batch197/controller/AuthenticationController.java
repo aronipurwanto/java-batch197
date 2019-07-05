@@ -1,9 +1,14 @@
 package com.xsis.batch197.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xsis.batch197.model.XAddressBookModel;
+import com.xsis.batch197.model.XRoleModel;
 import com.xsis.batch197.modelview.ForgotPassword;
 import com.xsis.batch197.repository.XAddressBookRepo;
 import com.xsis.batch197.repository.XCompanyRepo;
@@ -80,8 +86,17 @@ public class AuthenticationController {
 	@GetMapping(value = "/select-role")
 	public ModelAndView selectAccess() {
 		ModelAndView view = new ModelAndView("auth/select-access");
+		// check auth
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		List<XRoleModel> listRole = null;
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			// cari user berdasarkan username ke database
+			XAddressBookModel user = this.addrBookRepo.findByAbuid(auth.getName());
+			// list role nya 
+			listRole = user.getListRole();
+		}
 		// add object to list
-		view.addObject("listRole", this.roleRepo.findAll());
+		view.addObject("listRole", listRole);
 		view.addObject("listCompany", this.comRepo.findAll());
 
 		return view;
