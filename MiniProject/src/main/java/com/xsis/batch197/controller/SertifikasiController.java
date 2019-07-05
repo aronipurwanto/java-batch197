@@ -90,7 +90,30 @@ public class SertifikasiController extends BaseController {
 			BindingResult result) {
 		// menampilkan view dari folder sertifikasi file _form.html
 		ModelAndView view = new ModelAndView("sertifikasi/_form");
+		Calendar date = new GregorianCalendar();
+		Integer currentYear = date.get(Calendar.YEAR);
+		List<Integer> listBulan = new ArrayList<Integer>();
+		for (int i = 1; i <= 12; i++) {
+			listBulan.add(i);
+		}
 
+		List<Integer> listStartYear = new ArrayList<Integer>();
+		for (int i = currentYear - 20; i <= currentYear; i++) {
+			listStartYear.add(i);
+		}
+
+		List<Integer> listValidYear = new ArrayList<Integer>();
+		for (int i = currentYear; i <= currentYear + 10; i++) {
+			listValidYear.add(i);
+		}
+
+		// add object list mothn
+		view.addObject("listBulan", listBulan);
+		// add object tahun start
+		view.addObject("listStartYear", listStartYear);
+		// add object tahun valid
+		view.addObject("listValidYear", listValidYear);
+		
 		if (result.hasErrors()) {
 			logger.info("save biodata error");
 

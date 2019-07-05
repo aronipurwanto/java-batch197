@@ -71,7 +71,11 @@ public class KeahlianController extends BaseController {
 	public ModelAndView save(@Valid @ModelAttribute("keahlian") XKeahlianModel keahlian, BindingResult result) {
 		// menampilkan view dari folder keahlian file _form.html
 		ModelAndView view = new ModelAndView("keahlian/_form");
-
+		
+		List<XSkillLevelModel> listSkill = this.skillRepo.findAll();
+		// add object list mothn
+		view.addObject("listSkill", listSkill);
+		
 		if (result.hasErrors()) {
 			logger.info("save biodata error");
 

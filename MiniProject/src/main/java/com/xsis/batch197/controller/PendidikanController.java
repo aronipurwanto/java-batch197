@@ -87,6 +87,20 @@ public class PendidikanController extends BaseController {
 			BindingResult result) {
 		// menampilkan view dari folder pendidikan file _form.html
 		ModelAndView view = new ModelAndView("pendidikan/_form");
+		
+		Calendar date = new GregorianCalendar();
+		Integer currentYear = date.get(Calendar.YEAR);
+
+		List<Integer> listStartYear = new ArrayList<Integer>();
+		for (int i = currentYear - 20; i <= currentYear; i++) {
+			listStartYear.add(i);
+		}
+
+		List<XEducationLevelModel> listEdu = this.eduRepo.findAll();
+		// add object tahun start
+		view.addObject("listStartYear", listStartYear);
+		// add object listTime
+		view.addObject("listEdu", listEdu);
 
 		if (result.hasErrors()) {
 			logger.info("save biodata error");

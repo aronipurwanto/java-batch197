@@ -91,6 +91,17 @@ public class KeluargaController extends BaseController {
 	public ModelAndView save(@Valid @ModelAttribute("keluarga") XKeluargaModel keluarga, BindingResult result) {
 		// menampilkan view dari folder keluarga file _form.html
 		ModelAndView view = new ModelAndView("keluarga/_form");
+		
+		List<XFamilyRelationModel> listRel = this.relRepo.findAll();
+		List<XFamilyTreeTypeModel> listTree = this.treeRepo.findAll();
+		List<XEducationLevelModel> listEdu = this.eduRepo.findAll();
+
+		// add object list Relation
+		view.addObject("listRel", listRel);
+		// add object list Tree
+		view.addObject("listTree", listTree);
+		// add object list Edu
+		view.addObject("listEdu", listEdu);
 
 		if (result.hasErrors()) {
 			logger.info("save biodata error");

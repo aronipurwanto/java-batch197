@@ -1,9 +1,6 @@
 package com.xsis.batch197.controller;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -74,7 +71,10 @@ public class CatatanController extends BaseController {
 	public ModelAndView save(@Valid @ModelAttribute("catatan") XCatatanModel catatan, BindingResult result) {
 		// menampilkan view dari folder catatan file _form.html
 		ModelAndView view = new ModelAndView("catatan/_form");
-
+		List<XNoteTypeModel> listType = this.noteTypeRepo.findAll();
+		// add object list type
+		view.addObject("listType", listType);
+		
 		if (result.hasErrors()) {
 			logger.info("save biodata error");
 

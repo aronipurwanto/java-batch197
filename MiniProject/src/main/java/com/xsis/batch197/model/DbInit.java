@@ -226,6 +226,8 @@ public class DbInit implements CommandLineRunner {
 			listSkill.add(new XSkillLevelModel("Junior","Junior",userId));
 			listSkill.add(new XSkillLevelModel("Middle","Middle",userId));
 			listSkill.add(new XSkillLevelModel("Senior","Senior",userId));
+			
+			this.skillRepo.saveAll(listSkill);
 		}
 		
 		if(this.noteTypeRepo.findAll().size()==0) {
@@ -234,6 +236,8 @@ public class DbInit implements CommandLineRunner {
 			listType.add(new XNoteTypeModel("SRO","Soft Reviewer Officer", userId));
 			listType.add(new XNoteTypeModel("HRO","Hard Reviewer Officer", userId));
 			listType.add(new XNoteTypeModel("MRO","Manual Reviewer Officer", userId));
+			
+			this.noteTypeRepo.saveAll(listType);
 		}
 		
 		if(this.familyTreeRepo.findAll().size()==0) {

@@ -75,6 +75,16 @@ public class OrganisasiController extends BaseController {
 	public ModelAndView save(@Valid @ModelAttribute("organisasi") XOrganisasiModel organisasi, BindingResult result) {
 		// menampilkan view dari folder organisasi file _form.html
 		ModelAndView view = new ModelAndView("organisasi/_form");
+		
+		Calendar date = new GregorianCalendar();
+		Integer currentYear = date.get(Calendar.YEAR);
+
+		List<Integer> listStartYear = new ArrayList<Integer>();
+		for (int i = currentYear - 20; i <= currentYear; i++) {
+			listStartYear.add(i);
+		}
+		// add object tahun start
+		view.addObject("listStartYear", listStartYear);
 
 		if (result.hasErrors()) {
 			logger.info("save biodata error");

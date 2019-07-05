@@ -101,5 +101,21 @@ public class XCatatanModel extends BaseModel {
 	public void setBiodata(XBiodataModel biodata) {
 		this.biodata = biodata;
 	}
+
+	public XNoteTypeModel getNoteType() {
+		return noteType;
+	}
+
+	public void setNoteType(XNoteTypeModel noteType) {
+		this.noteType = noteType;
+	}
+
+	public XAddressBookModel getUser() {
+		return user;
+	}
+
+	public void setUser(XAddressBookModel user) {
+		this.user = user;
+	}
 	
 }

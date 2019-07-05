@@ -19,15 +19,11 @@ public class XNoteTypeModel extends BaseModel {
 	@TableGenerator(name="x_note_type_idx", table = "x_index", pkColumnName = "index_id", valueColumnName = "index_value", initialValue = 0, allocationSize = 1)
 	@Column(name="id")
 	private Long id;
-	
-	@NotNull
-	@NotBlank
+
 	@NotEmpty
 	@Column(name="name",  nullable = false, length = 50)
 	private String name;
 	
-	@NotNull
-	@NotBlank
 	@NotEmpty
 	@Column(name="description", length = 100)
 	private String description;

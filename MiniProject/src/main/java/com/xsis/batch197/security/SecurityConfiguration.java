@@ -79,7 +79,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					"/select2/dist/css/**",
 					"/select2/dist/js/**",
 					"/animate.css/**",
-					"/api/user/fp-count","/login","/forgot-password","/check-email","/select-role","/session-expired").permitAll()
+					"/api/user/fp-count/**","/login","/forgot-password","/check-email","/select-role","/session-expired").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
