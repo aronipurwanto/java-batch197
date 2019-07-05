@@ -1,4 +1,4 @@
-package com.xsis.batch197.model;
+package com.xsis.batch197.modelview;
 
 import java.util.Date;
 
@@ -11,6 +11,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.xsis.batch197.model.XAddressModel;
+import com.xsis.batch197.model.XBiodataModel;
 
 public class FormBiodataModel {
 	private Long id;

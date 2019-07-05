@@ -22,6 +22,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.xsis.batch197.modelview.FormBiodataModel;
+
 @Entity
 @Table(name="x_biodata")
 public class XBiodataModel extends BaseModel {

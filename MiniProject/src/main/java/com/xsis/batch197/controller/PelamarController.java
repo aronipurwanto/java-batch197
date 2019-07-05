@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.xsis.batch197.model.FormBiodataModel;
 import com.xsis.batch197.model.XAddressModel;
 import com.xsis.batch197.model.XBiodataModel;
 import com.xsis.batch197.model.XIdentityTypeModel;
 import com.xsis.batch197.model.XMaritalStatusModel;
 import com.xsis.batch197.model.XReligionModel;
+import com.xsis.batch197.modelview.FormBiodataModel;
 import com.xsis.batch197.repository.XAddressRepo;
 import com.xsis.batch197.repository.XBiodataRepo;
 import com.xsis.batch197.repository.XIdentityTypeRepo;

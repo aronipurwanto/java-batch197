@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.xsis.batch197.modelview.FormBiodataModel;
+
 @Entity
 @Table(name = "x_address")
 public class XAddressModel extends BaseModel {

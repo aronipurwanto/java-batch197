@@ -79,8 +79,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					"/select2/dist/css/**",
 					"/select2/dist/js/**",
 					"/animate.css/**",
-					"/api/user/fp-count",
-					"/login").permitAll()
+					"/api/user/fp-count","/login","/forgot-password","/check-email","/select-role","/session-expired").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -91,11 +90,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.and()
 			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
 			.and()
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(2)
-			.expiredUrl("/session-expired");
-		// .and().rememberMe().rememberMeParameter("remember-me")
-		// .tokenValiditySeconds(600).key("RahasiaDong!!").and().exceptionHandling().accessDeniedPage("/access-denied")
-		// .successHandler(authSuccessHandler).failureHandler(authFailureHandler)
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(2).expiredUrl("/session-expired");
+			//.successHandler(authSuccessHandler).failureHandler(authFailureHandler);
+			//.rememberMe().rememberMeParameter("remember-me")
+			//.tokenValiditySeconds(600).key("RahasiaDong!!").and().exceptionHandling().accessDeniedPage("/access-denied")
 	}
 
 	@Bean

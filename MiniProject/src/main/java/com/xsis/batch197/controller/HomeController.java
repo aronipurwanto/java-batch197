@@ -14,12 +14,6 @@ import com.xsis.batch197.repository.XRoleRepo;
 
 @Controller
 public class HomeController {
-	@Autowired
-	private XRoleRepo roleRepo;
-
-	@Autowired
-	private XCompanyRepo comRepo;
-
 	@GetMapping(value = "/")
 	public ModelAndView index() {
 		return new ModelAndView("home/index");
@@ -28,30 +22,5 @@ public class HomeController {
 	@GetMapping(value = "/home/index")
 	public ModelAndView dashbord() {
 		return new ModelAndView("home/index");
-	}
-
-	@GetMapping(value = "/forgot-password")
-	public ModelAndView forgot() {
-		return new ModelAndView("home/forgot-password");
-	}
-
-	// setelah login pilih role dan pilih company
-	@GetMapping(value = "/select-role")
-	public ModelAndView selectAccess() {
-		ModelAndView view = new ModelAndView("home/select-access");
-		// add object to list
-		view.addObject("listRole", this.roleRepo.findAll());
-		view.addObject("listCompany", this.comRepo.findAll());
-
-		return view;
-	}
-
-	// untuk menangkap request setelah dipilih role dan company
-	@PostMapping(value = "/set-access")
-	private String setAccess(@RequestParam("roleId") Long roleId, @RequestParam("companyId") Long companyId, HttpSession session) {
-		session.setAttribute("roleId", roleId);
-		session.setAttribute("companyId", companyId);
-		
-		return "redirect:/home/index";
 	}
 }
