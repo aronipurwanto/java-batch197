@@ -104,10 +104,16 @@ public class AuthenticationController {
 
 	// untuk menangkap request setelah dipilih role dan company
 	@PostMapping(value = "/set-access")
-	private String setAccess(@RequestParam("roleId") Long roleId, @RequestParam("companyId") Long companyId, HttpSession session) {
+	public String setAccess(@RequestParam("roleId") Long roleId, @RequestParam("companyId") Long companyId, HttpSession session) {
 		session.setAttribute("roleId", roleId);
 		session.setAttribute("companyId", companyId);
 		
 		return "redirect:/home/index";
+	}
+	
+	
+	public ModelAndView changePassword() {
+		ModelAndView view = new ModelAndView();
+		return view;
 	}
 }
