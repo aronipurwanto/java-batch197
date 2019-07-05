@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -67,7 +68,7 @@ public class PelamarController extends BaseController {
 	// Method Button Add
 	@GetMapping(value = "/add")
 	public ModelAndView create() {
-		ModelAndView view = new ModelAndView("pelamar/_form");
+		ModelAndView view = new ModelAndView("pelamar/_create");
 		FormBiodataModel pelamar = new FormBiodataModel();
 		view.addObject("pelamar", pelamar);
 
@@ -81,10 +82,60 @@ public class PelamarController extends BaseController {
 		view.addObject("listMarital", listMarital);
 		return view;
 	}
+	
+	@PostMapping(value = "/save")
+	public ModelAndView save(@Valid @ModelAttribute("pelamar") FormBiodataModel pelamar, BindingResult result) {
+		ModelAndView view = new ModelAndView("pelamar/_create");
+		List<XReligionModel> listReligion = this.religionRepo.findAll();
+		view.addObject("listReligion", listReligion);
+
+		List<XIdentityTypeModel> listIdentity = identityRepo.findAll();
+		view.addObject("listIdentity", listIdentity);
+
+		List<XMaritalStatusModel> listMarital = maritalRepo.findAll();
+		view.addObject("listMarital", listMarital);
+
+		if (result.hasErrors()) {
+			view.addObject("pelamar", pelamar);
+		} else {
+			if(this.biodataRepo.findByEmail(pelamar.getEmail())!=null) {
+				// jika email sudah digunakan
+				result.addError(new FieldError("pelamar", "email",pelamar.getEmail(), false, null, null, "Email sudah digunakan"));
+				view.addObject("pelamar", pelamar);
+			}else if(this.biodataRepo.findByIdentityNo(pelamar.getIdentityNo())!=null) {
+				// jika email sudah digunakan
+				result.addError(new FieldError("pelamar", "identityNo",pelamar.getIdentityNo(), false, null, null, "Nomor Identity sudah ada"));
+				view.addObject("pelamar", pelamar);
+			}else if(this.biodataRepo.findByParentPhoneNumber(pelamar.getParentPhoneNumber())!=null) {
+				// jika email sudah digunakan
+				result.addError(new FieldError("pelamar", "parentPhoneNumber",pelamar.getParentPhoneNumber(), false, null, null, "Nomor Telp Orang Tua sudah ada"));
+				view.addObject("pelamar", pelamar);
+			}else if(this.biodataRepo.findByPhoneNumber1(pelamar.getPhoneNumber1())!=null) {
+				// jika email sudah digunakan
+				result.addError(new FieldError("pelamar", "phoneNumber1",pelamar.getPhoneNumber1(), false, null, null, "Nomor Telp sudah ada"));
+				view.addObject("pelamar", pelamar);
+			}else if(this.biodataRepo.findByPhoneNumber2(pelamar.getPhoneNumber2())!=null) {
+				// jika email sudah digunakan
+				result.addError(new FieldError("pelamar", "phoneNumber2",pelamar.getPhoneNumber2(), false, null, null, "Nomor Telp sudah ada"));
+				view.addObject("pelamar", pelamar);
+			}else {
+				// simpan kebiodata
+				XBiodataModel biodata = new XBiodataModel(pelamar, this.getAbuid());
+				this.biodataRepo.save(biodata);
+	
+				// simpan ke address
+				XAddressModel address = new XAddressModel(pelamar, biodata.getId(), this.getAbuid());
+				this.addrRepo.save(address);
+	
+				view.addObject("pelamar", new FormBiodataModel());
+			}
+		}
+		return view;
+	}
 
 	@GetMapping(value = "/edit/{bid}")
 	public ModelAndView edit(@PathVariable("bid") Long biodataId) {
-		ModelAndView view = new ModelAndView("pelamar/_form");
+		ModelAndView view = new ModelAndView("pelamar/_edit");
 		// ambil dulu dari database
 		XBiodataModel biodata = biodataRepo.findById(biodataId).orElse(null);
 
@@ -110,9 +161,9 @@ public class PelamarController extends BaseController {
 		return view;
 	}
 
-	@PostMapping(value = "/save")
-	public ModelAndView save(@Valid @ModelAttribute("pelamar") FormBiodataModel pelamar, BindingResult result) {
-		ModelAndView view = new ModelAndView("pelamar/_form");
+	@PostMapping(value = "/update")
+	public ModelAndView update(@Valid @ModelAttribute("pelamar") FormBiodataModel pelamar, BindingResult result) {
+		ModelAndView view = new ModelAndView("pelamar/_edit");
 		List<XReligionModel> listReligion = this.religionRepo.findAll();
 		view.addObject("listReligion", listReligion);
 
