@@ -74,6 +74,10 @@
 			<artifactId>thymeleaf-spring5</artifactId>
 		</dependency>
 		<!-- Spring Session -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
